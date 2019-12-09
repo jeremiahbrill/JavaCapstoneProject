@@ -5,7 +5,9 @@ import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 import Register from './views/Register.vue'
 import Chatbox from './views/Chatbox.vue'
+import Chat from 'vue-beautiful-chat'
 
+Vue.use(Chat)
 Vue.use(Router)
 
 /**
