@@ -31,6 +31,11 @@ import CloseIconSvg from "vue-beautiful-chat/src/assets/close.svg";
 
 export default {
   name: "chatbox",
+  props:{
+    categories:Array,
+    workflows:Array,
+    subworkflows:Array
+  },
   data() {
     return {
         sampleCategory: [
@@ -218,15 +223,17 @@ export default {
     },
     // This is the logic to our bot responses 
     botResponse(){
+      console.log(this.workflows)
         const checkArray = [];
-        this.sampleWorkflow.forEach(element => { checkArray.push(element.workflowName)});
+        this.workflows.forEach(element => { checkArray.push(element.workflowName)});
         const filter = this.messageList[this.messageList.length - 1].data.text;
+        console.log(checkArray);
         if(checkArray.includes(filter) === true ){
             return this.sendMessage('Test');
         }
         else if (this.messageList[this.messageList.length - 1].author === 'me'){
             const responseText = [];
-            this.sampleWorkflow.forEach(element => {
+            this.workflows.forEach(element => {
                 responseText.push(element.workflowName);
             });
             return this.sendMessage('Did not get that', responseText)
