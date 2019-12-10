@@ -59,7 +59,7 @@ export default {
         },
         {
           id: "user2",
-          name: "Support",
+          name: "Owl Boy",
           imageUrl:
             "https://avatars3.githubusercontent.com/u/37018832?s=200&v=4"
         }
@@ -67,22 +67,23 @@ export default {
       titleImageUrl:
         "https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png",
       messageList: [
+        { type: "text", author: `user1`, data: { text: `No.` }},  
         { type: "text", author: `me`, data: { text: `Look at this!` } },
-        { type: "text", author: `user1`, data: { text: `No.` } }
+        { type: "text", author: `user2`, data: { text: `Owl Boy is` }, suggestions: ['some quick reply', 'another one', 'This', 'That', 'With', 'Then']} 
       ], // the list of the messages to show, can be paginated and adjusted dynamically
       newMessagesCount: 0,
       isChatOpen: false, // to determine whether the chat window should be open or closed
       showTypingIndicator: "", // when set to a value matching the participant.id it shows the typing indicator for the specific user
       colors: {
         header: {
-          bg: "#4e8cff",
+          bg: "#F9F295",
           text: "#ffffff"
         },
         launcher: {
           bg: "#4e8cff"
         },
         messageList: {
-          bg: "#ffffff"
+          bg: "gray"
         },
         sentMessage: {
           bg: "#4e8cff",
@@ -93,7 +94,7 @@ export default {
           text: "#222222"
         },
         userInput: {
-          bg: "#f4f7f9",
+          bg: "#F9F295",
           text: "#565867"
         }
       }, // specifies the color scheme for the component
@@ -102,21 +103,23 @@ export default {
     };
   },
   methods: {
-    sendMessage(text) {
+    sendMessage(text, suggestions = []) {
       if (text.length > 0) {
         this.newMessagesCount = this.isChatOpen
           ? this.newMessagesCount
           : this.newMessagesCount + 1;
         this.onMessageWasSent({
-          author: "support",
+          author: "user2",
           type: "text",
-          data: { text }
+          data: { text },
+          suggestions
         });
       }
     },
     onMessageWasSent(message) {
       // called when the user sends a message
       this.messageList = [...this.messageList, message];
+      this.botResponse();
     },
     openChat() {
       // called when the user clicks on the fab button to open the chat
@@ -138,7 +141,18 @@ export default {
       const m = this.messageList.find(m => m.id === message.id);
       m.isEdited = true;
       m.data.text = message.data.text;
-    }
+    },
+    botResponse(){
+        if(this.messageList[this.messageList.length - 1].data.text === 'some quick reply' ){
+            return this.sendMessage('Test');
+        }else if (this.messageList[this.messageList.length - 1].author === 'me'){
+            return this.sendMessage('Did not get that', ['TESTING Suggest']);
+        }
+            return null;
+      }
+  },
+  computed: {
+
   }
 };
 </script>
