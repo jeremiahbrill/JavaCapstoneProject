@@ -29,6 +29,10 @@
 						<!-- Every url in the app must be authenticated except /login -->
 						<value>/login</value>
 						<value>/register</value>
+						<value>/api/category</value>
+						<value>/api/workflow/{id}</value>
+						<value>/api/subworkflow/1</value>
+						
 					</list>
 				</property>
 			</bean>
@@ -53,7 +57,7 @@
 	
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="org.postgresql.Driver" />
-		<property name="url" value="jdbc:postgresql://localhost:5432/userdb" />
+		<property name="url" value="jdbc:postgresql://localhost:5432/athena-chatbot" />
 		<property name="username" value="postgres" />
 		<property name="password" value="postgres1" />
 	</bean>
