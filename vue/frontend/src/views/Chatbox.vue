@@ -218,6 +218,7 @@ export default {
     },
     // This is the logic to our bot responses 
     botResponse(){
+        // checkArray is used to get just the name of the responses
         const checkArray = [];
         this.sampleWorkflow.forEach(element => { checkArray.push(element.workflowName)});
         const filter = this.messageList[this.messageList.length - 1].data.text;
