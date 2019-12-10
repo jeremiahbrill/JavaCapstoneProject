@@ -33,6 +33,80 @@ export default {
   name: "chatbox",
   data() {
     return {
+        sampleCategory: [
+            {
+            categoryId: 1,
+            categoryName: "Pathyway"
+            },
+            {
+            categoryId: 2,
+            categoryName: "Curriculum"
+            },
+            {
+            categoryId: 3,
+            categoryName: "Job Search"
+            } 
+        ],
+        sampleWorkflow: [
+            {
+            "workflowId": 1,
+            "workflowName": "I need help with",
+            "categoryId": 1
+            },
+            {
+            "workflowId": 2,
+            "workflowName": "Where can I learn about",
+            "categoryId": 1
+            },
+            {
+            "workflowId": 3,
+            "workflowName": "I do not understand",
+            "categoryId": 1
+            },
+            {
+            "workflowId": 4,
+            "workflowName": "What is",
+            "categoryId": 1
+            }
+        ],
+        sampleSubWorkflow: [
+            {
+            "subWorkflowId": 1,
+            "subWorkflowName": "Writing a cover letter",
+            "textAnswer": "provide your eleavtor pitch here, to get the best impression",
+            "videoAnswer": null,
+            "imageAnswer": null,
+            "linkAnswer": null,
+            "workflowId": 0
+            },
+            {
+            "subWorkflowId": 2,
+            "subWorkflowName": "Prepping for an interview",
+            "textAnswer": "Be on time",
+            "videoAnswer": null,
+            "imageAnswer": null,
+            "linkAnswer": null,
+            "workflowId": 0
+            },
+            {
+            "subWorkflowId": 3,
+            "subWorkflowName": "Following up with employers",
+            "textAnswer": "send an email",
+            "videoAnswer": null,
+            "imageAnswer": null,
+            "linkAnswer": null,
+            "workflowId": 0
+            },
+            {
+            "subWorkflowId": 4,
+            "subWorkflowName": "What to wear to an interview",
+            "textAnswer": "wear busines casual",
+            "videoAnswer": null,
+            "imageAnswer": null,
+            "linkAnswer": null,
+            "workflowId": 0
+            }
+        ],
       icons: {
         open: {
           img: OpenIcon,
@@ -142,15 +216,25 @@ export default {
       m.isEdited = true;
       m.data.text = message.data.text;
     },
+    // This is the logic to our bot responses 
     botResponse(){
-        if(this.messageList[this.messageList.length - 1].data.text === 'some quick reply' ){
+        const checkArray = [];
+        this.sampleWorkflow.forEach(element => { checkArray.push(element.workflowName)});
+        const filter = this.messageList[this.messageList.length - 1].data.text;
+        if(checkArray.includes(filter) === true ){
             return this.sendMessage('Test');
-        }else if (this.messageList[this.messageList.length - 1].author === 'me'){
-            return this.sendMessage('Did not get that', ['TESTING Suggest']);
+        }
+        else if (this.messageList[this.messageList.length - 1].author === 'me'){
+            const responseText = [];
+            this.sampleWorkflow.forEach(element => {
+                responseText.push(element.workflowName);
+            });
+            return this.sendMessage('Did not get that', responseText)
         }
             return null;
       }
   },
+
   computed: {
 
   }
