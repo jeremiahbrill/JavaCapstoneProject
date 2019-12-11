@@ -8,6 +8,9 @@ import Register from './views/Register.vue'
 import Chatbox from './views/Chatbox.vue'
 import Chat from 'vue-beautiful-chat'
 
+// added by MSR
+import Splash from './views/Splash.vue'
+
 Vue.use(Chat)
 
 Vue.use(Router)
@@ -37,6 +40,14 @@ const router = new Router({
       path: "/login",
       name: "login",
       component: Login,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: "/splash",
+      name: "splash",
+      component: Splash,
       meta: {
         requiresAuth: false
       }

@@ -4,6 +4,9 @@
       <router-link to="/">Home</router-link>
       <p/>
       <router-link to="/Chatbox">Chatbox</router-link>
+      <p>
+        <router-link to="/Splash">Splash Screen</router-link>
+      </p>
     </div>
     <router-view/>
   </div>
