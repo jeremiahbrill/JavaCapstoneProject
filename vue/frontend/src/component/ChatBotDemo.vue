@@ -75,7 +75,7 @@ export default {
       titleImageUrl:
         "https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png",
       messageList: [
-        { type: "text", author: `user2`, data: { text: `Pathway` }} 
+        { type: "text", author: `user2`, data: { text: `Welcome To Chat Bot` }} 
       ], // the list of the messages to show, can be paginated and adjusted dynamically
       newMessagesCount: 0,
       isChatOpen: false, // to determine whether the chat window should be open or closed
@@ -137,11 +137,13 @@ export default {
           return this.userInput;
       },
         getBotResponses(){
+            const nameArray = [];
+            this.botResponses.forEach(element => nameArray.push(element.name))
           if(this.botResponses.length === 0){
               return 0;
           }else if(this.messageList[this.messageList.length - 1].author === 'me'){
               console.log(this.botResponses)
-              return this.sendMessage('This is what I can do in the Pathway Program', this.botResponses);
+              return this.sendMessage('This is what I can do in the Pathway Program', nameArray);
           }
           return null;
       }
@@ -154,7 +156,6 @@ export default {
   },
   watch: {
       comUserInput(){
-          console.log('Is this showing user input change')
           this.getUserInput();
           this.getBotResponses();
       }

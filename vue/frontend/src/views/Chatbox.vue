@@ -134,14 +134,14 @@ export default {
      getCategories(){
        fetch(`${this.API_URL}/category`)
          .then(response => response.json())
-         .then(list => (console.log("catrgories" + list)))
+         .then(list => (this.categories = list))
          .catch(err => console.error(err));
      },
      
      getWorkFlows(){
        fetch(`${this.API_URL}/workflow/1`)
          .then(response => response.json())
-         .then(list => (console.log(list)))
+         .then(list => (this.workflows = list))
          .catch(err => console.error(err));
      },
      
@@ -177,6 +177,7 @@ export default {
      console.log("in created");
        this.getCategories();
        this.getWorkFlows();
+       this.getSubwWorkflows();
          console.log("test: "+ this.categories);
          console.log("test2: "+ this.workflows);
       }

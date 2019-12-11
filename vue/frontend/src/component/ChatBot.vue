@@ -4,6 +4,7 @@
         {{workflows}}
         {{subworkflows}}
         {{userInput}}
+        {{chatLog}}
     </div>
 </template>
 // I am unable to get the responses back to the parent and I am not sure why.
@@ -23,23 +24,27 @@
             };
         },
         methods: {
-        
+            getCategories(){
+                this.categories.forEach(element => {
+                        this.botResponses.push(element);
+                })
+            }, 
             getResponses(array = []){
                 return array.filter(obj =>{
                     return obj.name == this.userInput;
                 })
             },
             botProcess(){
-                if(this.categories.includes(this.userInput) === true){
-                    const botTalk = this.getResponses(this.workflows); 
-                    this.$emit("bot-responses", botTalk)
-                   return this.botResponses = botTalk;
-                }
-                return console.log('Error in Chatbot process.')
-            },
-
+                const input = this.userInput;
+                this.categories.forEach(element => {
+                    if(element.name === input){
+                        this.botResponses.push(element);
+                    } 
+                })
+                this.$emit("bot-responses", this.botResponses);              
+            }
         },
-        compute: {
+        computed: {
             getBotResponses() {
                 return this.chatLog;
             }
