@@ -2,21 +2,21 @@ package com.techelevator.model;
 
 public class Workflow {
 	
-	private int workflowId;
-	private String workflowName;
+	private int id;
+	private String name;
 	private int categoryId;
 	
-	public int getWorkflowId() {
-		return workflowId;
+	public int getId() {
+		return id;
 	}
-	public void setWorkflowId(int workflowId) {
-		this.workflowId = workflowId;
+	public void setId(int id) {
+		this.id = id;
 	}
-	public String getWorkflowName() {
-		return workflowName;
+	public String getName() {
+		return name;
 	}
-	public void setWorkflowName(String workflowName) {
-		this.workflowName = workflowName;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public int getCategoryId() {
 		return categoryId;

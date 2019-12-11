@@ -2,25 +2,25 @@ package com.techelevator.model;
 
 public class SubWorkflow {
 	
-	private int subWorkflowId;
-	private String subWorkflowName;
+	private int id;
+	private String name;
 	private String textAnswer;
 	private String videoAnswer;
 	private String imageAnswer;
 	private String linkAnswer;
 	private int workflowId;
 	
-	public int getSubWorkflowId() {
-		return subWorkflowId;
+	public int getId() {
+		return id;
 	}
-	public void setSubWorkflowId(int subWorkflowId) {
-		this.subWorkflowId = subWorkflowId;
+	public void setId(int id) {
+		this.id = id;
 	}
-	public String getSubWorkflowName() {
-		return subWorkflowName;
+	public String getName() {
+		return name;
 	}
-	public void setSubWorkflowName(String subWorkflowName) {
-		this.subWorkflowName = subWorkflowName;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getTextAnswer() {
 		return textAnswer;

@@ -32,26 +32,7 @@
 //    },
 
 //    methods: {
-//      getCategories(){
-//        fetch(`${this.API_URL}/category`)
-//          .then(response => response.json())
-//          .then(list => (console.log("catrgories" + list)))
-//          .catch(err => console.error(err));
-//      },
-     
-//      getWorkFlows(){
-//        fetch(`${this.API_URL}/workflow/1`)
-//          .then(response => response.json())
-//          .then(list => (console.log(list)))
-//          .catch(err => console.error(err));
-//      },
-     
-//      getSubWorkflows(){
-//         fetch(`${this.API_URL}/subworkflow/1`)
-//          .then(response => response.json())
-//          .then(list => (this.subworkflows = list))
-//          .catch(err => console.error(err));
-//      }
+
 //    },
    
 //    created(){

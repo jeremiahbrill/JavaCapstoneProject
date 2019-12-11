@@ -32,8 +32,8 @@ public class JdbcWorkflowDao implements WorkflowDao {
 	
 	private Workflow mapRowToWorkflow(SqlRowSet row) {
 		Workflow workflow = new Workflow();
-		workflow.setWorkflowId(row.getInt("workflow_id"));
-		workflow.setWorkflowName(row.getString("name"));
+		workflow.setId(row.getInt("workflow_id"));
+		workflow.setName(row.getString("name"));
 		workflow.setCategoryId(row.getInt("category_id"));
 		return workflow;
 	}

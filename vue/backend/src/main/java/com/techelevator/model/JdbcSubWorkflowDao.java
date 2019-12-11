@@ -35,8 +35,8 @@ public class JdbcSubWorkflowDao implements SubWorkflowDao{
 	private SubWorkflow mapRowToSubWorkflow(SqlRowSet row) {
 		
 		SubWorkflow subWorkflow = new SubWorkflow();
-		subWorkflow.setSubWorkflowId(row.getInt("subworkflow_id"));
-		subWorkflow.setSubWorkflowName(row.getString("name"));
+		subWorkflow.setId(row.getInt("subworkflow_id"));
+		subWorkflow.setName(row.getString("name"));
 		subWorkflow.setTextAnswer(row.getString("text_answer"));
 		subWorkflow.setVideoAnswer(row.getString("video_answer"));
 		subWorkflow.setImageAnswer(row.getString("image_answer"));	

@@ -34,8 +34,8 @@ public class JdbcCategoryDao implements CategoryDao {
 	
 	private Category mapRowToCategory(SqlRowSet row) {
 		Category category = new Category();
-		category.setCategoryId(row.getInt("category_id"));
-		category.setCategoryName(row.getString("name"));
+		category.setId(row.getInt("category_id"));
+		category.setName(row.getString("name"));
 		return category;
 		
 	}

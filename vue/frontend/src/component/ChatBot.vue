@@ -2,7 +2,7 @@
     <div class="chatBot">
         {{categories}}
         {{workflows}}
-        {{subWorkflows}}
+        {{subworkflows}}
         {{userInput}}
     </div>
 </template>
@@ -13,7 +13,7 @@
         props:{
             categories:Array,
             workflows:Array,
-            subWorkflows:Array,
+            subworkflows:Array,
             chatLog:Array,
             userInput: String
         },
@@ -23,6 +23,7 @@
             };
         },
         methods: {
+        
             getResponses(array = []){
                 return array.filter(obj =>{
                     return obj.name == this.userInput;

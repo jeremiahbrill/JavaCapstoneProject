@@ -1,8 +1,8 @@
 <template>
   <div class="chatBox">
-    <chat-bot :categories="sampleCategories" 
-    :workflows="sampleWorkflows" 
-    :subWorkflows="sampleSubWorkflows" 
+    <chat-bot :categories="categories" 
+    :workflows="workflows" 
+    :subworkflows="subworkflows" 
     :chatLog="chatLog"
     :userInput="userInput"
     @bot-responses="handleBotResponses"></chat-bot>
@@ -22,6 +22,10 @@ export default {
   },
   data() {
     return {
+       API_URL: 'http://localhost:8080/ChatBot/api',
+       categories:[],
+       workflows:[],
+       subworkflows:[],
       botResponsesOutput: [],
       userInput: "",
       chatLog: [],
@@ -127,6 +131,26 @@ export default {
     };
   },
   methods: {
+     getCategories(){
+       fetch(`${this.API_URL}/category`)
+         .then(response => response.json())
+         .then(list => (console.log("catrgories" + list)))
+         .catch(err => console.error(err));
+     },
+     
+     getWorkFlows(){
+       fetch(`${this.API_URL}/workflow/1`)
+         .then(response => response.json())
+         .then(list => (console.log(list)))
+         .catch(err => console.error(err));
+     },
+     
+     getSubwWorkflows(){
+        fetch(`${this.API_URL}/subworkflow/1`)
+         .then(response => response.json())
+         .then(list => (this.subworkflows = list))
+         .catch(err => console.error(err));
+     },
     handleBotResponses(newArray){
       this.botResponsesOutput = newArray;
       console.log("Does handleBotResponses happen")
@@ -148,8 +172,17 @@ export default {
     comUserInput(){
       console.log(this.userInput)
     }
-  }
+  },
+  created(){
+     console.log("in created");
+       this.getCategories();
+       this.getWorkFlows();
+         console.log("test: "+ this.categories);
+         console.log("test2: "+ this.workflows);
+      }
+   
 };
+
 </script>
 
 <style>
