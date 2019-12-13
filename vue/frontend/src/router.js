@@ -10,6 +10,7 @@ import Chat from 'vue-beautiful-chat'
 
 // added by MSR
 import Splash from './component/Splash.vue'
+import JobSearch from './component/JobSearch.vue'
 
 Vue.use(Chat)
 
@@ -64,6 +65,14 @@ const router = new Router({
       path: "/chatbox",
       name: "chatbox",
       component: Chatbox,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: "/jobsearch",
+      name: "jobsearch",
+      component: JobSearch,
       meta: {
         requiresAuth: false
       }

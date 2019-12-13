@@ -4,6 +4,7 @@
         {{workflows}}
         {{subworkflows}}
         {{userInput}}
+        {{jobPosition}}
     </div>
 </template>
 // I am unable to get the responses back to the parent and I am not sure why.
@@ -15,7 +16,8 @@
             workflows:Array,
             subworkflows:Array,
             chatLog:Array,
-            userInput: String
+            userInput: String,
+            jobPosition: String
         },
         data() {
             return {
