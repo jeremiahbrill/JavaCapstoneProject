@@ -37,7 +37,8 @@ export default {
     userColors:Object,
     botResponseSuggestions:Array,
     botResponseText:String,
-    chatLog: Array
+    chatLog: Array,
+    subworkflowAnswer: String
   },
   data() {
     return {
@@ -76,7 +77,7 @@ export default {
       titleImageUrl:
         "https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png",
       messageList: [
-        { type: "text", author: `user2`, data: { text: `Welcome To Chat Bot` }} 
+        { type: "text", author: `user2`, data: { text: `Welcome Steven and Andrew To Chat Bot`, suggestion:['Pathway', 'Curriculum', 'Job Search'] }} 
       ], // the list of the messages to show, can be paginated and adjusted dynamically
       newMessagesCount: 0,
       isChatOpen: false, // to determine whether the chat window should be open or closed
@@ -144,6 +145,9 @@ export default {
       },
       watchBotResponseText(){
           return this.botResponseSuggestions;
+      },
+      watchSubworkflowAnswer(){
+        return this.subworkflowAnswer
       }
   },
   watch: {
@@ -156,6 +160,9 @@ export default {
               this.sendMessage(this.botResponseText, this.botResponseSuggestions);
           }
           // could and function to just send a message here.
+      },
+      watchSubworkflowAnswer(){
+         this.sendMessage(this.botResponseText, this.botResponseSuggestions);
       }
   }
 };
@@ -163,18 +170,18 @@ export default {
 
 <style scoped>
 
-.sc-suggestions-element {
+/* .sc-suggestions-element {
   margin: 3px;
   padding: 5px 10px 5px 10px;
   border: 1px solid;
   border-radius: 15px;
   font-size: 14px;
-  background: black;
+  background: #dfbd69;
   cursor: pointer;
 }
 
 .sc-suggestions-row {
   text-align: center;
   background: inherit;
-}
+} */
 </style>

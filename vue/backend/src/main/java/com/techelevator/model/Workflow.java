@@ -5,7 +5,15 @@ public class Workflow {
 	private int id;
 	private String name;
 	private int categoryId;
+	private String presentationText;
+		
 	
+	public String getPresentationText() {
+		return presentationText;
+	}
+	public void setPresentationText(String presentationText) {
+		this.presentationText = presentationText;
+	}
 	public int getId() {
 		return id;
 	}

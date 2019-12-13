@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.techelevator.model.Answer;
+import com.techelevator.model.AnswerDao;
 import com.techelevator.model.Category;
 import com.techelevator.model.CategoryDao;
 import com.techelevator.model.JobPosition;
@@ -40,6 +42,9 @@ public class ChatBoxController {
 	
 	@Autowired
 	private JobPositionDao jobPosition;
+	
+	@Autowired
+	private AnswerDao answerDao;
 	
 	@GetMapping("/category")
 	public List<Category> getCategories() {
@@ -78,6 +83,12 @@ public class ChatBoxController {
 	@GetMapping("/jobPositionSearch/{id}")
 	public List<JobPosition> getAllJobPositionsById(@PathVariable int id){
 		return jobPosition.getAllJobPositionsById();
+		
+	}
+	
+	@GetMapping("/answer/{id}")
+	public List<Answer> getAnswersById(@PathVariable int id) {
+		return answerDao.getAllAnswers(id);
 		
 	}
 

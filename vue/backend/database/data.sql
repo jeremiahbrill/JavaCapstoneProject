@@ -6,21 +6,27 @@ INSERT INTO users ("username", "password", "salt", "role") VALUES
 'user');
 
 -- Category data
-INSERT INTO Category (Name) VALUES ('Pathyway');
-INSERT INTO Category (Name) VALUES ('Curriculum');
-INSERT INTO Category (Name) VALUES ('Job Search');
+INSERT INTO Category (Name,Presentation_Text) VALUES ('Pathway','Select one of the options below');
+INSERT INTO Category (Name,Presentation_Text) VALUES ('Curriculum','Select one of the options below');
+INSERT INTO Category (Name,Presentation_Text) VALUES ('Job Search','Select one of the options below');
 
 -- WorkFlow data
-INSERT INTO Workflow (Name,Category_ID) VALUES ('I need help with',1);
-INSERT INTO Workflow (Name,Category_ID) VALUES ('Where can I learn about',1);
-INSERT INTO Workflow (Name,Category_ID) VALUES ('I do not understand',1);
-INSERT INTO Workflow (Name,Category_ID) VALUES ('What is',1);
+INSERT INTO Workflow (Name,Presentation_Text,Category_ID) VALUES ('I need help with','These are the things I can help with for pathway',1);
+INSERT INTO Workflow (Name,Presentation_Text,Category_ID) VALUES ('Where can I learn about' 'These are the things I can help with for pathway',1);
+INSERT INTO Workflow (Name,Presentation_Text,Category_ID) VALUES ('I do not understand','These are the things I can help with for pathway',1);
+INSERT INTO Workflow (Name,Presentation_Text,Category_ID) VALUES ('What is','These are the things I can help with for pathway',1);
 
 --SubWorkFlow data
-INSERT INTO SubWorkflow (Name, Text_Answer, Workflow_ID) VALUES ('Writing a cover letter', 'provide your eleavtor pitch here, to get the best impression',1);
-INSERT INTO SubWorkflow (Name, Text_Answer, Workflow_ID) VALUES ('Prepping for an interview', 'Be on time', 1);
-INSERT INTO SubWorkflow (Name, Text_Answer, Workflow_ID) VALUES ('Following up with employers','send an email', 1);
-INSERT INTO SubWorkflow (Name, Text_Answer, Workflow_ID) VALUES ('What to wear to an interview','wear busines casual', 1);
+INSERT INTO SubWorkflow (Name, Text_Answer,Presentation_Text, Workflow_ID) VALUES ('Writing a cover letter', 'provide your eleavtor pitch here, to get the best impression','Below help is available',1);
+INSERT INTO SubWorkflow (Name, Text_Answer,Presentation_Text, Workflow_ID) VALUES ('Prepping for an interview', 'Be on time','Below help is available',1);
+INSERT INTO SubWorkflow (Name, Text_Answer,Presentation_Text, Workflow_ID) VALUES ('Following up with employers','send an email','Below help is available',1);
+INSERT INTO SubWorkflow (Name, Text_Answer, Presentation_Text,Workflow_ID) VALUES ('What to wear to an interview','wear busines casual','Below help is available',1);
+
+--Answer data
+INSERT INTO Answer ( Text_Answer, SubWorkflow_ID) VALUES ('provide your eleavtor pitch here, to get the best impression',1);
+INSERT INTO Answer (Text_Answer, SubWorkflow_ID) VALUES ( 'Be on time',2);
+INSERT INTO Answer (Text_Answer, SubWorkflow_ID) VALUES ('send an email',3);
+INSERT INTO Answer (Text_Answer,SubWorkflow_ID) VALUES ('wear busines casual',4);
 
 --JobPosition data
 

@@ -5,6 +5,7 @@
         {{subworkflows}}
         {{userInput}}
         {{jobPosition}}
+        {{answers}}
     </div>
 </template>
 // I am unable to get the responses back to the parent and I am not sure why.
@@ -15,6 +16,7 @@
             categories:Array,
             workflows:Array,
             subworkflows:Array,
+            answers:Array,
             chatLog:Array,
             userInput: String,
             jobPosition: String
@@ -30,18 +32,18 @@
                 checkedCategories: false,
                 checkedWorkflows: false,
                 checkedSubWorkflows: false,
+                foundSubWorkflowsAnswer: ""
             };
         },
         methods: {
             setUserChoiceIdFromUserInput(){
                 this.searchArray.forEach(element => {
                     if(element.name === this.userInput){
-                        console.log("elementId"+element.id)
                         this.userChoiceId = element.id;
                         this.foundAnswer = true;
-                        console.log("Should be setting choice"+this.userChoiceId);
+
                     }
-                    console.log('Did not find input in database');
+
                 })
             },
 
@@ -50,25 +52,37 @@
                         this.botResponseSuggestions.push(element.name);
                 })
             }, 
+            setBotResponesAnswer(){
+                this.searchArray.forEach(element => {
+                    console.log('element Id '+element.subworkflowId)
+                    if(element.subworkflowId === 1){
+                        this.botResponseText = element.textAnswer;
+                        console.log(this.botResponseText)
+                        console.log(element.textAnswer)
+                    }
+                })               
+            },
 
             setBotResponseText(){
-                this.botResponseText = "Testing Responses";
+                this.botResponseText = "I can help with";
                 // this.searchArray.forEach(element =>{
                 //     if(element.name === this.userInput){
-                //         this.botResponseText = element.response; 
+                //         this.botResponseText = element.presentationText; 
                 //     }
                 // })
             },
 
-            botProcess(){
-                console.log(this.userChoiceId);
-                console.log("Search Array"+this.searchArray[0].name);
+            setBotOutput(){
                 this.setBotResponseText();
                 this.setBotResponseSuggestions();
+            },
+
+            botProcess(){
+
+                // console.log("Search Array"+this.searchArray[0].name);
                 this.$emit("bot-response-text", this.botResponseText);    
                 this.$emit("bot-response-suggestions", this.botResponseSuggestions);
-                this.resetLogic();
-                        
+                this.foundAnswer = false;      
             },
             resetLogic(){
                 this.foundAnswer = false;
@@ -95,13 +109,21 @@
             searchSubWorkflows(){
                 this.setUserChoiceIdFromUserInput();
                 this.checkedSubWorkflows = true;
-                if(this.foundAnswer === false){
-                    console.log("Answer not found")
-                }
-                this.checkedCategories = false;
-                this.checkedWorkflows = false;
-                this.checkedSubWorkflows = false;
-            }
+                this.$emit("get-answers", this.answers)
+                // this.checkedSubWorkflows = false;
+            },
+              getAnswer(){
+                this.searchArray = this.answers;
+                this.setBotResponesAnswer();
+                this.searchArray = [];
+                console.log("botProcess start");
+                this.botProcess();
+                console.log("botProcess end")
+                this.foundSubWorkflowsAnswer = "anything";
+                this.$emit("get-subworkflowAnswer", this.foundSubWorkflowsAnswer);
+                this.resetLogic();
+            },
+      
         },
         computed: {
             watchAnswerFound(){
@@ -119,42 +141,64 @@
             watchSubWorkflows(){
                 return this.subworkflows;
             },
+            watchAnswers(){
+                return this.answers;
+            },
             watchCheckedCategories(){
                 return this.checkedCategories;
-            }
+            },
         },
         watch: {
             watchChatLog(){
-                console.log('Chatlog updated in Chatbot');
+  
             },
             watchUserInput(){
-                console.log('Userinput changed in chatbot')
-                this.searchCategories();
+
+                if(this.checkedCategories === false){
+                    this.searchCategories(); 
+                    this.searchArray = [];
+                    }
+                else if(this.checkedCategories === true && this.checkedWorkflows === false ){
+                    this.searchWorkflows();
+                    this.searchArray = [];
+                }
+                else if(this.checkedWorkflows === true && this.checkedSubWorkflows === false){
+                    this.searchSubWorkflows();
+                    this.searchArray = [];
+                }
+                // if(this.checkedSubWorkflows === true){
+        
+                // }
             },
             watchAnswerFound(){
-                console.log('Answer Found')
+
             },
             watchWorkflows(){
-                if(this.foundAnswer === false && this.checkedWorkflows === false){
-                this.searchWorkflows();
-                }
+                // if(this.foundAnswer === false && this.checkedWorkflows === false){
+                // this.searchWorkflows();
+                // }
                 this.searchArray = this.workflows;
+                this.setBotOutput();
                 this.botProcess();
+                this.botResponseSuggestions = [];
             },
             watchSubWorkflows(){
-                console.log("Got to sub workflow watcher")
-                 if(this.foundAnswer === false && this.checkedSubWorkflows === false){
-                this.searchSubWorkflows();
-                }
                 this.searchArray = this.subworkflows;
-                this.botProcess();               
+                this.setBotOutput();
+                this.botProcess();
+                this.botResponseSuggestions = [];
+            },
+            watchAnswers(){
+                console.log("Last step to Answer")
+                this.searchArray = this.answers;
+                this.getAnswer();
             },
         }
     }
 </script>
 
 <style scoped>
-/* .chatBot{
+ .chatBot{
 visibility: hidden;
-} */
+} 
 </style>

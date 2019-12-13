@@ -1,16 +1,14 @@
 package com.techelevator.model;
 
-public class SubWorkflow {
+public class Answer {
 	
 	private int id;
-	private String name;
 	private String textAnswer;
 	private String videoAnswer;
 	private String imageAnswer;
 	private String linkAnswer;
-	private int workflowId;
 	private String presentationText;
-	
+	private int subworkflowId;
 	
 	
 	public String getPresentationText() {
@@ -19,17 +17,17 @@ public class SubWorkflow {
 	public void setPresentationText(String presentationText) {
 		this.presentationText = presentationText;
 	}
+	public int getSubworkflowId() {
+		return subworkflowId;
+	}
+	public void setSubworkflowId(int subworkflowId) {
+		this.subworkflowId = subworkflowId;
+	}
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
 	}
 	public String getTextAnswer() {
 		return textAnswer;
@@ -55,12 +53,7 @@ public class SubWorkflow {
 	public void setLinkAnswer(String linkAnswer) {
 		this.linkAnswer = linkAnswer;
 	}
-	public int getWorkflowId() {
-		return workflowId;
-	}
-	public void setWorkflowId(int workflowId) {
-		this.workflowId = workflowId;
-	}
+
 	
 	
 
