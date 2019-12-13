@@ -77,7 +77,7 @@ export default {
       titleImageUrl:
         "https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png",
       messageList: [
-        { type: "text", author: `user2`, data: { text: `Welcome Steven and Andrew To Chat Bot`, suggestion:['Pathway', 'Curriculum', 'Job Search'] }} 
+        { type: "text", author: `user2`, data: { text: `Welcome Steven and Andrew To Chat Bot`}, suggestions:['Pathway', 'Curriculum', 'Job Search'] } 
       ], // the list of the messages to show, can be paginated and adjusted dynamically
       newMessagesCount: 0,
       isChatOpen: false, // to determine whether the chat window should be open or closed
@@ -146,9 +146,6 @@ export default {
       watchBotResponseText(){
           return this.botResponseSuggestions;
       },
-      watchSubworkflowAnswer(){
-        return this.subworkflowAnswer
-      }
   },
   watch: {
       watchUserInput(){
@@ -161,9 +158,6 @@ export default {
           }
           // could and function to just send a message here.
       },
-      watchSubworkflowAnswer(){
-         this.sendMessage(this.botResponseText, this.botResponseSuggestions);
-      }
   }
 };
 </script>
