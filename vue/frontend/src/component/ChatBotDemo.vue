@@ -35,7 +35,8 @@ export default {
    name: "chat-bot-demo",
   props:{
     userColors:Object,
-    botResponses:Array,
+    botResponseSuggestions:Array,
+    botResponseText:String,
     chatLog: Array
   },
   data() {
@@ -127,37 +128,34 @@ export default {
     // I can get the user data to pass but I can not get the botResponses to pull from the chat. 
     // I am able to hard code data into the parent and make it work but then have to do even more logic 
     // on this page.
-          getUserInput(){
-          if(this.messageList[this.messageList.length - 1].author === 'me'){
-              const userInput = this.messageList[this.messageList.length - 1].data.text;
-              this.$emit('user-input', userInput);
-              this.$emit('chat-log', this.messageList);
-              return userInput;
-          }
-          return this.userInput;
-      },
-        getBotResponses(){
-            const nameArray = [];
-            this.botResponses.forEach(element => nameArray.push(element.name))
-          if(this.botResponses.length === 0){
-              return 0;
-          }else if(this.messageList[this.messageList.length - 1].author === 'me'){
-              console.log(this.botResponses)
-              return this.sendMessage('This is what I can do in the Pathway Program', nameArray);
-          }
-          return null;
+    getUserInput(){
+        if(this.messageList[this.messageList.length - 1].author === 'me'){
+            const userInput = this.messageList[this.messageList.length - 1].data.text;
+            this.$emit('user-input', userInput);
+            this.$emit('chat-log', this.messageList);
+            return userInput;
+        }
       }
   },
   //this computed keeps and eye on the the and when it changes the watch persom the methods.
   computed: {
-      comUserInput(){
+      watchUserInput(){
           return this.messageList;
+      },
+      watchBotResponseText(){
+          return this.botResponseSuggestions;
       }
   },
   watch: {
-      comUserInput(){
+      watchUserInput(){
           this.getUserInput();
-          this.getBotResponses();
+      },
+      watchBotResponseText(){
+          console.log("Demo seen the bot text change" + this.botResponseText)
+          if(this.botResponseText.length > 0){
+              this.sendMessage(this.botResponseText, this.botResponseSuggestions);
+          }
+          // could and function to just send a message here.
       }
   }
 };

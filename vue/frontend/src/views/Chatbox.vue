@@ -5,8 +5,11 @@
     :subworkflows="subworkflows" 
     :chatLog="chatLog"
     :userInput="userInput"
-    @bot-responses="handleBotResponses"></chat-bot>
-    <chat-bot-demo :botResponses="botResponsesOutput" :userColors="colors" @user-input="handleUserInput" @chat-log="handleChatLog"></chat-bot-demo>
+    @bot-response-text="handleBotResponseText"
+    @bot-response-suggestions="handleBotResponseSuggestions"
+    @get-workflows="getWorkFlows"
+    @get-subworkflows="getSubwWorkflows"></chat-bot>
+    <chat-bot-demo :botResponseText="botResponseText" :botResponseSuggestions="botResponseSuggestions" :userColors="colors" @user-input="handleUserInput" @chat-log="handleChatLog"></chat-bot-demo>
   </div>
 </template>
 
@@ -26,7 +29,8 @@ export default {
        categories:[],
        workflows:[],
        subworkflows:[],
-      botResponsesOutput: [],
+      botResponseText: "",
+      botResponseSuggestions: [],
       userInput: "",
       chatLog: [],
       sampleCategories: [
@@ -138,22 +142,24 @@ export default {
          .catch(err => console.error(err));
      },
      
-     getWorkFlows(){
-       fetch(`${this.API_URL}/workflow/1`)
+     getWorkFlows(n){
+       fetch(`${this.API_URL}/workflow/${n}`)
          .then(response => response.json())
          .then(list => (this.workflows = list))
          .catch(err => console.error(err));
      },
      
-     getSubwWorkflows(){
-        fetch(`${this.API_URL}/subworkflow/1`)
+     getSubwWorkflows(n){
+        fetch(`${this.API_URL}/subworkflow/${n}`)
          .then(response => response.json())
          .then(list => (this.subworkflows = list))
          .catch(err => console.error(err));
      },
-    handleBotResponses(newArray){
-      this.botResponsesOutput = newArray;
-      console.log("Does handleBotResponses happen")
+    handleBotResponseText(string){
+      this.botResponseText = string;
+    },
+    handleBotResponseSuggestions(array){
+      this.botResponseSuggestions = array;
     },
     handleUserInput(string){
       this.userInput = string;
@@ -176,10 +182,8 @@ export default {
   created(){
      console.log("in created");
        this.getCategories();
-       this.getWorkFlows();
-       this.getSubwWorkflows();
-         console.log("test: "+ this.categories);
-         console.log("test2: "+ this.workflows);
+      //  this.getWorkFlows();
+      //  this.getSubwWorkflows();
       }
    
 };
