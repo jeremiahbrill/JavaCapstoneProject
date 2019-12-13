@@ -14,6 +14,7 @@
             categories:Array,
             workflows:Array,
             subworkflows:Array,
+            answers:Array,
             chatLog:Array,
             userInput: String
         },
@@ -28,6 +29,7 @@
                 checkedCategories: false,
                 checkedWorkflows: false,
                 checkedSubWorkflows: false,
+                // foundSubWorkflowsAnswer: false
             };
         },
         methods: {
@@ -48,6 +50,14 @@
                         this.botResponseSuggestions.push(element.name);
                 })
             }, 
+            setBotResponesAnswer(){
+                this.searchArray.forEach(element => {
+                    if(element.id === this.userLastChoiceID){
+                        this.botResponseText = element.textAnswer;
+                    }
+                    console.log("Did not set answers for subworkflows")
+                })               
+            },
 
             setBotResponseText(){
                 this.botResponseText = "Testing Responses";
@@ -58,14 +68,17 @@
                 // })
             },
 
+            setBotOutput(){
+                this.setBotResponseText();
+                this.setBotResponseSuggestions();
+            },
+
             botProcess(){
                 console.log(this.userChoiceId);
                 console.log("Search Array"+this.searchArray[0].name);
-                this.setBotResponseText();
-                this.setBotResponseSuggestions();
                 this.$emit("bot-response-text", this.botResponseText);    
                 this.$emit("bot-response-suggestions", this.botResponseSuggestions);
-                this.resetLogic();
+                
                         
             },
             resetLogic(){
@@ -74,6 +87,7 @@
                 this.botResponseText = "";
                 this.searchArray = this.categories;
                 this.userLastChoiceID = this.userChoiceId;
+                this.foundSubWorkflowsAnswer = false;
             },
 
             searchCategories(){
@@ -96,10 +110,15 @@
                 if(this.foundAnswer === false){
                     console.log("Answer not found")
                 }
-                this.checkedCategories = false;
-                this.checkedWorkflows = false;
-                this.checkedSubWorkflows = false;
+                // this.foundSubWorkflowsAnswer = true;
+
+                // this.checkedSubWorkflows = false;
             }
+        },
+        getAnswer(){
+             this.setBotResponesAnswer();
+             this.searchArray = [];
+             this.botProcess();
         },
         computed: {
             watchAnswerFound(){
@@ -117,9 +136,15 @@
             watchSubWorkflows(){
                 return this.subworkflows;
             },
+            watchAnswers(){
+                return this.answers;
+            },
             watchCheckedCategories(){
                 return this.checkedCategories;
-            }
+            },
+            // watchfoundSubWorkFlowsAnswer(){
+            //     return this.foundSubWorkflowsAnswer;
+            // }
         },
         watch: {
             watchChatLog(){
@@ -127,26 +152,57 @@
             },
             watchUserInput(){
                 console.log('Userinput changed in chatbot')
-                this.searchCategories();
+                if(this.checkedCategories === false){
+                    this.searchCategories(); 
+                    this.searchArray = [];
+                    // this.botProcess();
+                    }
+                if(this.checkedCategories === true && this.checkedWorkflows === false){
+                    this.searchWorkflows();
+                    this.searchArray = [];
+                }
+                if(this.checkedWorkflows === true && this.checkedSubWorkflows === false){
+                    this.searchSubWorkflows();
+                    this.searchArray = [];
+                }
             },
             watchAnswerFound(){
                 console.log('Answer Found')
             },
             watchWorkflows(){
-                if(this.foundAnswer === false && this.checkedWorkflows === false){
-                this.searchWorkflows();
-                }
+                // if(this.foundAnswer === false && this.checkedWorkflows === false){
+                // this.searchWorkflows();
+                // }
                 this.searchArray = this.workflows;
+                this.setBotOutput();
                 this.botProcess();
             },
             watchSubWorkflows(){
                 console.log("Got to sub workflow watcher")
-                 if(this.foundAnswer === false && this.checkedSubWorkflows === false){
-                this.searchSubWorkflows();
-                }
+                //  if(this.foundAnswer === false && this.checkedSubWorkflows === false){
+                // this.searchSubWorkflows();
+                // this.setBotOutput();
+                // }
                 this.searchArray = this.subworkflows;
-                this.botProcess();               
+                // this.foundSubWorkflowsAnswer = true;
+                this.setBotResponesAnswer()
+                this.botProcess();  
+
+                // if(this.foundAnswer === true & this.checkedSubWorkflows === true){
+                //     this.foundSubWorkflowsAnswer = true;  
+                // }
+                          
             },
+            // watchfoundSubWorkFlowsAnswer(){
+            //     this.botProcess();
+            //     // if(this.foundSubWorkflowsAnswer === true){
+            //     // console.log("found sub search array"+this.searchArray)
+            //     // this.searchArray = this.subworkflows;
+            //     // this.setBotResponesAnswer();
+            //     // this.searchArray = [];  
+            //     // this.botProcess();   
+            //     // }
+            // },
         }
     }
 </script>
