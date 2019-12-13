@@ -9,7 +9,7 @@ import Chatbox from './views/Chatbox.vue'
 import Chat from 'vue-beautiful-chat'
 
 // added by MSR
-import Splash from './views/Splash.vue'
+import Splash from './component/Splash.vue'
 
 Vue.use(Chat)
 

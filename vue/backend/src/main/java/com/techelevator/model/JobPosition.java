@@ -1,17 +1,10 @@
 package com.techelevator.model;
 
-public class Category {
-
+public class JobPosition {
+	
 	private int id;
 	private String name;
-	private String presentationText;
 	
-	public String getPresentationText() {
-		return presentationText;
-	}
-	public void setPresentationText(String presentationText) {
-		this.presentationText = presentationText;
-	}
 	public int getId() {
 		return id;
 	}
@@ -24,6 +17,5 @@ public class Category {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
+
 }

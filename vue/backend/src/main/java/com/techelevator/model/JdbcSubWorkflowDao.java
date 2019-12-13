@@ -41,6 +41,7 @@ public class JdbcSubWorkflowDao implements SubWorkflowDao{
 		subWorkflow.setVideoAnswer(row.getString("video_answer"));
 		subWorkflow.setImageAnswer(row.getString("image_answer"));	
 		subWorkflow.setLinkAnswer(row.getString("link_answer"));
+		subWorkflow.setPresentationText(row.getString("presentation_text"));
 		return subWorkflow;
 	}
 

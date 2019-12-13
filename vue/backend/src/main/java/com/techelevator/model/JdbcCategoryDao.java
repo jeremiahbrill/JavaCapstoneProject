@@ -36,6 +36,7 @@ public class JdbcCategoryDao implements CategoryDao {
 		Category category = new Category();
 		category.setId(row.getInt("category_id"));
 		category.setName(row.getString("name"));
+		category.setPresentationText(row.getString("presentation_text"));
 		return category;
 		
 	}
