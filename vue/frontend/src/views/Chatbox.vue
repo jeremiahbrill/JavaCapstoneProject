@@ -5,11 +5,14 @@
     :subworkflows="subworkflows" 
     :chatLog="chatLog"
     :userInput="userInput"
+    :answers="answers"
     @bot-response-text="handleBotResponseText"
     @bot-response-suggestions="handleBotResponseSuggestions"
     @get-workflows="getWorkFlows"
-    @get-subworkflows="getSubwWorkflows"></chat-bot>
-    <chat-bot-demo :botResponseText="botResponseText" :botResponseSuggestions="botResponseSuggestions" :userColors="colors" @user-input="handleUserInput" @chat-log="handleChatLog"></chat-bot-demo>
+    @get-subworkflows="getSubwWorkflows"
+    @get-answers="getAnswers"
+    @get-subworkflowAnswer="handlesubworkflowAnswer"></chat-bot>
+    <chat-bot-demo :botResponseText="botResponseText" :botResponseSuggestions="botResponseSuggestions" :subworkflowAnswer="subworkflowAnswer"  :userColors="colors" @user-input="handleUserInput" @chat-log="handleChatLog"></chat-bot-demo>
   </div>
 </template>
 
@@ -33,6 +36,8 @@ export default {
       botResponseSuggestions: [],
       userInput: "",
       chatLog: [],
+      answers:[],
+      subworkflowAnswer: "",
       sampleCategories: [
           {
           id: 1,
@@ -116,14 +121,14 @@ export default {
           bg: "#4e8cff"
         },
         messageList: {
-          bg: "gray"
+          bg: "#e5e5e5"
         },
         sentMessage: {
-          bg: "black",
+          bg: "#dfbd69",
           text: "#ffffff"
         },
         receivedMessage: {
-          bg: "#eaeaea",
+          bg: "#f9f295",
           text: "#222222"
         },
         userInput: {
@@ -155,6 +160,12 @@ export default {
          .then(list => (this.subworkflows = list))
          .catch(err => console.error(err));
      },
+    getAnswers(){
+        fetch(`${this.API_URL}/answer/1`)
+         .then(response => response.json())
+         .then(list => (this.answers = list))
+         .catch(err => console.error(err));
+     },
     handleBotResponseText(string){
       this.botResponseText = string;
     },
@@ -167,6 +178,9 @@ export default {
     handleChatLog(newArray){
       this.chatLog = newArray;
       console.log(this.chatLog)
+    },
+    handlesubworkflowAnswer(string){
+      this.subworkflowAnswer = string;
     }
   },
   computed: {
