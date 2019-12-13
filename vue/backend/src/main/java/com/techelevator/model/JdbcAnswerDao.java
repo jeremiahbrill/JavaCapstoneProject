@@ -24,11 +24,12 @@ public class JdbcAnswerDao implements AnswerDao{
 	public List<Answer> getAllAnswers(int subworkflowId) {
 		
 		List<Answer> allAnswersBySubWorkflowID = new ArrayList<>();
-		String sqlSelectAnswersBySubWorkflowID = "select * from answer where workflow_id = ?";
+		String sqlSelectAnswersBySubWorkflowID = "select * from answer where subworkflow_id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAnswersBySubWorkflowID, subworkflowId);
 		while(results.next()) {
 			allAnswersBySubWorkflowID.add(mapRowToSubWorkflow(results));
 		}
+
 		return allAnswersBySubWorkflowID;
 	}
 	
