@@ -4,6 +4,8 @@ DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS Category;
 DROP TABLE IF EXISTS Workflow;
 DROP TABLE IF EXISTS Subworkflow;
+DROP TABLE IF EXISTS jobs;
+DROP TABLE IF EXISTS jobPosition;
 
 CREATE TABLE users (
   id serial PRIMARY KEY,
@@ -41,5 +43,32 @@ CREATE TABLE SubWorkflow (
   constraint pk_SubWorkflow primary key (SubWorkflow_ID),
   constraint fk_SubWorkflow_Workflow foreign key (Workflow_ID ) references Workflow  (Workflow_ID)
 );
+
+CREATE TABLE jobPosition (
+   id serial,
+   name varchar(100),
+   
+   constraint pk_jobPosition_id primary key(id)
+
+);
+
+CREATE TABLE jobs (
+   id serial,
+   name varchar(200), 
+   jobDescription varchar(500), 
+   jobCity varchar(50),
+   jobState varchar(50),
+   jobURL varchar(50),
+   positionId int not null,
+   
+   constraint pk_jobs_id primary key(id)
+   
+);
+
+ALTER TABLE jobs
+        ADD CONSTRAINT fk_position_id FOREIGN KEY (positionId) REFERENCES jobPosition (id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE;
+        
 
 COMMIT TRANSACTION;
