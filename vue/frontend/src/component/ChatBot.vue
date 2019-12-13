@@ -4,6 +4,7 @@
         {{workflows}}
         {{subworkflows}}
         {{userInput}}
+        {{jobPosition}}
         {{answers}}
     </div>
 </template>
@@ -17,7 +18,8 @@
             subworkflows:Array,
             answers:Array,
             chatLog:Array,
-            userInput: String
+            userInput: String,
+            jobPosition: String
         },
         data() {
             return {

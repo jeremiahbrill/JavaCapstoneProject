@@ -7,8 +7,12 @@
       <p>
         <router-link to="/Splash">Splash Screen</router-link>
       </p>
+      <p>
       <router-link to="/Chatbox"  >Chatbox</router-link>
-
+      </p>
+      <p>
+        <router-link to="/JobSearch">Job Search</router-link>
+      </p>
     </div>
     <router-view/>
   </div>
