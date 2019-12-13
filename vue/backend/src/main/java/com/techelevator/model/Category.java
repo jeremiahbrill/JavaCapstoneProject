@@ -4,7 +4,14 @@ public class Category {
 
 	private int id;
 	private String name;
+	private String presentationText;
 	
+	public String getPresentationText() {
+		return presentationText;
+	}
+	public void setPresentationText(String presentationText) {
+		this.presentationText = presentationText;
+	}
 	public int getId() {
 		return id;
 	}

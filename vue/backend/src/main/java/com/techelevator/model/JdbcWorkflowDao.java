@@ -35,6 +35,7 @@ public class JdbcWorkflowDao implements WorkflowDao {
 		workflow.setId(row.getInt("workflow_id"));
 		workflow.setName(row.getString("name"));
 		workflow.setCategoryId(row.getInt("category_id"));
+		workflow.setPresentationText(row.getString("presentation_text"));
 		return workflow;
 	}
 

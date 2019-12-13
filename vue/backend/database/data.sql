@@ -19,8 +19,14 @@ INSERT INTO Workflow (Name,Presentation_Text,Category_ID) VALUES ('What is','The
 --SubWorkFlow data
 INSERT INTO SubWorkflow (Name, Text_Answer,Presentation_Text, Workflow_ID) VALUES ('Writing a cover letter', 'provide your eleavtor pitch here, to get the best impression','Below help is available',1);
 INSERT INTO SubWorkflow (Name, Text_Answer,Presentation_Text, Workflow_ID) VALUES ('Prepping for an interview', 'Be on time','Below help is available',1);
-INSERT INTO SubWorkflow (Name, Text_Answer,Presentation_Text, Workflow_ID) VALUES ('Following up with employers','send an email','Below help is available', 1);
-INSERT INTO SubWorkflow (Name, Text_Answer, Presentation_Text,Workflow_ID) VALUES ('What to wear to an interview','wear busines casual','Below help is available', 1);
+INSERT INTO SubWorkflow (Name, Text_Answer,Presentation_Text, Workflow_ID) VALUES ('Following up with employers','send an email','Below help is available',1);
+INSERT INTO SubWorkflow (Name, Text_Answer, Presentation_Text,Workflow_ID) VALUES ('What to wear to an interview','wear busines casual','Below help is available',1);
+
+--Answer data
+INSERT INTO Answer ( Text_Answer, SubWorkflow_ID) VALUES ('provide your eleavtor pitch here, to get the best impression',1);
+INSERT INTO Answer (Text_Answer, SubWorkflow_ID) VALUES ( 'Be on time',2);
+INSERT INTO Answer (Text_Answer, SubWorkflow_ID) VALUES ('send an email',3);
+INSERT INTO Answer (Text_Answer,SubWorkflow_ID) VALUES ('wear busines casual',4);
 
 --JobPosition data
 
