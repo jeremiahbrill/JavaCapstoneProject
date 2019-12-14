@@ -161,8 +161,9 @@ export default {
          .then(list => (this.subworkflows = list))
          .catch(err => console.error(err));
      },
-    getAnswers(){
-        fetch(`${this.API_URL}/answer/1`)
+  
+    getAnswers(n){
+        fetch(`${this.API_URL}/answer/${n}`)
          .then(response => response.json())
          .then(list => (this.answers = list))
          .catch(err => console.error(err));

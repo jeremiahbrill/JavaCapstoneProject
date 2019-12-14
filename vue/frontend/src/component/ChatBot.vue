@@ -40,8 +40,8 @@
                 this.searchArray.forEach(element => {
                     if(element.name === this.userInput){
                         this.userChoiceId = element.id;
+                        console.log("Get ChoiceId " + this.userChoiceId)
                         this.foundAnswer = true;
-
                     }
 
                 })
@@ -54,22 +54,21 @@
             }, 
             setBotResponesAnswer(){
                 this.searchArray.forEach(element => {
-                    console.log('element Id '+element.subworkflowId)
                     if(element.subworkflowId === 1){
                         this.botResponseText = element.textAnswer;
-                        console.log(this.botResponseText)
-                        console.log(element.textAnswer)
                     }
                 })               
             },
 
             setBotResponseText(){
-                this.botResponseText = "I can help with";
-                // this.searchArray.forEach(element =>{
-                //     if(element.name === this.userInput){
-                //         this.botResponseText = element.presentationText; 
-                //     }
-                // })
+                // this.botResponseText = "I can help with";
+                this.searchArray.forEach(element =>{
+                    console.log("Bot text before if " + element.id, this.userChoiceId)
+                    if(element.id === this.userChoiceId){
+                        console.log("BotText before"+element.presentationText)
+                        this.botResponseText = element.presentationText; 
+                    }
+                })
             },
 
             setBotOutput(){
@@ -78,7 +77,6 @@
             },
 
             botProcess(){
-
                 // console.log("Search Array"+this.searchArray[0].name);
                 this.$emit("bot-response-text", this.botResponseText);    
                 this.$emit("bot-response-suggestions", this.botResponseSuggestions);
@@ -109,16 +107,14 @@
             searchSubWorkflows(){
                 this.setUserChoiceIdFromUserInput();
                 this.checkedSubWorkflows = true;
-                this.$emit("get-answers", this.answers)
+                this.$emit("get-answers", this.userChoiceId)
                 // this.checkedSubWorkflows = false;
             },
               getAnswer(){
                 this.searchArray = this.answers;
                 this.setBotResponesAnswer();
                 this.searchArray = [];
-                console.log("botProcess start");
                 this.botProcess();
-                console.log("botProcess end")
                 this.foundSubWorkflowsAnswer = "anything";
                 this.$emit("get-subworkflowAnswer", this.foundSubWorkflowsAnswer);
                 this.resetLogic();
@@ -189,7 +185,6 @@
                 this.botResponseSuggestions = [];
             },
             watchAnswers(){
-                console.log("Last step to Answer")
                 this.searchArray = this.answers;
                 this.getAnswer();
             },
@@ -198,7 +193,7 @@
 </script>
 
 <style scoped>
- .chatBot{
+.chatBot{
 visibility: hidden;
 } 
 </style>
