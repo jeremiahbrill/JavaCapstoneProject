@@ -12,30 +12,36 @@ INSERT INTO Category (Name,Presentation_Text) VALUES ('Job Search','Select one o
 
 -- WorkFlow data
 INSERT INTO Workflow (Name,Presentation_Text,Category_ID) VALUES ('I need help with','These are the things I can help with for pathway',1);
-INSERT INTO Workflow (Name,Presentation_Text,Category_ID) VALUES ('Where can I learn about' 'These are the things I can help with for pathway',1);
+INSERT INTO Workflow (Name,Presentation_Text,Category_ID) VALUES ('Where can I learn about','These are the things I can help with for pathway',1);
 INSERT INTO Workflow (Name,Presentation_Text,Category_ID) VALUES ('I do not understand','These are the things I can help with for pathway',1);
 INSERT INTO Workflow (Name,Presentation_Text,Category_ID) VALUES ('What is','These are the things I can help with for pathway',1);
---curriculum
-INSERT INTO Workflow (Name,Presentation_Text,Category_ID) VALUES ('I need help with','These are the things I can help with for pathway',2);
-INSERT INTO Workflow (Name,Presentation_Text,Category_ID) VALUES ('Where can I learn about' 'These are the things I can help with for pathway',2);
-INSERT INTO Workflow (Name,Presentation_Text,Category_ID) VALUES ('I do not understand','These are the things I can help with for pathway',2);
-INSERT INTO Workflow (Name,Presentation_Text,Category_ID) VALUES ('What is','These are the things I can help with for pathway',2);
+--curriculum WorkFlow 
+INSERT INTO Workflow (Name,Presentation_Text,Category_ID) VALUES ('I need help with','These are the things I can help with for curriculum',2);
+INSERT INTO Workflow (Name,Presentation_Text,Category_ID) VALUES ('Where can I learn about', 'These are the things I can help with for curriculum',2);
+INSERT INTO Workflow (Name,Presentation_Text,Category_ID) VALUES ('I do not understand','These are the things I can help with for curriculum',2);
+INSERT INTO Workflow (Name,Presentation_Text,Category_ID) VALUES ('What is','These are the things I can help with for curriculum',2);
 
 --SubWorkFlow data
 INSERT INTO SubWorkflow (Name, Text_Answer,Presentation_Text, Workflow_ID) VALUES ('Writing a cover letter', 'provide your eleavtor pitch here, to get the best impression','Below help is available',1);
 INSERT INTO SubWorkflow (Name, Text_Answer,Presentation_Text, Workflow_ID) VALUES ('Prepping for an interview', 'Be on time','Below help is available',1);
 INSERT INTO SubWorkflow (Name, Text_Answer,Presentation_Text, Workflow_ID) VALUES ('Following up with employers','send an email','Below help is available',1);
 INSERT INTO SubWorkflow (Name, Text_Answer, Presentation_Text,Workflow_ID) VALUES ('What to wear to an interview','wear busines casual','Below help is available',1);
---curriculum
-INSERT INTO SubWorkflow (Name, Text_Answer,Presentation_Text, Workflow_ID) VALUES ('Creating a new project', 'create your POM.xml','Below help is available',1);
-INSERT INTO SubWorkflow (Name, Text_Answer,Presentation_Text, Workflow_ID) VALUES ('Arrays', 'An array is collection of items stored at contiguous memory locations','Below help is available',1);
-INSERT INTO SubWorkflow (Name, Text_Answer,Presentation_Text, Workflow_ID) VALUES ('MVC','MVC stands for Model, View and Controller','Below help is available',1);
-INSERT INTO SubWorkflow (Name, Text_Answer, Presentation_Text,Workflow_ID) VALUES ('SQL','SQL (pronounced "ess-que-el") stands for Structured Query Language','Below help is available',1);
+--curriculum SubWorkFlow 
+INSERT INTO SubWorkflow (Name, Text_Answer,Presentation_Text, Workflow_ID) VALUES ('Creating a new project', 'create your POM.xml','Below help is available',5);
+INSERT INTO SubWorkflow (Name, Text_Answer,Presentation_Text, Workflow_ID) VALUES ('Arrays', 'An array is collection of items stored at contiguous memory locations','Below help is available',5);
+INSERT INTO SubWorkflow (Name, Text_Answer,Presentation_Text, Workflow_ID) VALUES ('MVC','MVC stands for Model, View and Controller','Below help is available',5);
+INSERT INTO SubWorkflow (Name, Text_Answer, Presentation_Text,Workflow_ID) VALUES ('SQL','SQL (pronounced "ess-que-el") stands for Structured Query Language','Below help is available',5);
 --Answer data
 INSERT INTO Answer ( Text_Answer, SubWorkflow_ID) VALUES ('provide your eleavtor pitch here, to get the best impression',1);
 INSERT INTO Answer (Text_Answer, SubWorkflow_ID) VALUES ( 'Be on time',2);
 INSERT INTO Answer (Text_Answer, SubWorkflow_ID) VALUES ('send an email',3);
 INSERT INTO Answer (Text_Answer,SubWorkflow_ID) VALUES ('wear busines casual',4);
+--curriculum Answer
+INSERT INTO Answer ( Text_Answer, SubWorkflow_ID) VALUES ('create your POM.xml',5);
+INSERT INTO Answer (Text_Answer, SubWorkflow_ID) VALUES ( 'An array is collection of items stored at contiguous memory locations',6);
+INSERT INTO Answer (Text_Answer, SubWorkflow_ID) VALUES ('MVC stands for Model, View and Controller',7);
+INSERT INTO Answer (Text_Answer,SubWorkflow_ID) VALUES ('SQL (pronounced "ess-que-el") stands for Structured Query Language',8);
+
 
 --JobPosition data
 

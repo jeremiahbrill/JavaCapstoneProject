@@ -25,7 +25,7 @@ CREATE TABLE Category (
 
 CREATE TABLE Workflow (
   Workflow_ID serial,
-  Name varchar(255) NOT NULL UNIQUE,
+  Name varchar(255) NOT NULL,
   Category_ID int,
   Presentation_Text varchar(255) NOT NULL,
 
@@ -35,7 +35,7 @@ CREATE TABLE Workflow (
 
 CREATE TABLE SubWorkflow (
   SubWorkflow_ID serial,
-  Name varchar(255) NOT NULL UNIQUE,
+  Name varchar(255) NOT NULL,
   Text_Answer varchar(255),
   Video_Answer  varchar(255),
   Image_Answer  varchar(255),
