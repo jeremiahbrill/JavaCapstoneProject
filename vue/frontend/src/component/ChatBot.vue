@@ -61,7 +61,6 @@
             },
 
             setBotResponseText(){
-                // this.botResponseText = "I can help with";
                 this.searchArray.forEach(element =>{
                     console.log("Bot text before if " + element.id, this.userChoiceId)
                     if(element.id === this.userChoiceId){
@@ -77,7 +76,6 @@
             },
 
             botProcess(){
-                // console.log("Search Array"+this.searchArray[0].name);
                 this.$emit("bot-response-text", this.botResponseText);    
                 this.$emit("bot-response-suggestions", this.botResponseSuggestions);
                 this.foundAnswer = false;      
@@ -108,7 +106,6 @@
                 this.setUserChoiceIdFromUserInput();
                 this.checkedSubWorkflows = true;
                 this.$emit("get-answers", this.userChoiceId)
-                // this.checkedSubWorkflows = false;
             },
               getAnswer(){
                 this.searchArray = this.answers;
@@ -162,17 +159,11 @@
                     this.searchSubWorkflows();
                     this.searchArray = [];
                 }
-                // if(this.checkedSubWorkflows === true){
-        
-                // }
             },
             watchAnswerFound(){
 
             },
             watchWorkflows(){
-                // if(this.foundAnswer === false && this.checkedWorkflows === false){
-                // this.searchWorkflows();
-                // }
                 this.searchArray = this.workflows;
                 this.setBotOutput();
                 this.botProcess();

@@ -38,7 +38,8 @@ export default {
     botResponseSuggestions:Array,
     botResponseText:String,
     chatLog: Array,
-    subworkflowAnswer: String
+    subworkflowAnswer: String,
+    user:Object
   },
   data() {
     return {
@@ -64,20 +65,14 @@ export default {
       participants: [
         {
           id: "user1",
-          name: "Matteo",
-          imageUrl: "https://avatars3.githubusercontent.com/u/1915989?s=230&v=4"
-        },
-        {
-          id: "user2",
-          name: "Owl Boy",
-          imageUrl:
-            "https://avatars3.githubusercontent.com/u/37018832?s=200&v=4"
+          name: "Chat Bot",
+          imageUrl: "https://3.bp.blogspot.com/-vO7C5BPCaCQ/WigyjG6Q8lI/AAAAAAAAfyQ/1tobZMMwZ2YEI0zx5De7kD31znbUAth0gCLcBGAs/s1600/TOMI_avatar_full.png"
         }
       ], // the list of all the participant of the conversation. `name` is the user name, `id` is used to establish the author of a message, `imageUrl` is supposed to be the user avatar.
       titleImageUrl:
         "https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png",
       messageList: [
-        { type: "text", author: `user2`, data: { text: `Welcome Steven and Andrew To Chat Bot`}, suggestions:['Pathway', 'Curriculum', 'Job Search'] } 
+        { type: "text", author: `user1`, data: { text: `Welcome ${this.user.name} To Chat Bot`}, suggestions:['Pathway', 'Curriculum', 'Job Search'] } 
       ], // the list of the messages to show, can be paginated and adjusted dynamically
       newMessagesCount: 0,
       isChatOpen: false, // to determine whether the chat window should be open or closed
@@ -162,20 +157,26 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
+form.sc-user-input{
+  visibility: hidden;
+}
+.sc-chat-window{
+  background: #f9f295;
+}
 
-/* .sc-suggestions-element {
+ button.sc-suggestions-element {
   margin: 3px;
   padding: 5px 10px 5px 10px;
   border: 1px solid;
   border-radius: 15px;
   font-size: 14px;
-  background: #dfbd69;
+  background: #f9f295;
   cursor: pointer;
 }
 
 .sc-suggestions-row {
   text-align: center;
   background: inherit;
-} */
+} 
 </style>
