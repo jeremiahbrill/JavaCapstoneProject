@@ -1,11 +1,11 @@
 <template>
     <div class="chatBot">
-        {{categories}}
-        {{workflows}}
-        {{subworkflows}}
-        {{userInput}}
-        {{jobPosition}}
-        {{answers}}
+        <p>{{categories}}</p>
+        <p>{{workflows}}</p>
+        <p>{{subworkflows}}</p>
+        <p>{{userInput}}</p>
+        <p>{{jobPosition}}</p>
+        <p>{{answers}}</p>
     </div>
 </template>
 // I am unable to get the responses back to the parent and I am not sure why.
@@ -40,8 +40,8 @@
                 this.searchArray.forEach(element => {
                     if(element.name === this.userInput){
                         this.userChoiceId = element.id;
+                        console.log("Get ChoiceId " + this.userChoiceId)
                         this.foundAnswer = true;
-
                     }
 
                 })
@@ -54,22 +54,28 @@
             }, 
             setBotResponesAnswer(){
                 this.searchArray.forEach(element => {
-                    console.log('element Id '+element.subworkflowId)
-                    if(element.subworkflowId === 1){
+                    console.log("Bot text before if " + element.subworkflowId, this.userChoiceId)
+                    if(element.subworkflowId === this.userChoiceId){
                         this.botResponseText = element.textAnswer;
-                        console.log(this.botResponseText)
-                        console.log(element.textAnswer)
                     }
                 })               
             },
 
             setBotResponseText(){
-                this.botResponseText = "I can help with";
-                // this.searchArray.forEach(element =>{
-                //     if(element.name === this.userInput){
-                //         this.botResponseText = element.presentationText; 
-                //     }
-                // })
+                // this.userLastChoiceID = this.userChoiceId;
+                this.searchArray.forEach(element =>{
+                    // console.log("Bot text before if " + element.id, this.userChoiceId)
+                    if(element.id === this.userChoiceId){
+                         console.log("BotText before"+element.presentationText)
+                        this.botResponseText = element.presentationText; 
+                    }else if(element.categoryId === this.userChoiceId){
+                        this.botResponseText = element.presentationText; 
+                    }else if(element.workflowId === this.userChoiceId){
+                        this.botResponseText = element.presentationText;
+                    }else if(element.subworkflowId === this.userChoiceId){
+                        this.botResponseText = element.presentationText;
+                    }
+                })
             },
 
             setBotOutput(){
@@ -78,8 +84,6 @@
             },
 
             botProcess(){
-
-                // console.log("Search Array"+this.searchArray[0].name);
                 this.$emit("bot-response-text", this.botResponseText);    
                 this.$emit("bot-response-suggestions", this.botResponseSuggestions);
                 this.foundAnswer = false;      
@@ -89,7 +93,7 @@
                 this.botResponseSuggestions = [];
                 this.botResponseText = "";
                 this.searchArray = this.categories;
-                this.userLastChoiceID = this.userChoiceId;
+                // this.userLastChoiceID = this.userChoiceId;
             },
 
             searchCategories(){
@@ -109,16 +113,13 @@
             searchSubWorkflows(){
                 this.setUserChoiceIdFromUserInput();
                 this.checkedSubWorkflows = true;
-                this.$emit("get-answers", this.answers)
-                // this.checkedSubWorkflows = false;
+                this.$emit("get-answers", this.userChoiceId)
             },
               getAnswer(){
                 this.searchArray = this.answers;
                 this.setBotResponesAnswer();
                 this.searchArray = [];
-                console.log("botProcess start");
                 this.botProcess();
-                console.log("botProcess end")
                 this.foundSubWorkflowsAnswer = "anything";
                 this.$emit("get-subworkflowAnswer", this.foundSubWorkflowsAnswer);
                 this.resetLogic();
@@ -166,17 +167,11 @@
                     this.searchSubWorkflows();
                     this.searchArray = [];
                 }
-                // if(this.checkedSubWorkflows === true){
-        
-                // }
             },
             watchAnswerFound(){
 
             },
             watchWorkflows(){
-                // if(this.foundAnswer === false && this.checkedWorkflows === false){
-                // this.searchWorkflows();
-                // }
                 this.searchArray = this.workflows;
                 this.setBotOutput();
                 this.botProcess();
@@ -189,7 +184,6 @@
                 this.botResponseSuggestions = [];
             },
             watchAnswers(){
-                console.log("Last step to Answer")
                 this.searchArray = this.answers;
                 this.getAnswer();
             },
@@ -198,7 +192,7 @@
 </script>
 
 <style scoped>
- .chatBot{
-visibility: hidden;
+.chatBot{
+visibility:visible;
 } 
 </style>

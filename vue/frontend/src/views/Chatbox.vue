@@ -12,7 +12,15 @@
     @get-subworkflows="getSubwWorkflows"
     @get-answers="getAnswers"
     @get-subworkflowAnswer="handlesubworkflowAnswer"></chat-bot>
-    <chat-bot-demo :botResponseText="botResponseText" :botResponseSuggestions="botResponseSuggestions" :subworkflowAnswer="subworkflowAnswer"  :userColors="colors" @user-input="handleUserInput" @chat-log="handleChatLog"></chat-bot-demo>
+
+    <chat-bot-demo :botResponseText="botResponseText" 
+    :botResponseSuggestions="botResponseSuggestions" 
+    :subworkflowAnswer="subworkflowAnswer"  
+    :userColors="colors" 
+    :user="user"
+    @user-input="handleUserInput" 
+    @chat-log="handleChatLog"></chat-bot-demo>
+   
   </div>
 </template>
 
@@ -38,6 +46,7 @@ export default {
       chatLog: [],
       answers:[],
       subworkflowAnswer: "",
+      user:{name:"Clark", jobTitles:["Hero", "Reporter", "Husband"]},
       sampleCategories: [
           {
           id: 1,
@@ -114,25 +123,25 @@ export default {
       ],
       colors: {
         header: {
-          bg: "#F9F295",
-          text: "#ffffff"
+          bg: "#f9f295",
+          text: "#222222"
         },
         launcher: {
-          bg: "#4e8cff"
+          bg: "#dfbd69",
         },
         messageList: {
           bg: "#e5e5e5"
         },
         sentMessage: {
           bg: "#dfbd69",
-          text: "#ffffff"
+          text: "#222222"
         },
         receivedMessage: {
           bg: "#f9f295",
           text: "#222222"
         },
         userInput: {
-          bg: "#F9F295",
+          bg: "#f9f295",
           text: "#565867"
         }
         
@@ -160,8 +169,9 @@ export default {
          .then(list => (this.subworkflows = list))
          .catch(err => console.error(err));
      },
-    getAnswers(){
-        fetch(`${this.API_URL}/answer/1`)
+  
+    getAnswers(n){
+        fetch(`${this.API_URL}/answer/${n}`)
          .then(response => response.json())
          .then(list => (this.answers = list))
          .catch(err => console.error(err));

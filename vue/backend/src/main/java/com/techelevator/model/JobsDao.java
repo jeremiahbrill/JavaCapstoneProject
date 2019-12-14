@@ -5,6 +5,6 @@ import java.util.List;
 public interface JobsDao {
 	
 	public List<Jobs> getAllJobs();
-	public List<Jobs> getJobsById();
+	public List<Jobs> getJobsById(int jobPositionId);
 
 }

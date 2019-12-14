@@ -72,7 +72,7 @@ public class ChatBoxController {
 	
 	@GetMapping("/jobSearch/{id}")	
 	public List<Jobs> getAllJobsById(@PathVariable int id){
-		return jobsDao.getJobsById();
+		return jobsDao.getJobsById(id);
 	}
 	
 	@GetMapping("/jobPositionSearch")
@@ -82,7 +82,7 @@ public class ChatBoxController {
 	
 	@GetMapping("/jobPositionSearch/{id}")
 	public List<JobPosition> getAllJobPositionsById(@PathVariable int id){
-		return jobPosition.getAllJobPositionsById();
+		return jobPosition.getAllJobPositionsById(id );
 		
 	}
 	

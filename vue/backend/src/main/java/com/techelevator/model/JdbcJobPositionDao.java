@@ -43,11 +43,11 @@ public class JdbcJobPositionDao implements JobPositionDao {
 	}
 
 	@Override
-	public List<JobPosition> getAllJobPositionsById() {
+	public List<JobPosition> getAllJobPositionsById(int jobPositionId) {
 		
 		List<JobPosition> allJobPositionById = new ArrayList();
 		String sqlSelectAllJobPositionById = "SELECT id, name FROM jobPosition WHERE id = ?";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllJobPositionById);
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllJobPositionById, jobPositionId);
 		while(results.next()) {
 			allJobPositionById.add(mapRowToJobPosition(results));
 		}
