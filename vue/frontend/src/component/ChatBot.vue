@@ -1,11 +1,11 @@
 <template>
     <div class="chatBot">
-        {{categories}}
-        {{workflows}}
-        {{subworkflows}}
-        {{userInput}}
-        {{jobPosition}}
-        {{answers}}
+        <p>{{categories}}</p>
+        <p>{{workflows}}</p>
+        <p>{{subworkflows}}</p>
+        <p>{{userInput}}</p>
+        <p>{{jobPosition}}</p>
+        <p>{{answers}}</p>
     </div>
 </template>
 // I am unable to get the responses back to the parent and I am not sure why.
@@ -54,18 +54,26 @@
             }, 
             setBotResponesAnswer(){
                 this.searchArray.forEach(element => {
-                    if(element.subworkflowId === 1){
+                    console.log("Bot text before if " + element.subworkflowId, this.userChoiceId)
+                    if(element.subworkflowId === this.userChoiceId){
                         this.botResponseText = element.textAnswer;
                     }
                 })               
             },
 
             setBotResponseText(){
+                // this.userLastChoiceID = this.userChoiceId;
                 this.searchArray.forEach(element =>{
-                    console.log("Bot text before if " + element.id, this.userChoiceId)
+                    // console.log("Bot text before if " + element.id, this.userChoiceId)
                     if(element.id === this.userChoiceId){
-                        console.log("BotText before"+element.presentationText)
+                         console.log("BotText before"+element.presentationText)
                         this.botResponseText = element.presentationText; 
+                    }else if(element.categoryId === this.userChoiceId){
+                        this.botResponseText = element.presentationText; 
+                    }else if(element.workflowId === this.userChoiceId){
+                        this.botResponseText = element.presentationText;
+                    }else if(element.subworkflowId === this.userChoiceId){
+                        this.botResponseText = element.presentationText;
                     }
                 })
             },
@@ -85,7 +93,7 @@
                 this.botResponseSuggestions = [];
                 this.botResponseText = "";
                 this.searchArray = this.categories;
-                this.userLastChoiceID = this.userChoiceId;
+                // this.userLastChoiceID = this.userChoiceId;
             },
 
             searchCategories(){
@@ -185,6 +193,6 @@
 
 <style scoped>
 .chatBot{
-visibility: hidden;
+visibility:visible;
 } 
 </style>
