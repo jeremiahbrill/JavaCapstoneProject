@@ -32,7 +32,7 @@ export default {
           .then(list => (this.jobResults = list))
           //.then(list => (console.log(list)))
           .catch(err => console.error(err));
-          console.log("Test" + this.jobResults);
+          console.log("Testing jobResults" + this.jobResults);
       },
 
       getJobPositions() {
