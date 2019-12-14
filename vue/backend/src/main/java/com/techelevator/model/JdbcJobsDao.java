@@ -51,11 +51,11 @@ public class JdbcJobsDao implements JobsDao {
 
 
 	@Override
-	public List<Jobs> getJobsById() {
+	public List<Jobs> getJobsById(int jobPositionId) {
 		
 		List<Jobs> allJobsById = new ArrayList<>();
 		String sqlSelectAllJobsById = "SELECT id, name, jobDescription, jobCity, jobState, jobUrl, positionId FROM jobs WHERE id = ?";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllJobsById);
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllJobsById, jobPositionId);
 		while(results.next()) {
 			allJobsById.add(mapRowToJobs(results));
 		}

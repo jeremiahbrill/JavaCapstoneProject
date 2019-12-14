@@ -13,6 +13,7 @@
     @get-answers="getAnswers"
     @get-subworkflowAnswer="handlesubworkflowAnswer"></chat-bot>
     <chat-bot-demo :botResponseText="botResponseText" :botResponseSuggestions="botResponseSuggestions" :subworkflowAnswer="subworkflowAnswer"  :userColors="colors" @user-input="handleUserInput" @chat-log="handleChatLog"></chat-bot-demo>
+   
   </div>
 </template>
 

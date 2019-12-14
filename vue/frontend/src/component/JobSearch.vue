@@ -1,9 +1,8 @@
 <template>
-  <div>
-    <h2 v-bind:value="JobResults.name">Here are the current positions for Software Engineer</h2>
-    {{jobResults}}
+  <div  >
+    <h2>Here are the current positions for Software Engineer</h2>
     {{jobPositionResults}}
-
+    {{jobResultsByPositionId}}
   </div>
 </template>
 
@@ -22,32 +21,37 @@ export default {
     return {
       API_URL: "http://localhost:8080/ChatBot/api",
       jobResults: [],
-      jobPositionResults: []
+      jobPositionResults: [],
+      jobResultsByPositionId: [],
     };
   },
     methods: {
-      getJobs() {
-        fetch("${this.API_URL}/jobSearch}")
+
+      getAllJobs() {
+        fetch(`${this.API_URL}/jobSearch`)
           .then(response => response.json())
-          .then(list => (this.jobResults = list))
-          //.then(list => (console.log(list)))
+          .then(list => this.jobResults = list)
           .catch(err => console.error(err));
-          console.log("Test" + this.jobResults);
+      },
+
+      getJobsByJobPositionId(){
+        fetch(`${this.API_URL}/jobSearch/1`)
+          .then(response => response.json())
+          .then(list => this.jobResultsByPositionId = list)
+          .catch(err => console.error(err));
       },
 
       getJobPositions() {
-        fetch("${this.API_URL}/jobPositionSearch}")
+        fetch(`${this.API_URL}/jobPositionSearch`)
           .then(response => response.json())
           .then(list => (this.jobPositionResults = list))
           .catch(err => console.error(err));
       }
     },
       created(){
-       console.log("You're inside created");
-       this.getJobs();
-       console.log("You're after getJobs");
+       this.getAllJobs();
        this.getJobPositions();
-       console.log("You're leaving created");
+       this.getJobsByJobPositionId()
       }
   }
 </script>
