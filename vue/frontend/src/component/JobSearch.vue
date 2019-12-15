@@ -1,8 +1,11 @@
 <template>
   <div  >
-    <h2>Here are the current positions for Software Engineer</h2>
+    <h2>Here are the current entries in the job search db</h2>
+
+    {{jobResults}}
     {{jobPositionResults}}
     {{jobResultsByPositionId}}
+
   </div>
 </template>
 
@@ -39,6 +42,8 @@ export default {
           .then(response => response.json())
           .then(list => this.jobResultsByPositionId = list)
           .catch(err => console.error(err));
+
+        console.log("Testing jobResults" + this.jobResults);
 
       },
 

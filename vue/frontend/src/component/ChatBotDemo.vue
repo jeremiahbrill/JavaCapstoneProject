@@ -171,7 +171,7 @@ form.sc-user-input{
   border: 1px solid;
   border-radius: 15px;
   font-size: 14px;
-  background: #f9f295;
+  background: rgb(115, 132, 187);
   cursor: pointer;
 }
 

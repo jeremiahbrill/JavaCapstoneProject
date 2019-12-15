@@ -123,7 +123,7 @@ export default {
       ],
       colors: {
         header: {
-          bg: "#f9f295",
+          bg: "rgb(115, 132, 187)",
           text: "#222222"
         },
         launcher: {

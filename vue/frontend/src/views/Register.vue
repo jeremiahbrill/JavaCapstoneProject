@@ -5,7 +5,7 @@
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         There were problems registering this user.
       </div>
-      <label for="username" class="sr-only">Username</label>
+       <label for="username" class="sr-only">Username</label>
       <input
         type="text"
         id="username"
@@ -31,7 +31,7 @@
         placeholder="Confirm Password"
         v-model="user.confirmPassword"
         required
-      />
+      /> 
       <router-link :to="{ name: 'login' }">
         Have an account?
       </router-link>

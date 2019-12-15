@@ -9,7 +9,8 @@ import Chatbox from './views/Chatbox.vue'
 import Chat from 'vue-beautiful-chat'
 
 // added by MSR
-import Splash from './component/Splash.vue'
+
+import HomePage from './component/HomePage.vue'
 import JobSearch from './component/JobSearch.vue'
 
 Vue.use(Chat)
@@ -46,9 +47,9 @@ const router = new Router({
       }
     },
     {
-      path: "/splash",
-      name: "splash",
-      component: Splash,
+      path: "/homepage",
+      name: "homepage",
+      component: HomePage,
       meta: {
         requiresAuth: false
       }
