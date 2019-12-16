@@ -52,6 +52,15 @@
         v-model="user.confirmPassword"
         required
       /> 
+      <label for="jobPositions" class="sr-only">Please select Jobs you are intrested in: </label>
+       <span v-for="job in availableJobSelections" 
+                v-bind:key="job.id" 
+                v-on:click="updateUserJobPositions(job.id,$event)">
+       <input type="checkbox"
+        name="jobPositions"
+        required/>
+        {{job.name}}
+       </span>
       <router-link :to="{ name: 'login' }">
         Have an account?
       </router-link>
@@ -68,29 +77,36 @@ export default {
   data() {
     return {
       user: {
-        firstname: '',
-        lastname: '',
-        username: '',
+         userName: '',
         password: '',
         confirmPassword: '',
-        
-        role: 'user',
+        role: '',
+        firstName: '',
+        lastName: '',
+        avatar:'',
+        jobSelections:[]
       },
+      availableJobSelections:[],
       registrationErrors: false,
+      API_URL: 'http://localhost:8080/ChatBot',
     };
   },
   methods: {
     register() {
-      fetch(`${process.env.VUE_APP_REMOTE_API}/register`, {
+      console.log("url" +process.env.VUE_APP_REMOTE_API) +
+      fetch(`${this.API_URL}/register`, {
         method: 'POST',
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(this.user),
+     
       })
         .then((response) => {
+          console.log("test json" + JSON.stringify(this.user));
           if (response.ok) {
+            console.log("ok")
             this.$router.push({ path: '/login', query: { registration: 'success' } });
           } else {
             this.registrationErrors = true;
@@ -99,7 +115,25 @@ export default {
 
         .then((err) => console.error(err));
     },
+    getJobPositions() {
+        fetch(`${this.API_URL}/api/jobPositionSearch`)
+          .then(response => response.json())
+          .then(list => (this.availableJobSelections = list))
+          .catch(err => console.error(err));
+      },
+    updateUserJobPositions(id,event) { 
+      this.availableJobSelections.forEach(element => {
+        if(element.id === id){
+           this.user.jobSelections.push(element);
+        }
+        // add emit statement to pass on data to parent
+      })  
+    },  
   },
+  created(){
+      this.getJobPositions();
+      console.log("register job positions:" + this.availableJobSelections );
+  }
 };
 </script>
 

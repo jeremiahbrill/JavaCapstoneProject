@@ -42,20 +42,40 @@ public class JdbcUserDao implements UserDao {
      * @param role the user's role
      * @return the new user
      */
+//    @Override
+//    public User saveUser(String userName, String password, String role) {
+//        byte[] salt = passwordHasher.generateRandomSalt();
+//        String hashedPassword = passwordHasher.computeHash(password, salt);
+//        String saltString = new String(Base64.encode(salt));
+//        long newId = jdbcTemplate.queryForObject(
+//                "INSERT INTO users(username, password, salt, role) VALUES (?, ?, ?, ?) RETURNING id", Long.class,
+//                userName, hashedPassword, saltString, role);
+//
+//        User newUser = new User();
+//        newUser.setId(newId);
+//        newUser.setUsername(userName);
+//        newUser.setRole(role);
+//
+//        return newUser;
+//    }
+    
     @Override
-    public User saveUser(String userName, String password, String role) {
+    public User saveUser(String userName, String password, String role, String firstName, String lastName, String avatar) {
         byte[] salt = passwordHasher.generateRandomSalt();
         String hashedPassword = passwordHasher.computeHash(password, salt);
         String saltString = new String(Base64.encode(salt));
+       System.out.println("");
         long newId = jdbcTemplate.queryForObject(
-                "INSERT INTO users(username, password, salt, role) VALUES (?, ?, ?, ?) RETURNING id", Long.class,
-                userName, hashedPassword, saltString, role);
+                "INSERT INTO users(username, password, salt, role, firstname, lastname, avatar) VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING id", Long.class,
+                userName, hashedPassword, saltString, role,firstName, lastName, avatar);
 
         User newUser = new User();
         newUser.setId(newId);
-        newUser.setUsername(userName);
+        newUser.setUserName(userName);
         newUser.setRole(role);
-
+        newUser.setFirstName(firstName);
+        newUser.setLastName(lastName);
+        newUser.setAvatar(avatar);
         return newUser;
     }
 
@@ -103,7 +123,8 @@ public class JdbcUserDao implements UserDao {
     @Override
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<User>();
-        String sqlSelectAllUsers = "SELECT id, username, role FROM users";
+        //String sqlSelectAllUsers = "SELECT id, username, role FROM users";
+        String sqlSelectAllUsers = "SELECT * FROM users";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllUsers);
 
         while (results.next()) {
@@ -114,11 +135,22 @@ public class JdbcUserDao implements UserDao {
         return users;
     }
 
+//    private User mapResultToUser(SqlRowSet results) {
+//        User user = new User();
+//        user.setId(results.getLong("id"));
+//        user.setUsername(results.getString("username"));
+//        user.setRole(results.getString("role"));
+//        return user;
+//    }
+    
     private User mapResultToUser(SqlRowSet results) {
         User user = new User();
         user.setId(results.getLong("id"));
-        user.setUsername(results.getString("username"));
+        user.setUserName(results.getString("username"));
         user.setRole(results.getString("role"));
+        user.setFirstName(results.getString("firstname"));
+        user.setLastName(results.getString("lastname"));
+        user.setAvatar(results.getString("avatar"));
         return user;
     }
 

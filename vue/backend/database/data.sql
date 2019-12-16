@@ -1,9 +1,10 @@
 -- Password for this user is 'greatwall'
-INSERT INTO users ("username", "password", "salt", "role") VALUES
+INSERT INTO users ("username", "password", "salt", "role","firstname","lastname","avatar") VALUES
 ('user',
 'FjZDm+sndmsdEDwNtfr6NA==',
 'kidcasB0te7i0jK0fmRIGHSm0mYhdLTaiGkEAiEvLp7dAEHWnuT8n/5bd2V/mqjstQ198iImm1xCmEFu+BHyOz1Mf7vm4LILcrr17y7Ws40Xyx4FOCt8jD03G+jEafpuVJnPiDmaZQXJEpEfekGOvhKGOCtBnT5uatjKEuVWuDA=',
-'user');
+'user', 'doe', 'smith', 'test.img');
+
 
 -- Category data
 INSERT INTO Category (Name,Presentation_Text) VALUES ('Pathway','Select one of the options below');
@@ -110,6 +111,11 @@ VALUES('Data Analyst - 55969', 'If you are looking for a career that will provid
 opportunities to learn, our company is the place for you. Join our team and become part of a company full of exciting 
 opportunities. We help employees achieve their personal best by offering many opportunities that develop and enhance their 
 skills for career advancement.', 'Dublin', 'OH', 'https://g.co/kgs/ZB6at1', 3);
+
+
+-- User_JobPosition data
+INSERT INTO users_jobPosition(user_id, jobPosition_id) Values(1,1);
+INSERT INTO users_jobPosition(user_id, jobPosition_id) Values(1,2);
 
 
 

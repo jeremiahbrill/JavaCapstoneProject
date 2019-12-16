@@ -27,9 +27,9 @@ public class AccountController {
 
     @RequestMapping(path = "/login", method = RequestMethod.POST)
     public String login(@RequestBody User user, RedirectAttributes flash) throws UnauthorizedException {
-        if (auth.signIn(user.getUsername(), user.getPassword())) {
+        if (auth.signIn(user.getUserName(), user.getPassword())) {
             User currentUser = auth.getCurrentUser();
-            return tokenHandler.createToken(user.getUsername(), currentUser.getRole());
+            return tokenHandler.createToken(user.getUserName(), currentUser.getRole());
         } else {
             throw new UnauthorizedException();
         }
@@ -37,6 +37,7 @@ public class AccountController {
 
     @RequestMapping(path = "/register", method = RequestMethod.POST)
     public String register(@Valid @RequestBody User user, BindingResult result) throws UserCreationException {
+    	System.out.println("user" + user);
         if (result.hasErrors()) {
             String errorMessages = "";
             for (ObjectError error : result.getAllErrors()) {
@@ -44,7 +45,8 @@ public class AccountController {
             }
             throw new UserCreationException(errorMessages);
         }
-        auth.register(user.getUsername(), user.getPassword(), user.getRole());
+        //auth.register(user.getUsername(), user.getPassword(), user.getRole());
+        auth.register(user.getUserName(), user.getPassword(), user.getRole(), user.getFirstName(), user.getLastName(), user.getAvatar());
         return "{\"success\":true}";
     }
 

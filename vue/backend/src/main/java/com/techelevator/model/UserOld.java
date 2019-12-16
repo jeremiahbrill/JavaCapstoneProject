@@ -1,7 +1,5 @@
 package com.techelevator.model;
 
-import java.util.List;
-
 import javax.validation.constraints.AssertTrue;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -9,22 +7,21 @@ import org.hibernate.validator.constraints.NotBlank;
 /**
  * User
  */
-public class User {
+public class UserOld {
+    @NotBlank(message = "Username is required")
+    private String username;
 
-    private String userName; 
+    @NotBlank(message = "Role is required")
     private String role;
     private long id;
- 
+
+    @NotBlank(message = "Password is required")
     private String password;
     private String confirmPassword;
+
     private boolean passwordMatching;
-    
-    private String firstName;
-    private String LastName;
-    private String avatar;
-    private List<String> jobSelections;
 
-
+    @AssertTrue(message = "Passwords must match")
     public boolean isPasswordMatching() {
         if (password != null) {
             return password.equals(confirmPassword);
@@ -43,8 +40,8 @@ public class User {
     /**
      * @return the username
      */
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
     /**
@@ -78,8 +75,8 @@ public class User {
     /**
      * @param username the username to set
      */
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setPassword(String password) {
@@ -89,42 +86,4 @@ public class User {
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
     }
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return LastName;
-	}
-
-	public void setLastName(String lastName) {
-		LastName = lastName;
-	}
-
-	public String getAvatar() {
-		return avatar;
-	}
-
-	public void setAvatar(String avatar) {
-		this.avatar = avatar;
-	}
-
-	public List<String> getJobSelections() {
-		return jobSelections;
-	}
-
-	public void setJobSelections(List<String> jobSelections) {
-		this.jobSelections = jobSelections;
-	}
-
-	public void setPasswordMatching(boolean passwordMatching) {
-		this.passwordMatching = passwordMatching;
-	}
-    
-    
 }

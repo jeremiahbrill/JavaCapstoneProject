@@ -12,7 +12,11 @@ CREATE TABLE users (
   username varchar(255) NOT NULL UNIQUE,     -- Username
   password varchar(32) NOT NULL,      -- Password
   salt varchar(256) NOT NULL,          -- Password Salt
-  role varchar(255) NOT NULL default('user')
+  role varchar(255) NOT NULL default('user'),
+  firstname varchar(255),
+  lastname varchar(255),
+  avatar varchar(255),
+  jobselection varchar(255)
 );
 
 CREATE TABLE Category (
@@ -79,6 +83,16 @@ CREATE TABLE jobs (
    
    constraint pk_jobs_id primary key(id)
    
+);
+
+
+CREATE TABLE users_jobPosition (
+  user_id INTEGER  NOT NULL,
+  jobPosition_id INTEGER NOT NULL,
+
+  --PRIMARY KEY (venue_id, category_id)
+  constraint fk_users_jobPosition_users foreign key (user_id) references users  (id),
+  constraint fk_users_jobPosition_jobPosition foreign key (jobPosition_id) references jobPosition (id)
 );
 
 ALTER TABLE jobs
