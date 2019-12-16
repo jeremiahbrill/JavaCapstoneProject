@@ -5,6 +5,26 @@
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         There were problems registering this user.
       </div>
+      <label for="firstName" class="sr-only">First Name</label>
+      <input
+        type="text"
+        id="firstname"
+        class="form-control"
+        placeholder="First Name"
+        v-model="user.firstname"
+        required
+        autofocus
+      />
+      <label for="lastName" class="sr-only">Last Name</label>
+      <input
+        type="text"
+        id="lastname"
+        class="form-control"
+        placeholder="Last Name"
+        v-model="user.lastname"
+        required
+        autofocus
+      />
        <label for="username" class="sr-only">Username</label>
       <input
         type="text"
@@ -48,9 +68,12 @@ export default {
   data() {
     return {
       user: {
+        firstname: '',
+        lastname: '',
         username: '',
         password: '',
         confirmPassword: '',
+        
         role: 'user',
       },
       registrationErrors: false,

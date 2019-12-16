@@ -22,7 +22,8 @@
                 <h4 class="achieve">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Achieve your dreams...</h4>
                 <h4 class="elevate">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Elevate Your World...</h4>
                 <p><h4 class="AOE">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Owl of Athena (AOE)</h4></p>
-                <p><button class="btn"><h3 id="sign_up_or_login">&nbsp;&nbsp;Get Started</h3></button></p>
+                <router-link :to="{ name: 'register' }">
+                <p><button class="btn"><h3 id="sign_up_or_login">&nbsp;&nbsp;Get Started</h3></button></p></router-link>
             </div>
         </div>
       </div>

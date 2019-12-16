@@ -49,9 +49,10 @@
 body{
     background-image: url("./assets/images/ws_Nice_Mountain_Top_Clouds_Foggy_1440x900.jpg");
     background-repeat: no-repeat;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-size:cover;
+}
+body.img{
+  height: 100%;
 }
 
 div.pageText{
