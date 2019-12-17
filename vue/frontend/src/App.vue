@@ -5,7 +5,7 @@
     <nav id="nav"  >
       <ul class="navbar">
       <li class="navbar"><router-link to="/HomePage" >Home</router-link></li>
-      <li class="navbar"><router-link to="/" >Login</router-link></li>
+      <li class="navbar"><router-link to="/login">Login</router-link></li>
       <li class="navbar"><router-link to="/Chatbox" >Chatbot</router-link></li>
       </ul>
     </nav>
