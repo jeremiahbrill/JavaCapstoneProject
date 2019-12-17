@@ -46,21 +46,21 @@ export default {
       jobSearchArray:[],
       colors: {
         header: {
-          bg: "#f9f295",
+          bg: "rgb(160, 142, 38)",
           text: "#222222"
         },
         launcher: {
-          bg: "#dfbd69",
+          bg: "rgb(160, 142, 38)",
         },
         messageList: {
           bg: "#e5e5e5"
         },
         sentMessage: {
-          bg: "#dfbd69",
-          text: "#222222"
+          bg: "#651d1d",
+          text: "whitesmoke"
         },
         receivedMessage: {
-          bg: "#f9f295",
+          bg: "rgb(115, 132, 187)",
           text: "#222222"
         },
         userInput: {
@@ -140,13 +140,6 @@ export default {
 </script>
 
 <style>
-.jobs{
-  background: sandybrown;
-  color: black;
-  font-weight: bold;
-  padding: 2%;
-  margin: 1%;
-  border: black;
-}
+
 </style>
 
