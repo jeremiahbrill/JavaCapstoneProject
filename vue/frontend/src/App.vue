@@ -192,6 +192,9 @@ li.navbar{
   -webkit-text-fill-color: whitesmoke;
 
 }
+label.sr-only{
+  -webkit-text-fill-color: black;
+}
 
 .navbar a {
   font-size: 1.25rem;
