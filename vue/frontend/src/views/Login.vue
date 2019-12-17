@@ -14,7 +14,7 @@
         id="username"
         class="form-control"
         placeholder="Username"
-        v-model="user.username"
+        v-model="user.userName"
         required
         autofocus
       />
@@ -28,7 +28,7 @@
         required
       />
       <router-link :to="{ name: 'register' }">Need an account?</router-link>
-      <button type="submit">Sign in</button>
+      <button type="submit" v-on:click.prevent="getLoginUser()" >Sign in</button>
     </form>
   </div>
 </template>
@@ -41,9 +41,16 @@ export default {
   components: {},
   data() {
     return {
+      API_URL: 'http://localhost:8080/ChatBot',
       user: {
-        username: '',
+         userName: '',
         password: '',
+        confirmPassword: '',
+        role: '',
+        firstName: '',
+        lastName: '',
+        avatar:'',
+        jobSelections:[]
       },
       invalidCredentials: false,
     };
@@ -76,7 +83,17 @@ export default {
         })
         .catch((err) => console.error(err));
     },
+
+    getLoginUser(){
+        fetch(`${this.API_URL}/api/user/${this.user.userName}`)
+         .then(response => response.json())
+         .then(list => (this.user = list))
+         .catch(err => console.error(err));
+       //emit the event to use the user data in parent component
+       this.$emit("login-user", this.user);
+     },
   },
+  
 };
 </script>
 

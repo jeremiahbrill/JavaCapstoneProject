@@ -1,64 +1,72 @@
 <template>
-  <div  >
-    <h2>Here are the current entries in the job search db</h2>
-
-    {{jobResults}}
-    {{jobPositionResults}}
-    {{jobResultsByPositionId}}
-
+  <div v-if="open">
+    <slot />
+    <div class="jobs" v-for="job in jobSearchDisplay" :key="job.id" style="color:blue;text-align:center;background-color:tan;"> 
+      <h2 class="jobName">{{job.name}}</h2>
+      <p class="jobDescription">{{job.jobDescription}}</p>
+      <a class="jobUrl" :href="job.jobUrl" target="_blank">
+        {{job.jobUrl}}
+      </a>
+    </div>
   </div>
 </template>
 
-
 <script>
 export default {
-  name: 'job-search',
+  name: 'window-portal',
+  model: {
+  prop: 'open',
+  event: 'close'
+  },
   props: {
-    name: String,
-    description: String,
-    city:  String,
-    state: String,
-    jobUrl: String
+    jobSearchDisplay: Array,
+    open: {
+      type: Boolean,
+      default: false,
+    }
   },
   data() {
     return {
-      API_URL: "http://localhost:8080/ChatBot/api",
-      jobResults: [],
-      jobPositionResults: [],
-      jobResultsByPositionId: [],
-    };
+      windowRef: null
+    }
   },
-    methods: {
-
-      getAllJobs() {
-        fetch(`${this.API_URL}/jobSearch`)
-          .then(response => response.json())
-          .then(list => this.jobResults = list)
-          .catch(err => console.error(err));
-      },
-
-      getJobsByJobPositionId(){
-        fetch(`${this.API_URL}/jobSearch/1`)
-          .then(response => response.json())
-          .then(list => this.jobResultsByPositionId = list)
-          .catch(err => console.error(err));
-
-        console.log("Testing jobResults" + this.jobResults);
-
-      },
-
-      getJobPositions() {
-        fetch(`${this.API_URL}/jobPositionSearch`)
-          .then(response => response.json())
-          .then(list => (this.jobPositionResults = list))
-          .catch(err => console.error(err));
+  watch: {
+    open(newOpen) {
+      if(newOpen) {
+        this.openPortal();
+      } else {
+        this.closePortal();
       }
+    }
+  },
+  methods: {
+    openPortal() {
+      this.windowRef = window.open("", "", "width=600,height=400,left=200,top=200");
+      // this.windowRef.addEventListener('beforeunload', this.closePortal());
+      // magic!
+      this.windowRef.document.body.appendChild(this.$el);
     },
-      created(){
-       this.getAllJobs();
-       this.getJobPositions();
-       this.getJobsByJobPositionId()
+    closePortal() {
+      if(this.windowRef) {
+        this.windowRef.close();
+        this.windowRef = null;
+        this.$emit('close');
       }
+    }
+  },
+  mounted() {
+    if(this.open) {
+      this.openPortal();
+    }
+  },
+  beforeDestroy() {
+    if (this.windowRef) {
+      this.closePortal();
+    }
   }
+}
 </script>
 
+<style scoped>
+
+</style>

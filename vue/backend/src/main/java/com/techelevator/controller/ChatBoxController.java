@@ -19,6 +19,8 @@ import com.techelevator.model.Jobs;
 import com.techelevator.model.JobsDao;
 import com.techelevator.model.SubWorkflow;
 import com.techelevator.model.SubWorkflowDao;
+import com.techelevator.model.User;
+import com.techelevator.model.UserDao;
 import com.techelevator.model.Workflow;
 import com.techelevator.model.WorkflowDao;
 
@@ -45,6 +47,9 @@ public class ChatBoxController {
 	
 	@Autowired
 	private AnswerDao answerDao;
+	
+	@Autowired
+	private UserDao  userDao;
 	
 	@GetMapping("/category")
 	public List<Category> getCategories() {
@@ -89,6 +94,13 @@ public class ChatBoxController {
 	@GetMapping("/answer/{id}")
 	public List<Answer> getAnswersById(@PathVariable int id) {
 		return answerDao.getAllAnswers(id);
+		
+	}
+	
+	@GetMapping("/user/{userName}")
+	public User getUserWithJobSelections(@PathVariable String userName) {
+		   
+		return userDao.getUserByUsernameWithPositions(userName);
 		
 	}
 

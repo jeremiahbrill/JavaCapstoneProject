@@ -21,6 +21,18 @@
       @onType="handleOnType"
       @edit="editMessage"
     />
+
+    <p class="hide"><job-search
+    :jobSearchDisplay="jobArray"
+    :open='openWindow'
+    /></p> 
+
+    <div class="hide">
+      <p>{{categories}}</p>
+      <p>{{workflows}}</p>
+      <p>{{subworkflows}}</p>
+      <p>{{jobArray}}</p>
+    </div>
   </div>
 </template>
 
@@ -30,20 +42,35 @@ import CloseIcon from "vue-beautiful-chat/src/assets/close-icon.png";
 import OpenIcon from "vue-beautiful-chat/src/assets/logo-no-bg.svg";
 import FileIcon from "vue-beautiful-chat/src/assets/file.svg";
 import CloseIconSvg from "vue-beautiful-chat/src/assets/close.svg";
+import JobSearch from "../component/JobSearch.vue";
 
 export default {
    name: "chat-bot-demo",
+   components:{
+     JobSearch
+   },
   props:{
     userColors:Object,
-    botResponseSuggestions:Array,
-    botResponseText:String,
-    chatLog: Array,
-    subworkflowAnswer: String,
-    user:Object
+    categories:Array,
+    workflows:Array,
+    subworkflows:Array,
+    user:Object,
+    jobSearchArray:Array,
   },
   data() {
     return {
-        userInput:"",
+      //Bot data starts here. Used by the methods for keeping track of bot logic
+      userChoiceId: 0,
+      userLastChoiceID: 0,
+      searchArray: [],
+      jobArray: [],
+      openWindow: false,
+      foundAnswer: false,
+      checkedCategories: false,
+      checkedWorkflows: false,
+      checkedSubworkflows: false,
+      pickedJobSearch: false,
+      //This is the end of bot data added
       icons: {
         open: {
           img: OpenIcon,
@@ -72,7 +99,7 @@ export default {
       titleImageUrl:
         "https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png",
       messageList: [
-        { type: "text", author: `user1`, data: { text: `Welcome ${this.user.name} To Chat Bot`}, suggestions:['Pathway', 'Curriculum', 'Job Search'] } 
+        { type: "text", author: `user1`, data: { text: `Welcome ${this.user.lastName} To Chat Bot`}, suggestions:['Pathway', 'Curriculum', 'Job Search'] } 
       ], // the list of the messages to show, can be paginated and adjusted dynamically
       newMessagesCount: 0,
       isChatOpen: false, // to determine whether the chat window should be open or closed
@@ -82,13 +109,14 @@ export default {
     };
   },
   methods: {
+    //this is used to send the bot Text in chat and set the suggestion options for the user
     sendMessage(text, suggestions = []) {
       if (text.length > 0) {
         this.newMessagesCount = this.isChatOpen
           ? this.newMessagesCount
           : this.newMessagesCount + 1;
         this.onMessageWasSent({
-          author: "user2",
+          author: "user1",
           type: "text",
           data: { text },
           suggestions
@@ -120,39 +148,179 @@ export default {
       m.isEdited = true;
       m.data.text = message.data.text;
     },
-    // getUserInput does the emit for thge chat log and the user-input which is what I am trying to get to work
-    // I can get the user data to pass but I can not get the botResponses to pull from the chat. 
-    // I am able to hard code data into the parent and make it work but then have to do even more logic 
-    // on this page.
-    getUserInput(){
-        if(this.messageList[this.messageList.length - 1].author === 'me'){
-            const userInput = this.messageList[this.messageList.length - 1].data.text;
-            this.$emit('user-input', userInput);
-            this.$emit('chat-log', this.messageList);
-            return userInput;
-        }
+
+    // all methods dealing with bot logic
+    //botProcess is the main method of the bot if handles user input
+    //then runs through if else statments to send a reponse
+    botProcess(string){
+      if(string === 'Yes'){
+        this.reset();
+      }else if(string === 'No'){
+        this.closeChat();
+        this.reset();
+      }else if(this.checkedCategories === false){
+        this.searchCategories(string);
+      }else if(this.pickedJobSearch === true){
+        this.searchJobs(string);
+      }else if(this.checkedWorkflows === false && this.foundAnswer === false){
+        this.searchWorkflows(string);
+      }else if(this.checkedSubworkflows === false && this.foundAnswer === false){
+        this.searchSubworkflows(string);
       }
+    },
+    // Resets all the checks to false so the logic can be ran through again
+    reset(){
+      this.messageList = [{ type: "text", author: `user1`, data: { text: `Welcome ${this.user.firstName} To Chat Bot`}, suggestions:['Pathway', 'Curriculum', 'Job Search'] }]
+      this.checkedCategories = false;
+      this.checkedWorkflows = false;
+      this.checkedSubworkflows = false;
+      this.openWindow = false;
+    },
+    //Takes in an array and string then searchs the array for the string
+    // the intent is to take the user's selection then perform a search of the database
+    // to match the input with a field name.
+    setUserChoiceIdFromUserInput(array = [], string){
+      const userInput = string;
+                array.forEach(element => {
+                    if(element.name === userInput){
+                        this.userChoiceId = element.id;
+                        this.foundAnswer = true;
+                    }
+
+                })
+      },
+      //Intent is to perform a search using setUserIdFromUserInput 
+      // then it says it checked the categories from the api call
+      // then trigger custom event using $emit to pass the id to parent for api call
+      // then $watch watches for the parent api call to set this.workflows
+      // then if setUserChoiceIdFromUserInput found a match (foundAnswer = true)
+      //  it sets the botText to send back to the user using the data from the saved array
+      // then if the user picked Job Search (userId === 3) it sets the suggestions from the
+      // logged in users selected JobTitles using setJobSuggestion else it uses 
+      // setBotResponseSuggestions using the workflows array that triggered this watch
+      searchCategories(string){
+          this.setUserChoiceIdFromUserInput(this.categories, string);
+          this.checkedCategories = true;
+          this.$emit("get-workflows", this.userChoiceId);
+          this.$watch(function(){return this.workflows},
+            function(){
+              if(this.foundAnswer === true){
+                const botText = this.setBotResponseText(this.categories, string);
+                let botSuggestions = [];
+                if(this.userChoiceId === 3){
+                  botSuggestions = this.setJobSuggestion(this.user.jobSelections)
+                  this.pickedJobSearch = true;
+                  this.userChoiceId = 0;
+                }
+                else{
+                  botSuggestions = this.setBotResponseSuggestions(this.workflows)
+                }
+                this.sendMessage(botText, botSuggestions);
+                this.foundAnswer = false;
+              }
+            });
+      },
+      //Same as above but does not have to look for Job Search
+      searchWorkflows(string){
+          this.setUserChoiceIdFromUserInput(this.workflows, string);
+          this.checkedWorkflows = true;
+          this.$emit("get-subworkflows", this.userChoiceId);
+          this.$watch(function(){return this.subworkflows},
+          function(){
+            if(this.foundAnswer === true){
+              const botText = this.setBotResponseText(this.workflows, string);
+              const botSuggestions = this.setBotResponseSuggestions(this.subworkflows);
+              this.sendMessage(botText, botSuggestions);
+              this.foundAnswer = false;
+            }
+            });
+      },
+      //As this is the end we use setBotAnswer for the botText and I have hardcoded Yes or No for Now
+      searchSubworkflows(string){
+          this.setUserChoiceIdFromUserInput(this.subworkflows, string);
+          this.checkedSubworkflows = true;
+          if(this.foundAnswer === true){
+            const botAnswer = this.setBotAnswer(string);
+            this.sendMessage(botAnswer, ['Yes', 'No']);
+            this.foundAnswer = false;
+          }
+      },
+      //This searchs like the ones above but it searchs through the user information to
+      // get the id to send in the custom event get-jobs to the parent it then
+      // waits for the parent to return the data by using $watch before it opens a new
+      // window with job postings from the api call
+      searchJobs(string){
+        let id = 0;
+        this.user.jobSelections.forEach(element => {
+          if(string === element.name){
+            id = element.id;
+          }
+        })
+        this.$emit('get-jobs', id);
+        this.$watch(function(){return this.jobSearchArray}, 
+        function(){
+          if(this.pickedJobSearch === true){
+          this.sendMessage('Do It Again', ['Yes', 'No'])
+          this.pickedJobSearch = false;
+          this.jobArray = this.jobSearchArray;
+          this.openWindow = true;}
+        })
+      },
+      setBotAnswer(string){
+        let answer = 'Bob';
+        this.subworkflows.forEach(element =>{
+          if(element.name === string){
+            answer =  element.textAnswer;
+          }
+        })
+        return answer;
+      },
+      setBotResponseText(array = [], string){
+          let text = '';
+          array.forEach(element =>{
+            if(element.name === string){
+              text = element.presentationText;
+            }
+            else if(element.categoryId === this.userChoiceId){
+                return element.presentationText; 
+            }else if(element.workflowId === this.userChoiceId){
+                return element.presentationText;
+            }else if(element.subworkflowId === this.userChoiceId){
+                return element.presentationText;
+            }
+          })
+          return text;
+      },
+      setBotResponseSuggestions(array = []){
+          let suggestionsArray = []
+          array.forEach(element => {
+                  suggestionsArray.push(element.name);
+          })
+          return suggestionsArray;
+      }, 
+      setJobSuggestion(array = []){
+          let suggestionsArray = []
+          array.forEach(element => {
+                  suggestionsArray.push(element.name);
+          })
+          return suggestionsArray;
+      },  
+
   },
-  //this computed keeps and eye on the the and when it changes the watch persom the methods.
   computed: {
-      watchUserInput(){
-          return this.messageList;
-      },
-      watchBotResponseText(){
-          return this.botResponseSuggestions;
-      },
+// this just tiggers the watch when there is input to the chat.
+    botResponse(){
+      return this.messageList;
+    }
   },
   watch: {
-      watchUserInput(){
-          this.getUserInput();
-      },
-      watchBotResponseText(){
-          console.log("Demo seen the bot text change" + this.botResponseText)
-          if(this.botResponseText.length > 0){
-              this.sendMessage(this.botResponseText, this.botResponseSuggestions);
-          }
-          // could and function to just send a message here.
-      },
+    //checks to see if last entry to chat was the user (me is the name beautiful chat gives to input.)
+    botResponse(){
+      const lastMessage = this.messageList[this.messageList.length - 1];
+      if(lastMessage.author === 'me'){
+       this.botProcess(lastMessage.data.text);
+      }
+    }
   }
 };
 </script>
@@ -171,7 +339,7 @@ form.sc-user-input{
   border: 1px solid;
   border-radius: 15px;
   font-size: 14px;
-  background: rgb(115, 132, 187);
+  background: #f9f295;
   cursor: pointer;
 }
 
@@ -179,4 +347,9 @@ form.sc-user-input{
   text-align: center;
   background: inherit;
 } 
+/* .hide{
+  visibility: hidden;
+} */
+
+
 </style>

@@ -37,5 +37,10 @@ public interface UserDao {
     public List<User> getAllUsers();
 
     public User getUserByUsername(String username);
+    
+
+	public void saveUserIdAndJobPositionId(String userName, List<JobPosition> jobSelection);
+		
+	public User getUserByUsernameWithPositions(String username);
 
 }
