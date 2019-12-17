@@ -7,8 +7,6 @@
       <li class="navbar"><router-link to="/HomePage" >Home</router-link></li>
       <li class="navbar"><router-link to="/" >Login</router-link></li>
       <li class="navbar"><router-link to="/Chatbox" >Chatbot</router-link></li>
-      <li class="navbar"><router-link to="/Chatbox" >Chatbot</router-link></li>
-      <li class="navbar"><router-link to="/JobSearch" >Job Search</router-link></li>
       </ul>
     </nav>
     </div>
