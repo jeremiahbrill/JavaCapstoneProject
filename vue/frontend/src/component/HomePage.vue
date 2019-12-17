@@ -3,12 +3,11 @@
   <div class="flex_container">
     <div class="row">
       <div class="homePage" id="left_container">
-        <video src="../assets/video/video-aerial-flight-around-mountain-peak.mp4" 
-        class="mp4" controls="controls" autoplay="autoplay" loop="loop"></video>
+        <img src="../assets/images/student-on-computer.jpg"/>
       </div>
       <div class="homePage" id="right_container">
         <div class="pageText">
-          <p class="edge"><h2 id="title_phrase">Give yourself the edge...</h2>
+          <p class="edge"><h1 id="title_phrase">Owl of Athena gives you the edge...</h1>
             <div>
 
             </div>

@@ -80,12 +80,3 @@ export default {
 };
 </script>
 
-<style>
-div#login.text-center {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  
-}
-
-</style>

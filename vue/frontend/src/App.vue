@@ -46,11 +46,15 @@
 
 </script>
 <style>
-body{
-    background-image: url("./assets/images/ws_Nice_Mountain_Top_Clouds_Foggy_1440x900.jpg");
-    background-repeat: no-repeat;
-    background-size:cover;
+
+html {
+background-color: rgb(201, 202, 206);
+background-size: cover;
+background-repeat: no-repeat;
+height: 100%;
+overflow: hidden;
 }
+
 body.img{
   height: 100%;
 }
@@ -58,7 +62,7 @@ body.img{
 div.pageText{
   align-content: right;
   width: 100%;
-  padding-left: 100%;
+  padding-left: 25%;
   text-justify: auto
   
 }
@@ -67,7 +71,8 @@ div.row {
   display: flex;
   flex-direction: row;
   height: 100%;
-  width: 100%;
+  width: 80%;
+  margin: 0 auto;
   align-items: center;
   flex-wrap: wrap;
   background-color: rgb(115, 132, 187);
@@ -93,6 +98,13 @@ img.AOE_Logo{
 
 }
 
+div#login.text-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  
+}
+
 .btn{
   border-radius: 50px;
   height: 3.75em;
@@ -107,14 +119,14 @@ div#nav{
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  padding-left: 5%;
+  padding-left: 10%;
   padding-right: 10%;
   margin: 1em;
   margin-right: .5em;
   
 }
 
-h2#title_phrase {
+h1#title_phrase {
   -webkit-text-fill-color: #651d1d;
   text-justify: initial;
   text-shadow: 1em;
@@ -173,7 +185,7 @@ div.left_container#homePage{
 div.right_container#homePage {
   -ms-flex-order: 2;
   width: 50%;
-  align-self:  right;
+  align-self:  left;
   background-color:  aliceblue;
   padding-right: 100%;
 }
