@@ -44,22 +44,22 @@ public class JdbcUserDao implements UserDao {
      * @param role the user's role
      * @return the new user
      */
-//    @Override
-//    public User saveUser(String userName, String password, String role) {
-//        byte[] salt = passwordHasher.generateRandomSalt();
-//        String hashedPassword = passwordHasher.computeHash(password, salt);
-//        String saltString = new String(Base64.encode(salt));
-//        long newId = jdbcTemplate.queryForObject(
-//                "INSERT INTO users(username, password, salt, role) VALUES (?, ?, ?, ?) RETURNING id", Long.class,
-//                userName, hashedPassword, saltString, role);
-//
-//        User newUser = new User();
-//        newUser.setId(newId);
-//        newUser.setUsername(userName);
-//        newUser.setRole(role);
-//
-//        return newUser;
-//    }
+    @Override
+    public User saveUserOld(String userName, String password, String role) {
+        byte[] salt = passwordHasher.generateRandomSalt();
+        String hashedPassword = passwordHasher.computeHash(password, salt);
+        String saltString = new String(Base64.encode(salt));
+        long newId = jdbcTemplate.queryForObject(
+                "INSERT INTO users(username, password, salt, role) VALUES (?, ?, ?, ?) RETURNING id", Long.class,
+                userName, hashedPassword, saltString, role);
+
+        User newUser = new User();
+        newUser.setId(newId);
+        newUser.setUserName(userName);
+        newUser.setRole(role);
+
+        return newUser;
+    }
     
     @Override
     public User saveUser(String userName, String password, String role, String firstName, String lastName, String avatar) {

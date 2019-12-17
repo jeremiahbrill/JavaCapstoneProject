@@ -52,7 +52,7 @@
         v-model="user.confirmPassword"
         required
       /> 
-      <label for="jobPositions" class="sr-only">Please select Jobs you are intrested in: </label>
+      <label for="jobPositions" class="sr-only">Please select Jobs you are interested in: </label>
        <span v-for="job in availableJobSelections" 
                 v-bind:key="job.id" 
                 v-on:click="updateUserJobPositions(job.id,$event)">
@@ -141,5 +141,3 @@ export default {
 };
 </script>
 
-<style>
-</style>
