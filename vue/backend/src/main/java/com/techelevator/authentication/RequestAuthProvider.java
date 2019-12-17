@@ -69,10 +69,10 @@ public class RequestAuthProvider implements AuthProvider {
         }
     }
 
-//    @Override
-//    public void register(String username, String password, String role) {
-//        dao.saveUser(username, password, role);
-//    }
+    @Override
+    public void registerOld(String username, String password, String role) {
+        dao.saveUserOld(username, password, role);
+    }
     
     @Override
     public void register(String username, String password, String role, String firstName, String lastName, String avatar, List<JobPosition> jobSelection) {
