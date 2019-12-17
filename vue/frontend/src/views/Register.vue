@@ -11,7 +11,7 @@
         id="firstname"
         class="form-control"
         placeholder="First Name"
-        v-model="user.firstname"
+        v-model="user.firstName"
         required
         autofocus
       />
@@ -21,7 +21,7 @@
         id="lastname"
         class="form-control"
         placeholder="Last Name"
-        v-model="user.lastname"
+        v-model="user.lastName"
         required
         autofocus
       />
@@ -31,7 +31,7 @@
         id="username"
         class="form-control"
         placeholder="Username"
-        v-model="user.username"
+        v-model="user.userName"
         required
         autofocus
       />
@@ -58,13 +58,13 @@
                 v-on:click="updateUserJobPositions(job.id,$event)">
        <input type="checkbox"
         name="jobPositions"
-        required/>
+         />
         {{job.name}}
        </span>
       <router-link :to="{ name: 'login' }">
         Have an account?
       </router-link>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">
+      <button class="btn btn-lg btn-primary btn-block" type="submit" v-on:click.prevent="registerUser($event)">
         Create Account
       </button>
     </form>
@@ -123,12 +123,16 @@ export default {
       },
     updateUserJobPositions(id,event) { 
       this.availableJobSelections.forEach(element => {
+        console.log("checkbox: " + event.traget);
         if(element.id === id){
            this.user.jobSelections.push(element);
         }
-        // add emit statement to pass on data to parent
       })  
-    },  
+    }, 
+    registerUser(event){
+      this.register(); 
+      this.$emit("register-user", this.user);
+    },
   },
   created(){
       this.getJobPositions();

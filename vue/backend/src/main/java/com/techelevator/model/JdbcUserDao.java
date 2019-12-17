@@ -18,6 +18,8 @@ public class JdbcUserDao implements UserDao {
 
     private JdbcTemplate jdbcTemplate;
     private PasswordHasher passwordHasher;
+    @Autowired
+    private JobPositionDao jobPositionDao;
 
     /**
      * Create a new user dao with the supplied data source and the password hasher
@@ -134,7 +136,38 @@ public class JdbcUserDao implements UserDao {
 
         return users;
     }
+    
+    @Override
+    public void saveUserIdAndJobPositionId(String userName, List<JobPosition> jobSelection){
+       
+    	int userId = getUserIdFromUserName(userName);
+    	 System.out.println("userName "+ userId);
+    	List<Integer>jobPositionIds = new ArrayList<>();
+    	for (JobPosition job: jobSelection) {
+    		jobPositionIds.add(job.getId());
+    	}
+       System.out.println("");
+       //for(int i = 0; i<jobPositionIds.length; i++) {
+       for(int jobPositionId: jobPositionIds){
+        jdbcTemplate.update(
+                "INSERT INTO users_jobposition(user_id, jobposition_id) VALUES (?, ?)", userId,jobPositionId
+                );
+       }
 
+    }
+    
+    private int getUserIdFromUserName(String userName) {
+    	
+    	int userid = 0;
+    	String sqlSelectUserId = "SELECT id FROM users where username = ?";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectUserId, userName);
+
+       if (results.next()) {
+    	   userid = results.getInt("id");
+        }
+
+        return userid;
+    }
 //    private User mapResultToUser(SqlRowSet results) {
 //        User user = new User();
 //        user.setId(results.getLong("id"));
@@ -142,6 +175,8 @@ public class JdbcUserDao implements UserDao {
 //        user.setRole(results.getString("role"));
 //        return user;
 //    }
+    
+    
     
     private User mapResultToUser(SqlRowSet results) {
         User user = new User();
@@ -156,14 +191,21 @@ public class JdbcUserDao implements UserDao {
 
     @Override
     public User getUserByUsername(String username) {
-        String sqlSelectUserByUsername = "SELECT id, username, role FROM users WHERE username = ?";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectUserByUsername, username);
+        String sqlSelectUserByUsername = "SELECT * FROM users WHERE UPPER(username) = ?";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectUserByUsername, username.toUpperCase());
 
         if (results.next()) {
             return mapResultToUser(results);
         } else {
             return null;
         }
+    }
+    
+    @Override
+    public User getUserByUsernameWithPositions(String username) {
+    	User user = getUserByUsername( username);
+    	user.setJobSelections(jobPositionDao.getAllJobSelectionsForUser(username));
+    	return user;
     }
 
 }

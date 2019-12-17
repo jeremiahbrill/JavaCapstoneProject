@@ -1,9 +1,11 @@
 package com.techelevator.authentication;
 
 import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.techelevator.model.JobPosition;
 import com.techelevator.model.User;
 import com.techelevator.model.UserDao;
 
@@ -73,8 +75,16 @@ public class RequestAuthProvider implements AuthProvider {
 //    }
     
     @Override
-    public void register(String username, String password, String role, String firstName, String lastName, String avatar) {
+    public void register(String username, String password, String role, String firstName, String lastName, String avatar, List<JobPosition> jobSelection) {
+    	
         dao.saveUser(username, password, role, firstName, lastName, avatar);
+    
+        dao.saveUserIdAndJobPositionId(username, jobSelection);
+    }
+    
+    @Override
+    public void saveJobSelections(String username, List<JobPosition> jobSelection) {
+        dao.saveUserIdAndJobPositionId(username, jobSelection);
     }
 
     @Override

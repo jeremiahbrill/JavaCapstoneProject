@@ -37,7 +37,7 @@ public class AccountController {
 
     @RequestMapping(path = "/register", method = RequestMethod.POST)
     public String register(@Valid @RequestBody User user, BindingResult result) throws UserCreationException {
-    	System.out.println("user" + user);
+    	System.out.println("user" + user.getJobSelections());
         if (result.hasErrors()) {
             String errorMessages = "";
             for (ObjectError error : result.getAllErrors()) {
@@ -46,7 +46,7 @@ public class AccountController {
             throw new UserCreationException(errorMessages);
         }
         //auth.register(user.getUsername(), user.getPassword(), user.getRole());
-        auth.register(user.getUserName(), user.getPassword(), user.getRole(), user.getFirstName(), user.getLastName(), user.getAvatar());
+        auth.register(user.getUserName(), user.getPassword(), user.getRole(), user.getFirstName(), user.getLastName(), user.getAvatar(), user.getJobSelections());
         return "{\"success\":true}";
     }
 

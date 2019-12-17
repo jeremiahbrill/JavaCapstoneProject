@@ -1,5 +1,8 @@
 package com.techelevator.authentication;
 
+import java.util.List;
+
+import com.techelevator.model.JobPosition;
 import com.techelevator.model.User;
 
 public interface AuthProvider {
@@ -43,7 +46,7 @@ public interface AuthProvider {
      * @param role the new user's role
      */
    // void register(String username, String password, String role);
-    void register(String username, String password, String role, String firstName, String lastName, String avatar);
+    void register(String username, String password, String role, String firstName, String lastName, String avatar, List<JobPosition> jobSelection) ;
 
     /**
      * Checks to see if the current user has one of the given roles
@@ -51,4 +54,6 @@ public interface AuthProvider {
      * @return true, if the user has one of the roles
      */
     boolean userHasRole(String[] roles);
+    
+    void saveJobSelections(String username, List<JobPosition> jobSelection);
 }

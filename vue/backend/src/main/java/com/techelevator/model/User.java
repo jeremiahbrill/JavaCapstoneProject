@@ -22,7 +22,7 @@ public class User {
     private String firstName;
     private String LastName;
     private String avatar;
-    private List<String> jobSelections;
+    private List<JobPosition> jobSelections;
 
 
     public boolean isPasswordMatching() {
@@ -114,11 +114,11 @@ public class User {
 		this.avatar = avatar;
 	}
 
-	public List<String> getJobSelections() {
+	public List<JobPosition> getJobSelections() {
 		return jobSelections;
 	}
 
-	public void setJobSelections(List<String> jobSelections) {
+	public void setJobSelections(List<JobPosition> jobSelections) {
 		this.jobSelections = jobSelections;
 	}
 
