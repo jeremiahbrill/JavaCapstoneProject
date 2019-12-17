@@ -1,129 +1,52 @@
 <template>
   <div class="chatBox">
-    <chat-bot :categories="categories" 
-    :workflows="workflows" 
-    :subworkflows="subworkflows" 
-    :chatLog="chatLog"
-    :userInput="userInput"
-    :answers="answers"
-    @bot-response-text="handleBotResponseText"
-    @bot-response-suggestions="handleBotResponseSuggestions"
-    @get-workflows="getWorkFlows"
-    @get-subworkflows="getSubwWorkflows"
-    @get-answers="getAnswers"
-    @get-subworkflowAnswer="handlesubworkflowAnswer"></chat-bot>
-
-    <chat-bot-demo :botResponseText="botResponseText" 
-    :botResponseSuggestions="botResponseSuggestions" 
-    :subworkflowAnswer="subworkflowAnswer"  
-    :userColors="colors" 
-    :user="user"
-    @user-input="handleUserInput" 
-    @chat-log="handleChatLog"></chat-bot-demo>
-   
+    <chat-bot-demo
+      :categories="categories"
+      :workflows="workflows"
+      :subworkflows="subworkflows"
+      :userColors="colors"
+      :user="user"
+      :jobSearchArray="jobSearchArray"
+      @get-jobs="getJobsByJobPositionId"
+      @get-workflows="getWorkFlows"
+      @get-subworkflows="getSubwWorkflows"
+    />
   </div>
 </template>
 
 <script>
-import ChatBot from "../component/ChatBot.vue";
 import ChatBotDemo from "../component/ChatBotDemo.vue";
+
 
 export default {
   name: "chat-box",
   components:{
-    ChatBot,
     ChatBotDemo
   },
   data() {
     return {
-       API_URL: 'http://localhost:8080/ChatBot/api',
-       categories:[],
-       workflows:[],
-       subworkflows:[],
-      botResponseText: "",
-      botResponseSuggestions: [],
+      API_URL: 'http://localhost:8080/ChatBot/api',
+      categories:[],
+      workflows:[],
+      subworkflows:[],
       userInput: "",
-      chatLog: [],
-      answers:[],
-      subworkflowAnswer: "",
-      user:{name:"Clark", jobTitles:["Hero", "Reporter", "Husband"]},
-      sampleCategories: [
-          {
-          id: 1,
-          name: "Pathway"
-          },
-          {
-          id: 2,
-          name: "Curriculum"
-          },
-          {
-          id: 3,
-          name: "Job Search"
-          } 
-      ],
-      sampleWorkflows: [
-          {
-          "id": 1,
-          "name": "I need help with",
-          "categoryId": 1
-          },
-          {
-          "id": 2,
-          "name": "Where can I learn about",
-          "categoryId": 1
-          },
-          {
-          "id": 3,
-          "name": "I do not understand",
-          "categoryId": 1
-          },
-          {
-          "id": 4,
-          "name": "What is",
-          "categoryId": 1
-          }
-      ],
-      sampleSubWorkflows: [
-          {
-          "id": 1,
-          "name": "Writing a cover letter",
-          "textAnswer": "provide your eleavtor pitch here, to get the best impression",
-          "videoAnswer": null,
-          "imageAnswer": null,
-          "linkAnswer": null,
-          "workflowId": 0
-          },
-          {
-          "id": 2,
-          "name": "Prepping for an interview",
-          "textAnswer": "Be on time",
-          "videoAnswer": null,
-          "imageAnswer": null,
-          "linkAnswer": null,
-          "workflowId": 0
-          },
-          {
-          "id": 3,
-          "name": "Following up with employers",
-          "textAnswer": "send an email",
-          "videoAnswer": null,
-          "imageAnswer": null,
-          "linkAnswer": null,
-          "workflowId": 0
-          },
-          {
-          "id": 4,
-          "name": "What to wear to an interview",
-          "textAnswer": "wear busines casual",
-          "videoAnswer": null,
-          "imageAnswer": null,
-          "linkAnswer": null,
-          "workflowId": 0
-          }
-      ],
+      user:{
+        userName: 'superman',
+        password: 'password',
+        confirmPassword: 'password',
+        role: 'student',
+        firstName: 'Clark',
+        lastName: 'Kent',
+        avatar:'',
+        jobSelections:[
+          {id: 1, name: "Software Engineer"}, 
+          {id: 2, name: "Database Administrator"}, 
+          {id: 3, name: "Data Analyst"}]
+      },
+      jobSearchArray:[],
       colors: {
         header: {
-          bg: "rgb(115, 132, 187)",
+          bg: "#f9f295",
           text: "#222222"
         },
         launcher: {
@@ -149,71 +72,80 @@ export default {
     };
   },
   methods: {
-     getCategories(){
-       fetch(`${this.API_URL}/category`)
-         .then(response => response.json())
-         .then(list => (this.categories = list))
-         .catch(err => console.error(err));
-     },
-     
-     getWorkFlows(n){
-       fetch(`${this.API_URL}/workflow/${n}`)
-         .then(response => response.json())
-         .then(list => (this.workflows = list))
-         .catch(err => console.error(err));
-     },
-     
-     getSubwWorkflows(n){
+    getCategories(){
+      fetch(`${this.API_URL}/category`)
+        .then(response => response.json())
+        .then(list => (this.categories = list))
+        .catch(err => console.error(err));
+    },
+    
+    getWorkFlows(n){
+      fetch(`${this.API_URL}/workflow/${n}`)
+        .then(response => response.json())
+        .then(list => (this.workflows = list))
+        .catch(err => console.error(err));
+    },
+    
+    getSubwWorkflows(n){
         fetch(`${this.API_URL}/subworkflow/${n}`)
-         .then(response => response.json())
-         .then(list => (this.subworkflows = list))
-         .catch(err => console.error(err));
-     },
+        .then(response => response.json())
+        .then(list => (this.subworkflows = list))
+        .catch(err => console.error(err));
+    },
   
     getAnswers(n){
         fetch(`${this.API_URL}/answer/${n}`)
-         .then(response => response.json())
-         .then(list => (this.answers = list))
-         .catch(err => console.error(err));
-     },
-    handleBotResponseText(string){
-      this.botResponseText = string;
+        .then(response => response.json())
+        .then(list => (this.answers = list))
+        .catch(err => console.error(err));
     },
-    handleBotResponseSuggestions(array){
-      this.botResponseSuggestions = array;
-    },
-    handleUserInput(string){
-      this.userInput = string;
-    },
-    handleChatLog(newArray){
-      this.chatLog = newArray;
-      console.log(this.chatLog)
-    },
-    handlesubworkflowAnswer(string){
-      this.subworkflowAnswer = string;
-    }
+
+     getAllJobs() {
+        fetch(`${this.API_URL}/jobSearch`)
+          .then(response => response.json())
+          .then(list => (this.jobResults = list))
+          .catch(err => console.error(err));
+      },
+
+      getJobsByJobPositionId(n){
+        fetch(`${this.API_URL}/jobSearch/${n}`)
+          .then(response => response.json())
+          .then(list => (this.jobSearchArray = list))
+          .catch(err => console.error(err));
+      },
+
+      getJobPositions() {
+        fetch(`${this.API_URL}/jobPositionSearch`)
+          .then(response => response.json())
+          .then(list => (this.jobPositionResults = list))
+          .catch(err => console.error(err));
+      }
+  
   },
   computed: {
-    comUserInput(){
-      return this.userInput;
-    }
+
   },
   watch: {
-    comUserInput(){
-      console.log(this.userInput)
-    }
+
   },
   created(){
-     console.log("in created");
-       this.getCategories();
+    console.log("in created");
+      this.getCategories();
       //  this.getWorkFlows();
       //  this.getSubwWorkflows();
       }
-   
+  
 };
 
 </script>
 
 <style>
-
+.jobs{
+  background: sandybrown;
+  color: black;
+  font-weight: bold;
+  padding: 2%;
+  margin: 1%;
+  border: black;
+}
 </style>

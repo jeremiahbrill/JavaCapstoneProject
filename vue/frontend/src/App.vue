@@ -178,4 +178,13 @@ div.right_container#homePage {
   padding-right: 100%;
 }
 
+div.jobs{
+  background: sandybrown;
+  color: black;
+  font-weight: bold;
+  padding: 2%;
+  margin: 1%;
+  border: black;
+}
+
 </style>

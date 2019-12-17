@@ -54,7 +54,7 @@ public class JdbcJobsDao implements JobsDao {
 	public List<Jobs> getJobsById(int jobPositionId) {
 		
 		List<Jobs> allJobsById = new ArrayList<>();
-		String sqlSelectAllJobsById = "SELECT id, name, jobDescription, jobCity, jobState, jobUrl, positionId FROM jobs WHERE id = ?";
+		String sqlSelectAllJobsById = "SELECT id, name, jobDescription, jobCity, jobState, jobUrl, positionId FROM jobs WHERE positionId = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllJobsById, jobPositionId);
 		while(results.next()) {
 			allJobsById.add(mapRowToJobs(results));

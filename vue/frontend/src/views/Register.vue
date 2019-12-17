@@ -77,7 +77,7 @@ export default {
   data() {
     return {
       user: {
-         userName: '',
+        userName: '',
         password: '',
         confirmPassword: '',
         role: '',
