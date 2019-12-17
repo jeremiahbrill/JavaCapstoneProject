@@ -23,7 +23,7 @@
     />
 
     <p class="hide"><job-search
-    :jobSearchDisplay="jobArray"
+    :jobSearchDisplay="jobSearchArray"
     :open='openWindow'
     /></p> 
 
@@ -93,7 +93,7 @@ export default {
         {
           id: "user1",
           name: "Chat Bot",
-          imageUrl: "https://3.bp.blogspot.com/-vO7C5BPCaCQ/WigyjG6Q8lI/AAAAAAAAfyQ/1tobZMMwZ2YEI0zx5De7kD31znbUAth0gCLcBGAs/s1600/TOMI_avatar_full.png"
+          imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQr58HCf19wO41wbKeFHFxroROkVjCk6CfNjhxU_o65_YyH2Pu4"
         }
       ], // the list of all the participant of the conversation. `name` is the user name, `id` is used to establish the author of a message, `imageUrl` is supposed to be the user avatar.
       titleImageUrl:
@@ -326,30 +326,32 @@ export default {
 </script>
 
 <style>
-form.sc-user-input{
+.sc-user-input{
   visibility: hidden;
 }
-.sc-chat-window{
-  background: #f9f295;
+sc-chat-window opened{
+  background-color: rgb(160, 142, 38);
 }
 
  button.sc-suggestions-element {
+  color:black;
   margin: 3px;
   padding: 5px 10px 5px 10px;
-  border: 1px solid;
+  border: 2px solid;
   border-radius: 15px;
   font-size: 14px;
-  background: #f9f295;
+  background-color: rgb(115, 132, 187);
   cursor: pointer;
+  border-color:  rgb(160, 142, 38);
 }
 
 .sc-suggestions-row {
   text-align: center;
   background: inherit;
 } 
-/* .hide{
+.hide{
   visibility: hidden;
-} */
+}
 
 
 </style>

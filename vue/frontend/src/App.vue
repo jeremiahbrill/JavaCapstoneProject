@@ -195,7 +195,7 @@ li.navbar{
 
 }
 
-a {
+.navbar a {
   font-size: 1.25rem;
   -webkit-text-fill-color: whitesmoke;
   text-decoration: none;

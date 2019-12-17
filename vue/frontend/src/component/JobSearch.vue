@@ -5,18 +5,18 @@
       style="
       color: black;
       text-align: center;
-      background-color: whitesmoke;
+      background-color: rgb(201, 202, 206);
       margin: 4%;
       padding: 2%;
       border: solid;
-      border-color: sandybrown;
+      border-color: rgb(160, 142, 38);
       border-radius: 2%;
     "> 
       <h2 class="jobName"
       style="
       border: solid;
-      border-color: lightblue;
-      background-color: lightblue;
+      border-color:  rgb(115, 132, 187);
+      background-color:  rgb(115, 132, 187);
       border-radius: 5px;
       padding: 1%;
       ">{{job.name}}</h2>
@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     openPortal() {
-      this.windowRef = window.open("", "Job Results", "title='JobSearch',width=600,height=400,left=200,top=200");
+      this.windowRef = window.open("", "Job Results", "width=600,height=400,left=200,top=200");
       // this.windowRef.addEventListener('beforeunload', this.closePortal());
       // magic!
         this.windowRef.document.body.appendChild(this.$el);
