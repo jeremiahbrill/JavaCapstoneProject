@@ -140,12 +140,5 @@ export default {
 </script>
 
 <style>
-.jobs{
-  background: sandybrown;
-  color: black;
-  font-weight: bold;
-  padding: 2%;
-  margin: 1%;
-  border: black;
-}
+
 </style>
