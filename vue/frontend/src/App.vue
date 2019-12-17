@@ -7,8 +7,6 @@
       <li class="navbar"><router-link to="/HomePage" >Home</router-link></li>
       <li class="navbar"><router-link to="/" >Login</router-link></li>
       <li class="navbar"><router-link to="/Chatbox" >Chatbot</router-link></li>
-      <li class="navbar"><router-link to="/Chatbox" >Chatbot</router-link></li>
-      <li class="navbar"><router-link to="/JobSearch" >Job Search</router-link></li>
       </ul>
     </nav>
     </div>
@@ -193,6 +191,9 @@ li.navbar{
   font-size: .90rem;
   -webkit-text-fill-color: whitesmoke;
 
+}
+label.sr-only{
+  -webkit-text-fill-color: black;
 }
 
 a {
