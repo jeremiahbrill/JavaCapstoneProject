@@ -49,7 +49,7 @@ export default {
     return {
       API_URL: 'http://localhost:8080/ChatBot',
       user: {
-         userName: '',
+        userName: '',
         password: '',
         confirmPassword: '',
         role: '',
