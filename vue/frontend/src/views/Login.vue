@@ -4,7 +4,7 @@
       <div class="container">
         <h1>Sign In</h1>
         <div class="imgcontainer">
-          <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar">
+          <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" class="avatar">
         </div>
       <div class="alert alert-danger" role="alert" v-if="invalidCredentials">
         Invalid username and password!
@@ -169,7 +169,7 @@ button:hover {
 }
 
 img.avatar {
-  width: 40%;
+  width: 20%;
   border-radius: 50%;
 }
 
