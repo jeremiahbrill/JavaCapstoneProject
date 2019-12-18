@@ -107,7 +107,8 @@ export default {
 
      startLogin(){
         this.login();
-        if(this.checked === true){
+        console.log('Invalid ' + this.invalidCredentials)
+        if(!this.invalidCredentials){
           this.getLoginUser();
         }  
      },
