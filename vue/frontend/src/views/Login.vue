@@ -58,7 +58,8 @@ export default {
         avatar:'',
         jobSelections:[]
       },
-      invalidCredentials: false
+      invalidCredentials: false,
+      validCredentials: false
     };
   },
   methods: {
@@ -75,6 +76,7 @@ export default {
       })
         .then(response => {
           if (response.ok) {
+            this.validCredentials = true;
             return response.text();
           } else {
             this.invalidCredentials = true;
@@ -104,8 +106,8 @@ export default {
      },
 
      startLogin(){
-        // this.login();
-        if(!this.invalidCredentials){
+        this.login();
+        if(this.checked === true){
           this.getLoginUser();
         }  
      },
