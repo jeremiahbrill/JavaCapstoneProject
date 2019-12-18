@@ -49,14 +49,14 @@ export default {
     return {
       API_URL: "http://localhost:8080/ChatBot",
       user: {
-        userName: "",
-        password: "",
-        confirmPassword: "",
-        role: "",
-        firstName: "",
-        lastName: "",
-        avatar: "",
-        jobSelections: []
+        userName: '',
+        password: '',
+        confirmPassword: '',
+        role: '',
+        firstName: '',
+        lastName: '',
+        avatar:'',
+        jobSelections:[]
       },
       invalidCredentials: false
     };

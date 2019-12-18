@@ -387,7 +387,7 @@ export default {
 }
 
  button.sc-suggestions-element {
-  color:black !important;
+  color:whitesmoke !important;
   border-color: black !important;
   margin: 3px;
   padding: 5px 10px 5px 10px;

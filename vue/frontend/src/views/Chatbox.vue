@@ -18,6 +18,7 @@
 import ChatBotDemo from "../component/ChatBotDemo.vue";
 
 
+
 export default {
   name: "chat-box",
   components:{
@@ -47,7 +48,7 @@ export default {
       colors: {
         header: {
           bg: "rgb(160, 142, 38)",
-          text: "#222222"
+          text: "whitesmoke"
         },
         launcher: {
           bg: "rgb(160, 142, 38)",
@@ -61,7 +62,7 @@ export default {
         },
         receivedMessage: {
           bg: "rgb(115, 132, 187)",
-          text: "#222222"
+          text: "whitesmoke"
         },
         userInput: {
           bg: "#f9f295",
@@ -120,7 +121,6 @@ export default {
           .then(list => (this.jobPositionResults = list))
           .catch(err => console.error(err));
       }
-  
   },
   computed: {
 
