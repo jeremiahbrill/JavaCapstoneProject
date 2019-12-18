@@ -55,7 +55,7 @@
      
       <p>
       <label for="avatar" class="sr-only">Please select avatar</label>  
-      <!-- <select>      
+      <!-- <select v-model="user.avatar">      
       <option value="avatar1" data-thumbnail="../assets/images/avatar1.jpg"> avatar1 </option>
       <option value="avatar2"><img class="img" src="../assets/images/avatar2.jpg"/>avatar2</option>
       <option value="avatar3"><img class="img" src="../assets/images/avatar3.jpg"/>avatar3</option>
