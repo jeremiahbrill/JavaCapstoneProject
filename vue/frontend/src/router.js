@@ -66,6 +66,7 @@ const router = new Router({
       path: "/chatbox",
       name: "chatbox",
       component: Chatbox,
+      props: true,
       meta: {
         requiresAuth: true
       }

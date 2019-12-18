@@ -10,45 +10,53 @@
       </ul>
     </nav>
     </div>
+    <!-- <div class="hideThis">
+      <login @login-user="setUser"/>
+      <chat-box :user="user"/>
+    </div> -->
     <router-view/>
   </div>
 </template>
 
 <script>
-  //import chatbox from '@/views/Chatbox'
+  // import ChatBox from '@/views/Chatbox.vue'
+  // import Login from '@/views/Login.vue';
+ export default {
+    name: 'app',
+     components: {
+      //  ChatBox,
+      //  Login
+    },
+   data() {
+     return {
+       API_URL: 'http://localhost:8080/ChatBot/api',
+       user:{}
+     };
+   },
 
-//  export default {
-//     name: 'app',
-    //  components: {
-    //    chatbox
-    // },
-//    data() {
-//      return {
-//        API_URL: 'http://localhost:8080/ChatBot/api',
-//        categories:[],
-//        workflows:[],
-//        subworkflows:[]
-//      };
-//    },
-
-//    methods: {
-
-//    },
+   methods: {
+    setUser(object){
+      this.user = object;
+    }
+   },
    
-//    created(){
-//      console.log("in created");
-//        this.getCategories();
-//        this.getWorkFlows();
-//          console.log("test: "+ this.categories);
-//          console.log("test2: "+ this.workflows);
-//       }
+  //  created(){
+  //    console.log("in created");
+  //      this.getCategories();
+  //      this.getWorkFlows();
+  //        console.log("test: "+ this.categories);
+  //        console.log("test2: "+ this.workflows);
+  //     }
    
-//  }
+ }
 
 
 
 </script>
 <style>
+/* .hideThis{
+  display: none;
+} */
 head{
   font-size: 4rem;
 }

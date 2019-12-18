@@ -86,7 +86,7 @@ export default {
               token = token.replace(/"/g, '');
             }
             auth.saveToken(token);
-            this.$router.push('/chatbox');
+
           }
         })
         .catch((err) => console.error(err));
@@ -96,13 +96,15 @@ export default {
         fetch(`${this.API_URL}/api/user/${this.user.userName}`)
          .then(response => response.json())
          .then(list => this.user = list)
+         .then(() => {
+             const userObject = this.user;
+             this.$router.push({name: 'chatbox', params:{ user: userObject}})
+          })
          .catch(err => console.error(err));
-       //emit the event to use the user data in parent component
-       this.$emit("login-user", this.user);
      },
 
      startLogin(){
-        this.login();
+        // this.login();
         if(!this.invalidCredentials){
           this.getLoginUser();
         }  

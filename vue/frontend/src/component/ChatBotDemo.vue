@@ -26,31 +26,14 @@
       <button class="close" @click="close">X</button>
       <div class="jobsWindow" >
       <slot />
-      <div class="jobs" v-for="job in jobSearchArray" :key="job.id" 
-        style="
-        color: black;
-        text-align: center;
-        background-color: rgb(201, 202, 206);
-        margin: 4%;
-        padding: 2%;
-        border: solid;
-        border-color: rgb(160, 142, 38);
-        border-radius: 2%;
-      "> 
-        <h2 class="jobName"
-        style="
-        border: solid;
-        border-color:  rgb(115, 132, 187);
-        background-color:  rgb(115, 132, 187);
-        border-radius: 5px;
-        padding: 1%;
-        ">{{job.name}}</h2>
+      <div class="jobs" v-for="job in jobSearchArray" :key="job.id"> 
+        <h2 class="jobName">{{job.name}}</h2>
         <p class="jobDescription">{{job.jobDescription}}</p>
         <a class="jobUrl" :href="job.jobUrl" target="_blank">
           {{job.jobUrl}}
         </a>
-    </div>
-  </div>
+      </div>
+      </div>
     </div>
   </div>
 </template>
@@ -61,12 +44,10 @@ import CloseIcon from "vue-beautiful-chat/src/assets/close-icon.png";
 import OpenIcon from "vue-beautiful-chat/src/assets/logo-no-bg.svg";
 import FileIcon from "vue-beautiful-chat/src/assets/file.svg";
 import CloseIconSvg from "vue-beautiful-chat/src/assets/close.svg";
-import JobSearch from "../component/JobSearch.vue";
 
 export default {
    name: "chat-bot-demo",
    components:{
-     JobSearch
    },
   props:{
     userColors:Object,
@@ -118,10 +99,10 @@ export default {
       titleImageUrl:
         "https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png",
       messageList: [
-        { type: "text", author: `user1`, data: { text: `Welcome ${this.user.lastName} To Chat Bot`}, suggestions:['Pathway', 'Curriculum', 'Job Search'] } 
+        { type: "text", author: `user1`, data: { text: `Welcome ${this.user.firstName} To Chat Bot`}, suggestions:['Pathway', 'Curriculum', 'Job Search'] } 
       ], // the list of the messages to show, can be paginated and adjusted dynamically
       newMessagesCount: 0,
-      isChatOpen: false, // to determine whether the chat window should be open or closed
+      isChatOpen: true, // to determine whether the chat window should be open or closed
       showTypingIndicator: "", // when set to a value matching the participant.id it shows the typing indicator for the specific user
       alwaysScrollToBottom: false, // when set to true always scrolls the chat to the bottom when new events are in (new message, user starts typing...)
       messageStyling: true // enables *bold* /emph/ _underline_ and such (more info at github.com/mattezza/msgdown)
@@ -326,7 +307,8 @@ export default {
       },  
       close(){
         this.openWindow = false;
-      }
+      },
+
 
   },
   computed: {
@@ -348,6 +330,9 @@ export default {
 </script>
 
 <style>
+.login{
+  display: none;
+}
 .close{
   width: 5%;
   padding: 1%;
