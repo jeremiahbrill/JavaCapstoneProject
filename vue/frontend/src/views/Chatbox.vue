@@ -50,21 +50,21 @@ export default {
       jobSearchArray:[],
       colors: {
         header: {
-          bg: "rgb(160, 142, 38)",
+          bg: "#c2a080",
           text: "whitesmoke"
         },
         launcher: {
-          bg: "rgb(160, 142, 38)",
+          bg: "#c2a080",
         },
         messageList: {
-          bg: "#e5e5e5"
+          bg: "#d7cdc7"
         },
         sentMessage: {
-          bg: "#651d1d",
+          bg: "#565656",
           text: "whitesmoke"
         },
         receivedMessage: {
-          bg: "rgb(115, 132, 187)",
+          bg: "#763240",
           text: "whitesmoke"
         },
         userInput: {

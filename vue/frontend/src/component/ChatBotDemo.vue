@@ -2,26 +2,27 @@
 
 <template>
   <div class="chatBotDemo">
-    <beautiful-chat
-      :participants="participants"
-      :titleImageUrl="titleImageUrl"
-      :onMessageWasSent="onMessageWasSent"
-      :messageList="messageList"
-      :newMessagesCount="newMessagesCount"
-      :isOpen="isChatOpen"
-      :close="closeChat"
-      :icons="icons"
-      :open="openChat"
-      :showEmoji="false"
-      :showFile="false"
-      :showTypingIndicator="showTypingIndicator"
-      :colors="userColors"
-      :alwaysScrollToBottom="alwaysScrollToBottom"
-      :messageStyling="messageStyling"
-      @onType="handleOnType"
-      @edit="editMessage"
-/>
-
+    <div class="chatwindow">
+      <beautiful-chat
+        :participants="participants"
+        :titleImageUrl="titleImageUrl"
+        :onMessageWasSent="onMessageWasSent"
+        :messageList="messageList"
+        :newMessagesCount="newMessagesCount"
+        :isOpen="isChatOpen"
+        :close="closeChat"
+        :icons="icons"
+        :open="openChat"
+        :showEmoji="false"
+        :showFile="false"
+        :showTypingIndicator="showTypingIndicator"
+        :colors="userColors"
+        :alwaysScrollToBottom="alwaysScrollToBottom"
+        :messageStyling="messageStyling"
+        @onType="handleOnType"
+        @edit="editMessage"
+      />
+    </div>
     <div class="hide" v-if="openWindow">
       <button class="close" @click="close">X</button>
       <div class="jobsWindow" >
@@ -330,9 +331,8 @@ export default {
 </script>
 
 <style>
-.login{
-  display: none;
-}
+
+
 .close{
   width: 5%;
   padding: 1%;
@@ -359,7 +359,7 @@ export default {
     border-color: rgb(167, 128, 37);
     position: absolute;
     z-index: 2;
-    left: 40%;
+    left: 20%;
     top: 20%;
     background: lightgray;
 }
@@ -368,7 +368,7 @@ export default {
   visibility: hidden;
 }
 .sc-chat-window {
-  background: rgb(160, 142, 38) !important;
+  background: #c2a080 !important;
 }
 
  button.sc-suggestions-element {
