@@ -6,6 +6,9 @@
     <form class="form-signin" @submit.prevent="login">
       <div class="container">
         <h1>Sign In</h1>
+        <div class="imgcontainer">
+          <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar">
+        </div>
       <div class="alert alert-danger" role="alert" v-if="invalidCredentials">
         Invalid username and password!
       </div>
@@ -102,7 +105,11 @@ export default {
   
 };
 </script>
-<style scoped>
+<style>
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
 h1{
   text-align: center;
 }

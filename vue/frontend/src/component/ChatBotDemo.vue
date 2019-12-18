@@ -20,18 +20,37 @@
       :messageStyling="messageStyling"
       @onType="handleOnType"
       @edit="editMessage"
-    />
+/>
 
-    <p class="hide"><job-search
-    :jobSearchDisplay="jobSearchArray"
-    :open='openWindow'
-    /></p> 
-
-    <div class="hide">
-      <p>{{categories}}</p>
-      <p>{{workflows}}</p>
-      <p>{{subworkflows}}</p>
-      <p>{{jobArray}}</p>
+    <div class="hide" v-if="openWindow">
+      <button class="close" @click="close">X</button>
+      <div class="jobsWindow" >
+      <slot />
+      <div class="jobs" v-for="job in jobSearchArray" :key="job.id" 
+        style="
+        color: black;
+        text-align: center;
+        background-color: rgb(201, 202, 206);
+        margin: 4%;
+        padding: 2%;
+        border: solid;
+        border-color: rgb(160, 142, 38);
+        border-radius: 2%;
+      "> 
+        <h2 class="jobName"
+        style="
+        border: solid;
+        border-color:  rgb(115, 132, 187);
+        background-color:  rgb(115, 132, 187);
+        border-radius: 5px;
+        padding: 1%;
+        ">{{job.name}}</h2>
+        <p class="jobDescription">{{job.jobDescription}}</p>
+        <a class="jobUrl" :href="job.jobUrl" target="_blank">
+          {{job.jobUrl}}
+        </a>
+    </div>
+  </div>
     </div>
   </div>
 </template>
@@ -93,7 +112,7 @@ export default {
         {
           id: "user1",
           name: "Chat Bot",
-          imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQr58HCf19wO41wbKeFHFxroROkVjCk6CfNjhxU_o65_YyH2Pu4"
+          imageUrl: "https://i.ibb.co/jzPkwp2/athena-logo-new-just-owl.png"
         }
       ], // the list of all the participant of the conversation. `name` is the user name, `id` is used to establish the author of a message, `imageUrl` is supposed to be the user avatar.
       titleImageUrl:
@@ -305,6 +324,9 @@ export default {
           })
           return suggestionsArray;
       },  
+      close(){
+        this.openWindow = false;
+      }
 
   },
   computed: {
@@ -326,15 +348,47 @@ export default {
 </script>
 
 <style>
+.close{
+  width: 5%;
+  padding: 1%;
+  position: sticky;
+  left: 94%;
+  top: 1%;
+}
+.jobsWindow{
+  max-width: 100%;
+  max-height: 100%;
+}
+.hide::-webkit-scrollbar {
+  width: .5em;
+}
+.hide::-webkit-scrollbar-thumb {
+  background: gray; 
+}
+.hide{
+    max-width: 50%;
+    max-height: 25em;
+    overflow: auto;
+    border: solid;
+    border-radius: 2%;
+    border-color: rgb(167, 128, 37);
+    position: absolute;
+    z-index: 2;
+    left: 40%;
+    top: 20%;
+    background: lightgray;
+}
+
 .sc-user-input{
   visibility: hidden;
 }
-sc-chat-window opened{
-  background-color: rgb(160, 142, 38);
+.sc-chat-window {
+  background: rgb(160, 142, 38) !important;
 }
 
  button.sc-suggestions-element {
-  color:black;
+  color:black !important;
+  border-color: black !important;
   margin: 3px;
   padding: 5px 10px 5px 10px;
   border: 2px solid;
@@ -342,16 +396,12 @@ sc-chat-window opened{
   font-size: 14px;
   background-color: rgb(115, 132, 187);
   cursor: pointer;
-  border-color:  rgb(160, 142, 38);
+  width:auto;
+  max-width: 50%;
 }
 
 .sc-suggestions-row {
   text-align: center;
   background: inherit;
 } 
-.hide{
-  visibility: hidden;
-}
-
-
 </style>
