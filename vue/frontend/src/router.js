@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import auth from './auth'
-import Home from './views/Home.vue'
+//import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 import Register from './views/Register.vue'
 // added by JJ
@@ -32,10 +32,10 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home,
+      name: 'defaultpage',
+      component: HomePage,
       meta: {
-        requiresAuth: true
+        requiresAuth: false
       }
     },
     {
@@ -67,7 +67,7 @@ const router = new Router({
       name: "chatbox",
       component: Chatbox,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     },
     {

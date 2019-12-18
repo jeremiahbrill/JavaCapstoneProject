@@ -1,9 +1,6 @@
 <template>
-<div>
-
-    
-
-    <form class="form-signin" @submit.prevent="login">
+<div>  
+    <form class="form-signin" @submit.prevent="startLogin">
       <div class="container">
         <h1>Sign In</h1>
         <div class="imgcontainer">
@@ -35,11 +32,11 @@
         required
       />
       <router-link :to="{ name: 'register' }">Need an account?</router-link>
-      <button type="submit" v-on:click.prevent="getLoginUser()" >Sign in</button>
+      <button type="submit">Sign in</button>
       </div>
     </form>
   </div>
-</div>
+
 </template>
 
 <script>
@@ -66,7 +63,9 @@ export default {
   },
   methods: {
     login() {
-      fetch(`${process.env.VUE_APP_REMOTE_API}/login`, {
+      //v-on:click.prevent="getLoginUser()"
+      //${process.env.VUE_APP_REMOTE_API}
+      fetch(`${this.API_URL}/login`, {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -87,7 +86,7 @@ export default {
               token = token.replace(/"/g, '');
             }
             auth.saveToken(token);
-            this.$router.push('/');
+            this.$router.push('/chatbox');
           }
         })
         .catch((err) => console.error(err));
@@ -96,10 +95,17 @@ export default {
     getLoginUser(){
         fetch(`${this.API_URL}/api/user/${this.user.userName}`)
          .then(response => response.json())
-         .then(list => (this.user = list))
+         .then(list => this.user = list)
          .catch(err => console.error(err));
        //emit the event to use the user data in parent component
        this.$emit("login-user", this.user);
+     },
+
+     startLogin(){
+        this.login();
+        if(!this.invalidCredentials){
+          this.getLoginUser();
+        }  
      },
   },
   
