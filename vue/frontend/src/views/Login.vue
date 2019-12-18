@@ -1,109 +1,108 @@
 <template>
-<div>
-
-    
-
+  <div>
     <form class="form-signin" @submit.prevent="login">
       <div class="container">
         <h1>Sign In</h1>
-      <div class="alert alert-danger" role="alert" v-if="invalidCredentials">
-        Invalid username and password!
-      </div>
-      <div class="alert alert-success" role="alert" v-if="this.$route.query.registration">
-        Thank you for registering, please sign in.
-      </div>
-      <label for="username" class="sr-only">Username</label>
-      <input
-        type="text"
-        id="username"
-        class="form-control"
-        placeholder="Username"
-        v-model="user.userName"
-        required
-        autofocus
-      />
-      <label for="password" class="sr-only">Password</label>
-      <input
-        type="password"
-        id="password"
-        class="form-control"
-        placeholder="Password"
-        v-model="user.password"
-        required
-      />
-      <router-link :to="{ name: 'register' }">Need an account?</router-link>
-      <button type="submit" v-on:click.prevent="getLoginUser()" >Sign in</button>
+        <div
+          class="alert alert-danger"
+          role="alert"
+          v-if="invalidCredentials"
+        >Invalid username and password!</div>
+        <div
+          class="alert alert-success"
+          role="alert"
+          v-if="this.$route.query.registration"
+        >Thank you for registering, please sign in.</div>
+        <label for="username" class="sr-only">Username</label>
+        <input
+          type="text"
+          id="username"
+          class="form-control"
+          placeholder="Username"
+          v-model="user.userName"
+          required
+          autofocus
+        />
+        <label for="password" class="sr-only">Password</label>
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          placeholder="Password"
+          v-model="user.password"
+          required
+        />
+        <router-link :to="{ name: 'register' }">Need an account?</router-link>
+        <button class="submit" type="submit" v-on:click.prevent="getLoginUser()">Sign In</button>
       </div>
     </form>
   </div>
-</div>
 </template>
 
 <script>
-import auth from '../auth';
+import auth from "../auth";
 
 export default {
-  name: 'login',
+  name: "login",
   components: {},
   data() {
     return {
-      API_URL: 'http://localhost:8080/ChatBot',
+      API_URL: "http://localhost:8080/ChatBot",
       user: {
-         userName: '',
-        password: '',
-        confirmPassword: '',
-        role: '',
-        firstName: '',
-        lastName: '',
-        avatar:'',
-        jobSelections:[]
+        userName: "",
+        password: "",
+        confirmPassword: "",
+        role: "",
+        firstName: "",
+        lastName: "",
+        avatar: "",
+        jobSelections: []
       },
-      invalidCredentials: false,
+      invalidCredentials: false
     };
   },
   methods: {
     login() {
       fetch(`${process.env.VUE_APP_REMOTE_API}/login`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
+          Accept: "application/json",
+          "Content-Type": "application/json"
         },
-        body: JSON.stringify(this.user),
+        body: JSON.stringify(this.user)
       })
-        .then((response) => {
+        .then(response => {
           if (response.ok) {
             return response.text();
           } else {
             this.invalidCredentials = true;
           }
         })
-        .then((token) => {
+        .then(token => {
           if (token != undefined) {
             if (token.includes('"')) {
-              token = token.replace(/"/g, '');
+              token = token.replace(/"/g, "");
             }
             auth.saveToken(token);
-            this.$router.push('/');
+            this.$router.push("/");
           }
         })
-        .catch((err) => console.error(err));
+        .catch(err => console.error(err));
     },
 
-    getLoginUser(){
-        fetch(`${this.API_URL}/api/user/${this.user.userName}`)
-         .then(response => response.json())
-         .then(list => (this.user = list))
-         .catch(err => console.error(err));
-       //emit the event to use the user data in parent component
-       this.$emit("login-user", this.user);
-     },
-  },
-  
+    getLoginUser() {
+      fetch(`${this.API_URL}/api/user/${this.user.userName}`)
+        .then(response => response.json())
+        .then(list => (this.user = list))
+        .catch(err => console.error(err));
+      //emit the event to use the user data in parent component
+      this.$emit("login-user", this.user);
+    }
+  }
 };
 </script>
 <style scoped>
-h1{
+h1 {
   text-align: center;
 }
 form {
@@ -112,9 +111,10 @@ form {
   border-radius: 8px;
   margin: 1% auto;
   max-width: 80%;
-  }
+}
 
-input[type=text], input[type=password] {
+input[type="text"],
+input[type="password"] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -166,11 +166,11 @@ span.psw {
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
   span.psw {
-     display: block;
-     float: none;
+    display: block;
+    float: none;
   }
   .cancelbtn {
-     width: 100%;
+    width: 100%;
   }
 }
 </style>

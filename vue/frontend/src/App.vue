@@ -101,6 +101,12 @@ padding: 10.5%;
   font-size: .60em;
   background-color: rgb(249, 247, 243);
   -webkit-text-fill-color: black;
+  font-family: 'Inria Serif', serif, 'Oswald', sans-serif;
+}
+
+button.submit {
+  font-size: 1.5rem;
+  font-family: 'Inria Serif', serif, 'Oswald', sans-serif;
 }
 
 div#app{ 
@@ -250,6 +256,10 @@ div.jobs{
   padding: 2%;
   margin: 1%;
   border: black;
+}
+
+h3#sign_up_or_login{
+  align-self: center;
 }
 
 </style>
