@@ -40,14 +40,14 @@
 </template>
 
 <script>
-import auth from '../auth';
+import auth from "../auth";
 
 export default {
-  name: 'login',
+  name: "login",
   components: {},
   data() {
     return {
-      API_URL: 'http://localhost:8080/ChatBot',
+      API_URL: "http://localhost:8080/ChatBot",
       user: {
         userName: '',
         password: '',
@@ -58,7 +58,7 @@ export default {
         avatar:'',
         jobSelections:[]
       },
-      invalidCredentials: false,
+      invalidCredentials: false
     };
   },
   methods: {
@@ -68,28 +68,28 @@ export default {
       fetch(`${this.API_URL}/login`, {
         method: 'POST',
         headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
+          Accept: "application/json",
+          "Content-Type": "application/json"
         },
-        body: JSON.stringify(this.user),
+        body: JSON.stringify(this.user)
       })
-        .then((response) => {
+        .then(response => {
           if (response.ok) {
             return response.text();
           } else {
             this.invalidCredentials = true;
           }
         })
-        .then((token) => {
+        .then(token => {
           if (token != undefined) {
             if (token.includes('"')) {
-              token = token.replace(/"/g, '');
+              token = token.replace(/"/g, "");
             }
             auth.saveToken(token);
 
           }
         })
-        .catch((err) => console.error(err));
+        .catch(err => console.error(err));
     },
 
     getLoginUser(){
@@ -127,9 +127,10 @@ form {
   border-radius: 8px;
   margin: 1% auto;
   max-width: 80%;
-  }
+}
 
-input[type=text], input[type=password] {
+input[type="text"],
+input[type="password"] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -181,11 +182,11 @@ span.psw {
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
   span.psw {
-     display: block;
-     float: none;
+    display: block;
+    float: none;
   }
   .cancelbtn {
-     width: 100%;
+    width: 100%;
   }
 }
 </style>
