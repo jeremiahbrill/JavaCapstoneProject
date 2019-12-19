@@ -23,8 +23,8 @@ INSERT INTO Workflow (Name,Presentation_Text,Category_ID) VALUES ('I do not unde
 INSERT INTO Workflow (Name,Presentation_Text,Category_ID) VALUES ('What is','These are the things I can help with for curriculum',2);
 
 --SubWorkFlow data
-INSERT INTO SubWorkflow (Name, Text_Answer, Video_Answer, Link_Answer, Workflow_ID, Presentation_Text) VALUES ('Writing a cover letter', 'Below help is available.', 'https://www.youtube.com/watch?v=se-klYpUI08' , 'https://resumegenius.com/cover-letter-examples/college-student-cover-letter-sample', 1, '1. Introduce yourself.
-2. Mention the job (or kind of job) you are applying for (or looking for)');
+INSERT INTO SubWorkflow (Name, Text_Answer, Video_Answer, Link_Answer, Workflow_ID, Presentation_Text) VALUES ('Writing a cover letter', '1. Introduce yourself.
+2. Mention the job (or kind of job) you are applying for (or looking for)', 'https://www.youtube.com/watch?v=se-klYpUI08' , 'https://resumegenius.com/cover-letter-examples/college-student-cover-letter-sample', 1, 'Below help is available.');
 INSERT INTO SubWorkflow (Name, Text_Answer,Presentation_Text, Workflow_ID) VALUES ('Prepping for an interview', 'Be on time','Below help is available',1);
 INSERT INTO SubWorkflow (Name, Text_Answer,Presentation_Text, Workflow_ID) VALUES ('Following up with employers','send an email','Below help is available',1);
 INSERT INTO SubWorkflow (Name, Text_Answer, Presentation_Text,Workflow_ID) VALUES ('What to wear to an interview','wear busines casual','Below help is available',1);
