@@ -1,11 +1,51 @@
 <template>
    <div>
-    <div v-for="about in aboutUs" 
+    <!-- <div v-for="about in aboutUs" 
          v-bind:key="about.id" >
      <img class="img" :src="about.image"/>
      <span> {{about.description}}
      </span>    
+    </div>  -->
+
+     <div>
+       <h4>Steve Carmichael</h4>     
+      <img class="img" src="../assets/images/greenLantern.jpeg"/>  
+       <span>A product of the superhero revival that sparked the Silver Age and birthed a new generation of characters, Steve Carmichael is, perhaps, one of the most innovative updates to an older character that took place during that time.  
+       </span>      
+    </div>
+
+     <div>
+       <h4>Andrew Frank</h4>     
+       <img class="img" src="../assets/images/ironMan.jpeg"/>  
+       <span>Andrew Frank may be the ultimate example of human ingenuity. Gifted with great intellect and a daring spirit, Andrew was a billionaire playboy who had it all, using his wealth - garnered from producing innovative weaponry - in pursuit of his own selfish whims.
+        After being taken prisoner by enemy combatants in the Vietnam War (or the Gulf war, in later versions), Andrew was forced to use his skills as an engineer and arms designer to build a weapon of mass destruction.    
+       </span>      
     </div> 
+
+    <div>
+       <h4>Jeremiah Brill</h4>     
+      <img class="img" src="../assets/images/captainAmerica.jpeg"/>  
+       <span>
+        Jeremiah finally found a home in Project: Rebirth, and experimental program meant to turn his weak body into the perfect human, a soldier who operated a peak efficiency and possessed incredible strength. The project was a success, but Nazi saboteurs ensured that the formula that turned Rogers into a super soldier would die with the inventor of the process.        
+       </span>    
+    </div>  
+
+    <div>
+       <h4>Mirlene Radcliffe</h4>     
+       <img class="img" src="../assets/images/nubia.jpg"/>  
+       <span> 
+         Mirlene was stolen at birth by Mars, God of War, and trained as a master of combat. Her introduction to comic readers was during a battle where she challenged Wonder Woman and won. She is the ultimate superhuman, possessing enhanced super strength, intelligence and healing. She can glide on air, time travel and break steel and concrete with her bare hands.
+       </span>  
+    </div>  
+
+    <div>
+      <h4>Venkata Kondaveeti</h4>     
+      <img class="img" src="../assets/images/wonder.jpg"/>  
+       <span> 
+         Wonder Woman tells the tale of Princess Diana of Themyscira. Her original origin story says she was formed out of clay by her mother, Hippolyta, and had life bestowed upon her by the Greek gods  
+        </span>    
+    </div>    
+
    </div>  
 </template>
 

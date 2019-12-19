@@ -131,11 +131,29 @@ export default {
   watch: {
 
   },
+  // mounted() {
+  //   console.log("Mounted " + localStorage.getItem('userObject'));
+  //   if (localStorage.getItem('userObject')) {
+  //     try {
+  //       this.user = JSON.parse(localStorage.getItem('userObject'));
+  //       console.log('Did it get to the if in mounted ' +  this.user.firstName)
+  //     } catch(e) {
+  //       localStorage.removeItem('userObject');
+  //     }
+  //   }
+  // },
   created(){
+        console.log("Mounted " + localStorage.getItem('userObject'));
+    if (localStorage.getItem('userObject')) {
+      try {
+        this.user = JSON.parse(localStorage.getItem('userObject'));
+        console.log('Did it get to the if in mounted ' +  this.user.firstName)
+      } catch(e) {
+        localStorage.removeItem('userObject');
+      }
+    }
     console.log("in created");
       this.getCategories();
-      //  this.getWorkFlows();
-      //  this.getSubwWorkflows();
       }
   
 };

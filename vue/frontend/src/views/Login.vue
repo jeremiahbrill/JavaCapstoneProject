@@ -100,6 +100,8 @@ export default {
          .then(list => this.user = list)
          .then(() => {
              const userObject = this.user;
+             const parsed = JSON.stringify(this.user);
+             localStorage.setItem('userObject', parsed);
              this.$router.push({name: 'chatbox', params:{ user: userObject}})
           })
          .catch(err => console.error(err));

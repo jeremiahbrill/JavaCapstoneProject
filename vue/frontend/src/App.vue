@@ -330,6 +330,15 @@ div.left_container{
   width: 45%;
   height: auto;
 }
+ul.avatar {
+  display: flex;
+  flex-direction: row;
+  justify-content:space-around;
+}
+
+li {
+  list-style-type: none;
+}
 
 .side_container{
   padding: 1%;
