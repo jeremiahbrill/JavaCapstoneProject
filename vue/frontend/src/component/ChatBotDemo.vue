@@ -355,7 +355,7 @@ export default {
 <style>
 .chatwindow{
   height: 100%;
-  width: 50%;
+  width: 35%;
   float: right;
   z-index: 0;
   border: solid;
@@ -448,7 +448,8 @@ export default {
   margin: 1px !important;
 }
 
- button.sc-suggestions-element {
+ .sc-suggestions-element {
+  display: inline-block;
   color: #763240 !important;
   border-color: #763240 !important;
   margin: 3px;
@@ -456,7 +457,7 @@ export default {
   border: 2px solid;
   border-radius: 15px;
   font-size: 14px;
-  background-color: #d7cec7;
+  background-color: #d7cec7 !important;
   cursor: pointer;
   width:auto;
   max-width: 50%;
