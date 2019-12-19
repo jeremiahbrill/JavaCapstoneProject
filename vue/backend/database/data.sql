@@ -23,13 +23,12 @@ INSERT INTO Workflow (Name,Presentation_Text,Category_ID) VALUES ('I do not unde
 INSERT INTO Workflow (Name,Presentation_Text,Category_ID) VALUES ('What is','These are the things I can help with for curriculum',2);
 
 --SubWorkFlow data
-INSERT INTO SubWorkflow (Name, Text_Answer, Video_Answer, Link_Answer, Workflow_ID, Presentation_Text) VALUES ('Writing a cover letter', '1. Introduce yourself.
-2. Mention the job (or kind of job) you are applying for (or looking for)', 'https://www.youtube.com/watch?v=se-klYpUI08' , 'https://resumegenius.com/cover-letter-examples/college-student-cover-letter-sample', 1, 'Below help is available.');
-INSERT INTO SubWorkflow (Name, Text_Answer,Presentation_Text, Workflow_ID) VALUES ('Prepping for an interview', 'Be on time','Below help is available',1);
+INSERT INTO SubWorkflow (Name, Text_Answer, Video_Answer, Link_Answer, Workflow_ID, Presentation_Text) VALUES ('Writing a cover letter', '1. Introduce yourself. 2. Mention the job (or kind of job) you are applying for (or looking for)', 'https://www.youtube.com/watch?v=se-klYpUI08' , 'https://resumegenius.com/cover-letter-examples/college-student-cover-letter-sample', 1, 'Below help is available.');
+INSERT INTO SubWorkflow (Name, Text_Answer,Presentation_Text, Workflow_ID) VALUES ('Prepping for an interview', '1. Carefully examine the job description.  2. Consider why you are interviewing and your qualifications.  3. Perform research on the company and role. 4. Consider your answers to common interview questions.','Below help is available',1);
 INSERT INTO SubWorkflow (Name, Text_Answer,Presentation_Text, Workflow_ID) VALUES ('Following up with employers','send an email','Below help is available',1);
-INSERT INTO SubWorkflow (Name, Text_Answer, Presentation_Text,Workflow_ID) VALUES ('What to wear to an interview','wear busines casual','Below help is available',1);
+INSERT INTO SubWorkflow (Name, Text_Answer, Presentation_Text,Workflow_ID) VALUES ('What to wear to an interview','1. Find out how people at the company dress.  2. Think about the role you’re after. 3. Plan ahead for what to wear to an interview.','Below help is available',1);
 --curriculum SubWorkFlow 
-INSERT INTO SubWorkflow (Name, Text_Answer,Presentation_Text, Workflow_ID) VALUES ('Creating a new project', 'create your POM.xml','Below help is available',5);
+INSERT INTO SubWorkflow (Name, Text_Answer,Presentation_Text, Link_Answer, Workflow_ID) VALUES ('Creating a new project in Eclipse IDE', '1. Install the Eclipse IDE for Java Developers. 2. Click "File" → "New" → "Java Project". 3. Give the project a name.','Below help is available', 'https://www.wikihow.com/Create-a-New-Java-Project-in-Eclipse', 5);
 INSERT INTO SubWorkflow (Name, Text_Answer,Presentation_Text, Workflow_ID) VALUES ('Arrays', 'An array is collection of items stored at contiguous memory locations','Below help is available',5);
 INSERT INTO SubWorkflow (Name, Text_Answer,Presentation_Text, Workflow_ID) VALUES ('MVC','MVC stands for Model, View and Controller','Below help is available',5);
 INSERT INTO SubWorkflow (Name, Text_Answer, Presentation_Text,Workflow_ID) VALUES ('SQL','SQL (pronounced "ess-que-el") stands for Structured Query Language','Below help is available',5);
