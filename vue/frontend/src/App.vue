@@ -6,7 +6,7 @@
       <ul class="navbar">
       <li class="navbar"><router-link to="/HomePage" >Home</router-link></li>
       <li class="navbar"><router-link to="/login">Login</router-link></li>
-      <li class="navbar"><router-link to="/Chatbox" >Chatbot</router-link></li>
+      <li class="navbar"><router-link to="/Chatbox" >Chat bot</router-link></li>
       </ul>
     </nav>
     </div>
@@ -53,7 +53,7 @@ head{
   font-size: 4rem;
 }
 html {
-background-color: rgb(201, 202, 206);
+background-color: #373737;
 background-size: cover;
 background-repeat: no-repeat;
 height: 100%;
@@ -72,6 +72,16 @@ div.pageText{
     max-width: 100%;
 }
 
+div#register.text-center {
+width: 80%;
+padding: 10.5%;
+  
+}
+
+button.btn {
+  background-color: #C0B283;
+}
+
 div.row {
   display: flex;
   flex-direction: row;
@@ -81,27 +91,27 @@ div.row {
   margin: 0 auto;
   align-items: center;
   flex-wrap: wrap;
-  background-color: rgb(115, 132, 187);
+  background-color: #dcd0c0;
   font-size: 1.5rem;
   font-stretch: expanded;
   font-family: 'Inria Serif', serif, 'Oswald', sans-serif;
   -webkit-text-fill-color: #651d1d;
 }
 
-div#register.text-center {
-width: 80%;
-padding: 10.5%;
-  
+side_container.btn{
+  text-align: center;
 }
 
 .btn{
   border-radius: 50px;
-  height: 3.75em;
+  height: 5.5rem;
   width: 80%;
   font-size: .60em;
-  background-color: rgb(249, 247, 243);
-  -webkit-text-fill-color: black;
+  align-content: center;
+  background-color: #F4F4F4;
+  -webkit-text-fill-color: #373737;
   font-family: 'Inria Serif', serif, 'Oswald', sans-serif;
+  margin-bottom: 10%;
 }
 
 button.submit {
@@ -132,20 +142,20 @@ h1.Athena_Logo_Text {
 }
 
 h4.achieve{
-  -webkit-text-fill-color: rgb(249, 247, 243);
+  -webkit-text-fill-color: #F4f4f4;
 }
 h4.Do_More {
-  -webkit-text-fill-color: rgb(249, 247, 243);
+  -webkit-text-fill-color: #F4f4f4;
 }
 
 h4.elevate{
-  -webkit-text-fill-color: #651d1d;
+  -webkit-text-fill-color: #373737;
 }
 
 div.nav_container{
   width: 80%;
   margin: 0 auto;
-  background-color: rgb(160, 142, 38);
+  background-color: #C0B283;
 }
 
 div.nav_container::after{
@@ -199,7 +209,7 @@ li.navbar{
 
 }
 label.sr-only{
-  -webkit-text-fill-color: black;
+  -webkit-text-fill-color: #373737;
 }
 
 .navbar a {
@@ -234,11 +244,19 @@ div#homePage {
   flex-wrap: wrap;
 }
 
-div.left_container#homePage{
-  -ms-flex-order: 1;
-  min-width: 12em;
-  max-width: 30%;
-  margin-right: 7em;
+
+div.demo_video{
+
+  justify-content: left;
+  object-fit: scale-down;
+  padding-right: 40%;
+  padding-bottom: 10%;
+  padding-left: 25%;
+  border: none;
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
+  margin-bottom: 10%;
 }
 
 div.right_container#homePage {
@@ -260,6 +278,23 @@ div.jobs{
 
 h3#sign_up_or_login{
   align-self: center;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.side_container{
+padding: 1%;
+width: 40%;
+text-align: center;
+}
+h4.achieve{
+text-align: left;
+}
+h4.elevate{
+text-align: center;
+}
+h4.Do_More{
+text-align: end;
 }
 
 </style>
