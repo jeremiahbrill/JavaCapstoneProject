@@ -77,7 +77,7 @@
       </p>
       <label for="jobPositions" class="sr-only">Please select Jobs you are interested in: </label>
        <span v-for="job in availableJobSelections" 
-                v-bind:key="job.id" 
+                v-bind:key="job.id"              
                 v-on:click="updateUserJobPositions(job.id,$event)">
        <input type="checkbox"
         name="jobPositions"
@@ -107,20 +107,7 @@ export default {
         firstName: '',
         lastName: '',
         avatar:'',
-        jobSelections:[
-          {
-              "id": 1,
-              "name": "Software Engineer"
-           },
-          {
-             "id": 2,
-             "name": "Database Administrator"
-          },
-          {
-             "id": 3,
-             "name": "Data Analyst"
-          }
-        ]
+        jobSelections:[]
       },
       availableJobSelections:[],
       registrationErrors: false,
