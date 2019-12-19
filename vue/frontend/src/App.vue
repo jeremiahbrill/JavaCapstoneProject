@@ -188,9 +188,11 @@ img.logo{
   height: auto;
   justify-content: space-between;
 }
+
 .avatarFlex{
   display: flex;
   margin: 1rem;
+  
 }
 .jobSelectionDiv{
   display: flex;
@@ -256,11 +258,6 @@ div.left_container{
   min-width: 20%;
   width: 45%;
   height: auto;
-}
-ul.avatar {
-  display: flex;
-  flex-direction: row;
-  justify-content:space-around;
 }
 
 li {
