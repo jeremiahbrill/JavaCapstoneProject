@@ -307,6 +307,15 @@ div.jobs{
   margin: 1%;
   border: black;
 }
+ul.avatar {
+  display: flex;
+  flex-direction: row;
+  justify-content:space-around;
+}
+
+li {
+  list-style-type: none;
+}
 
 .side_container{
   padding: 1%;
