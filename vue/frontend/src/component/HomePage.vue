@@ -21,7 +21,7 @@
       <div class="video_container"> 
         <h2 class="video_lable">Owl of Athena chatbot gives you the edge...</h2>
         <div class="demo_video">
-          <video width="auto" height="75%" autoplay muted controls loop>
+          <video width="50%" height="75%" autoplay muted controls loop>
             <source src="../assets/video/Owl of Athena Demo.mp4" type="video/mp4">
             Your browser does not support the video tag.
           </video>
