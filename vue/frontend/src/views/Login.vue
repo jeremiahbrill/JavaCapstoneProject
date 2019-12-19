@@ -4,7 +4,7 @@
       <div class="container">
         <h1>Sign In</h1>
         <div class="imgcontainer">
-          <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar">
+          <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" class="avatar">
         </div>
       <div class="alert alert-danger" role="alert" v-if="invalidCredentials">
         Invalid username and password!
@@ -58,7 +58,8 @@ export default {
         avatar:'',
         jobSelections:[]
       },
-      invalidCredentials: false
+      invalidCredentials: false,
+      validCredentials: false
     };
   },
   methods: {
@@ -75,6 +76,7 @@ export default {
       })
         .then(response => {
           if (response.ok) {
+            this.validCredentials = true;
             return response.text();
           } else {
             this.invalidCredentials = true;
@@ -86,7 +88,7 @@ export default {
               token = token.replace(/"/g, "");
             }
             auth.saveToken(token);
-            this.$router.push('/chatbox');
+
           }
         })
         .catch(err => console.error(err));
@@ -96,13 +98,16 @@ export default {
         fetch(`${this.API_URL}/api/user/${this.user.userName}`)
          .then(response => response.json())
          .then(list => this.user = list)
+         .then(() => {
+             const userObject = this.user;
+             this.$router.push({name: 'chatbox', params:{ user: userObject}})
+          })
          .catch(err => console.error(err));
-       //emit the event to use the user data in parent component
-       this.$emit("login-user", this.user);
      },
 
      startLogin(){
         this.login();
+        console.log('Invalid ' + this.invalidCredentials)
         if(!this.invalidCredentials){
           this.getLoginUser();
         }  
@@ -164,7 +169,7 @@ button:hover {
 }
 
 img.avatar {
-  width: 40%;
+  width: 20%;
   border-radius: 50%;
 }
 

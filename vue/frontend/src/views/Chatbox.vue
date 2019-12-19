@@ -24,6 +24,9 @@ export default {
   components:{
     ChatBotDemo
   },
+  props:{
+    user:Object
+  },
   data() {
     return {
       API_URL: 'http://localhost:8080/ChatBot/api',
@@ -31,37 +34,37 @@ export default {
       workflows:[],
       subworkflows:[],
       userInput: "",
-      user:{
-        userName: 'superman',
-        password: 'password',
-        confirmPassword: 'password',
-        role: 'student',
-        firstName: 'Clark',
-        lastName: 'Kent',
-        avatar:'',
-        jobSelections:[
-          {id: 1, name: "Software Engineer"}, 
-          {id: 2, name: "Database Administrator"}, 
-          {id: 3, name: "Data Analyst"}]
-      },
+      // user:{
+      //   userName: 'superman',
+      //   password: 'password',
+      //   confirmPassword: 'password',
+      //   role: 'student',
+      //   firstName: 'Clark',
+      //   lastName: 'Kent',
+      //   avatar:'',
+      //   jobSelections:[
+      //     {id: 1, name: "Software Engineer"}, 
+      //     {id: 2, name: "Database Administrator"}, 
+      //     {id: 3, name: "Data Analyst"}]
+      // },
       jobSearchArray:[],
       colors: {
         header: {
-          bg: "rgb(160, 142, 38)",
+          bg: "#c2a080",
           text: "whitesmoke"
         },
         launcher: {
-          bg: "rgb(160, 142, 38)",
+          bg: "#c2a080",
         },
         messageList: {
-          bg: "#e5e5e5"
+          bg: "#d7cdc7"
         },
         sentMessage: {
-          bg: "#651d1d",
+          bg: "#565656",
           text: "whitesmoke"
         },
         receivedMessage: {
-          bg: "rgb(115, 132, 187)",
+          bg: "#763240",
           text: "whitesmoke"
         },
         userInput: {

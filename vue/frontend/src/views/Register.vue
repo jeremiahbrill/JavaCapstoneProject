@@ -52,6 +52,29 @@
         v-model="user.confirmPassword"
         required
       /> 
+     
+      <p>
+      <label for="avatar" class="sr-only">Please select avatar</label>  
+      <!-- <select v-model="user.avatar">      
+      <option value="avatar1" data-thumbnail="../assets/images/avatar1.jpg"> avatar1 </option>
+      <option value="avatar2"><img class="img" src="../assets/images/avatar2.jpg"/>avatar2</option>
+      <option value="avatar3"><img class="img" src="../assets/images/avatar3.jpg"/>avatar3</option>
+      </select> -->
+      <ul>
+      <li>
+         <input type="checkbox">
+         <img class="img" src="../assets/images/avatar1.jpg"/>
+      </li>
+      <li>
+         <input type="checkbox">
+         <img class="img" src="../assets/images/avatar2.jpg"/>
+      </li>
+      <li>
+         <input type="checkbox">
+         <img class="img" src="../assets/images/avatar3.jpg"/>
+      </li>
+    </ul>
+      </p>
       <label for="jobPositions" class="sr-only">Please select Jobs you are interested in: </label>
        <span v-for="job in availableJobSelections" 
                 v-bind:key="job.id" 
@@ -64,7 +87,7 @@
       <router-link :to="{ name: 'login' }">
         Have an account?
       </router-link>
-      <button class="btn btn-lg btn-primary btn-block" type="submit" v-on:click.prevent="registerUser($event)">
+      <button class="btn btn-lg btn-primary btn-block" type="submit" v-on:click.prevent="registerUser()">
         Create Account
       </button>
     </form>
@@ -129,7 +152,7 @@ export default {
         }
       })  
     }, 
-    registerUser(event){
+    registerUser(){
       this.register(); 
       this.$emit("register-user", this.user);
     },

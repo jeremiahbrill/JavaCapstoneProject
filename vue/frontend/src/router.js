@@ -7,6 +7,7 @@ import Register from './views/Register.vue'
 // added by JJ
 import Chatbox from './views/Chatbox.vue'
 import Chat from 'vue-beautiful-chat'
+import AboutUs from './views/AboutUs.vue'
 
 // added by MSR
 
@@ -66,6 +67,7 @@ const router = new Router({
       path: "/chatbox",
       name: "chatbox",
       component: Chatbox,
+      props: true,
       meta: {
         requiresAuth: true
       }
@@ -74,6 +76,14 @@ const router = new Router({
       path: "/jobsearch",
       name: "jobsearch",
       component: JobSearch,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: "/aboutus",
+      name: "aboutus",
+      component: AboutUs,
       meta: {
         requiresAuth: false
       }

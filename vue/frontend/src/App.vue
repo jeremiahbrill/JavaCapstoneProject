@@ -6,54 +6,64 @@
       <ul class="navbar">
       <li class="navbar"><router-link to="/HomePage" >Home</router-link></li>
       <li class="navbar"><router-link to="/login">Login</router-link></li>
-      <li class="navbar"><router-link to="/Chatbox" >Chat bot</router-link></li>
+      <li class="navbar"><router-link to="/Chatbox" >Chatbot</router-link></li>
+      <li class="navbar"><router-link to="/AboutUs">AboutUs</router-link></li>
       </ul>
     </nav>
     </div>
+    <!-- <div class="hideThis">
+      <login @login-user="setUser"/>
+      <chat-box :user="user"/>
+    </div> -->
     <router-view/>
   </div>
 </template>
 
 <script>
-  //import chatbox from '@/views/Chatbox'
+  // import ChatBox from '@/views/Chatbox.vue'
+  // import Login from '@/views/Login.vue';
+ export default {
+    name: 'app',
+     components: {
+      //  ChatBox,
+      //  Login
+    },
+   data() {
+     return {
+       API_URL: 'http://localhost:8080/ChatBot/api',
+       user:{}
+     };
+   },
 
-//  export default {
-//     name: 'app',
-    //  components: {
-    //    chatbox
-    // },
-//    data() {
-//      return {
-//        API_URL: 'http://localhost:8080/ChatBot/api',
-//        categories:[],
-//        workflows:[],
-//        subworkflows:[]
-//      };
-//    },
-
-//    methods: {
-
-//    },
+   methods: {
+    setUser(object){
+      this.user = object;
+    }
+   },
    
-//    created(){
-//      console.log("in created");
-//        this.getCategories();
-//        this.getWorkFlows();
-//          console.log("test: "+ this.categories);
-//          console.log("test2: "+ this.workflows);
-//       }
+  //  created(){
+  //    console.log("in created");
+  //      this.getCategories();
+  //      this.getWorkFlows();
+  //        console.log("test: "+ this.categories);
+  //        console.log("test2: "+ this.workflows);
+  //     }
    
-//  }
+ }
 
 
 
 </script>
 <style>
+/* .hideThis{
+  display: none;
+} */
 head{
   font-size: 4rem;
 }
 html {
-background-color: #373737;
+
+background-color: #D7CEC7;
 background-size: cover;
 background-repeat: no-repeat;
 height: 100%;
@@ -62,7 +72,7 @@ font-family: 'Inria Serif', serif, 'Oswald', sans-serif;
 overflow-y: scroll;
 }
 
-div.pageText{
+/* div.pageText{
 
     text-align: center;
     padding-left: 25%;
@@ -70,7 +80,7 @@ div.pageText{
     font-weight: bolder;
     overflow: hidden;
     max-width: 100%;
-}
+} */
 
 div#register.text-center {
 width: 80%;
@@ -91,25 +101,39 @@ div.row {
   margin: 0 auto;
   align-items: center;
   flex-wrap: wrap;
-  background-color: #dcd0c0;
+  background-color: #c09f80;
   font-size: 1.5rem;
   font-stretch: expanded;
   font-family: 'Inria Serif', serif, 'Oswald', sans-serif;
-  -webkit-text-fill-color: #651d1d;
+  -webkit-text-fill-color: whitesmoke;
 }
 
 side_container.btn{
   text-align: center;
 }
-
+.get_started{
+    border: solid;
+    border-color: #76323F;
+    border-bottom: outset;
+    border-left: outset;
+    border-left-color: #76323F;
+    border-radius: 50px;
+    height: 2em;
+    width: 50%;
+    font-size: .60em;
+    background-color: #3c1920;
+    -webkit-text-fill-color: whitesmoke;
+    font-family: 'Inria Serif', serif, 'Oswald', sans-serif;
+    padding: 3% 0% 0% 0%;
+    text-align: center;
+}
 .btn{
   border-radius: 50px;
-  height: 5.5rem;
+  height: 5.5em;
   width: 80%;
   font-size: .60em;
-  align-content: center;
-  background-color: #F4F4F4;
-  -webkit-text-fill-color: #373737;
+  background-color: #76323F;
+  -webkit-text-fill-color: whitesmoke;
   font-family: 'Inria Serif', serif, 'Oswald', sans-serif;
   margin-bottom: 10%;
 }
@@ -155,7 +179,9 @@ h4.elevate{
 div.nav_container{
   width: 80%;
   margin: 0 auto;
-  background-color: #C0B283;
+  background-color: #555555;
+  border-bottom: 11px solid;
+  border-color: #76323F;
 }
 
 div.nav_container::after{
@@ -166,7 +192,7 @@ div.nav_container::after{
 
 img.img {
   height: auto;
-  max-width: 100%;
+  max-width: 85%;
 }
 
 img.logo{
@@ -258,14 +284,20 @@ div.demo_video{
   overflow: hidden;
   margin-bottom: 10%;
 }
+/* div.left_container#homePage{
+  -ms-flex-order: 1;
+  min-width: 12em;
+  max-width: 30%;
+  margin-right: 7em;
+} */
 
-div.right_container#homePage {
+/* div.right_container#homePage {
   -ms-flex-order: 2;
   width: 80%;
   align-self:  left;
   background-color:  aliceblue;
   min-width: 50%;
-}
+} */
 
 div.jobs{
   background: sandybrown;
@@ -276,25 +308,34 @@ div.jobs{
   border: black;
 }
 
-h3#sign_up_or_login{
-  align-self: center;
-  font-size: 2rem;
-  font-weight: 600;
-}
-
 .side_container{
-padding: 1%;
-width: 40%;
-text-align: center;
+  padding: 1%;
+  width: 40%;
+  text-align: -webkit-center;
 }
 h4.achieve{
-text-align: left;
+  text-align: left;
 }
 h4.elevate{
-text-align: center;
+  text-align: center;
 }
 h4.Do_More{
-text-align: end;
+  text-align: end;
 }
-
+.video_container{
+  width: 100%;
+  text-align: center;
+}
+.video_lable{
+  background-color: #555555;
+  border-bottom: 11px solid;
+  border-color: #76323F;
+  margin-bottom: 0% !important;  
+}
+.footer{
+  padding: 1%;
+  width: 100%;
+  height: 1%;
+  background: linear-gradient(to bottom right, #76323F, #cbad77);
+}
 </style>
