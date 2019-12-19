@@ -62,6 +62,7 @@ head{
   font-size: 4rem;
 }
 html {
+
 background-color: #D7CEC7;
 background-size: cover;
 background-repeat: no-repeat;
@@ -81,6 +82,16 @@ overflow-y: scroll;
     max-width: 100%;
 } */
 
+div#register.text-center {
+width: 80%;
+padding: 10.5%;
+  
+}
+
+button.btn {
+  background-color: #C0B283;
+}
+
 div.row {
   display: flex;
   flex-direction: row;
@@ -97,10 +108,8 @@ div.row {
   -webkit-text-fill-color: whitesmoke;
 }
 
-div#register.text-center {
-width: 80%;
-padding: 10.5%;
-  
+side_container.btn{
+  text-align: center;
 }
 .get_started{
     border: solid;
@@ -126,6 +135,7 @@ padding: 10.5%;
   background-color: #76323F;
   -webkit-text-fill-color: whitesmoke;
   font-family: 'Inria Serif', serif, 'Oswald', sans-serif;
+  margin-bottom: 10%;
 }
 
 button.submit {
@@ -156,14 +166,14 @@ h1.Athena_Logo_Text {
 }
 
 h4.achieve{
-  -webkit-text-fill-color: rgb(249, 247, 243);
+  -webkit-text-fill-color: #F4f4f4;
 }
 h4.Do_More {
-  -webkit-text-fill-color: rgb(249, 247, 243);
+  -webkit-text-fill-color: #F4f4f4;
 }
 
 h4.elevate{
-  -webkit-text-fill-color: #651d1d;
+  -webkit-text-fill-color: #373737;
 }
 
 div.nav_container{
@@ -225,7 +235,7 @@ li.navbar{
 
 }
 label.sr-only{
-  -webkit-text-fill-color: black;
+  -webkit-text-fill-color: #373737;
 }
 
 .navbar a {
@@ -260,6 +270,20 @@ div#homePage {
   flex-wrap: wrap;
 }
 
+
+div.demo_video{
+
+  justify-content: left;
+  object-fit: scale-down;
+  padding-right: 40%;
+  padding-bottom: 10%;
+  padding-left: 25%;
+  border: none;
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
+  margin-bottom: 10%;
+}
 /* div.left_container#homePage{
   -ms-flex-order: 1;
   min-width: 12em;
