@@ -1,16 +1,22 @@
 <template>
   <div class="flex_container">
     <div class="row">
-      <div class="homePage" id="left_container">
+      <div class="left_container">
         <img class="img" src="../assets/images/student-on-computer.jpg"/>
       </div>
       <div class="side_container">
-        <h4 class="achieve">Level Up...</h4>
-        <h4 class="elevate">Achieve your dreams...</h4>
-        <h4 class="Do_More">Go further and do more...</h4>
+        <p class="marketing_text">
+          <b>The Wisdom of Athena</b> in the modern age.
+          Knowledge is a simple click away with 
+          a growing list of features. Let us 
+          give your students the answers they
+          need day or night. As <b>The Owl Athena</b>  
+          is always available.
+        
       <router-link :to="{ name: 'register' }">
         <h3 class="get_started">Get Started</h3>
-      </router-link>      
+      </router-link>
+      </p>   
       </div>
       <div class="video_container"> 
         <h2 class="video_lable">Owl of Athena chatbot gives you the edge...</h2>

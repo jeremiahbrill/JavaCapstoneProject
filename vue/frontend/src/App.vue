@@ -70,6 +70,10 @@ font-family: 'Inria Serif', serif, 'Oswald', sans-serif;
 overflow-y: scroll;
 }
 
+body{
+  margin: 0%;
+}
+
 /* div.pageText{
 
     text-align: center;
@@ -87,13 +91,13 @@ div.row {
   width: 80%;
   max-width: 80%;
   margin: 0 auto;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
   background-color: #c09f80;
   font-size: 1.5rem;
   font-stretch: expanded;
   font-family: 'Inria Serif', serif, 'Oswald', sans-serif;
-  -webkit-text-fill-color: whitesmoke;
+  color: #f5f5f5;
 }
 
 div#register.text-center {
@@ -137,23 +141,6 @@ div#app{
   margin: 0 auto;
 }
 
-h1#title_phrase {
-  -webkit-text-fill-color: #651d1d;
-  text-justify: initial;
-  text-shadow: 1em;
-}
-
-div#final_text{
-  align-items: baseline;
-}
-
-h1.Athena_Logo_Text {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 4em;
-  font-stretch: expanded;
-  -webkit-text-fill-color: #651d1d;
-}
-
 h4.achieve{
   -webkit-text-fill-color: rgb(249, 247, 243);
 }
@@ -168,7 +155,7 @@ h4.elevate{
 div.nav_container{
   width: 80%;
   margin: 0 auto;
-  background-color: #555555;
+  background-color: #565656;
   border-bottom: 11px solid;
   border-color: #76323F;
 }
@@ -181,7 +168,7 @@ div.nav_container::after{
 
 img.img {
   height: auto;
-  max-width: 85%;
+  width: 100%;
 }
 
 img.logo{
@@ -220,7 +207,7 @@ li.navbar{
   text-decoration: none;
   text-transform: uppercase;
   font-size: .90rem;
-  -webkit-text-fill-color: whitesmoke;
+  color: whitesmoke;
 
 }
 label.sr-only{
@@ -259,12 +246,11 @@ div#homePage {
   flex-wrap: wrap;
 }
 
-/* div.left_container#homePage{
-  -ms-flex-order: 1;
-  min-width: 12em;
-  max-width: 30%;
-  margin-right: 7em;
-} */
+div.left_container{
+  min-width: 20%;
+  width: 45%;
+  height: auto;
+}
 
 /* div.right_container#homePage {
   -ms-flex-order: 2;
@@ -286,8 +272,15 @@ div.jobs{
 .side_container{
   padding: 1%;
   width: 40%;
+  height: 20%;
   text-align: -webkit-center;
+  background-color: #d7cec7;
+  border: #d7cec7 solid;
+  border-radius: 3rem;
+  margin-top: .5rem;
+  margin-left: 2.5rem;
 }
+
 h4.achieve{
   text-align: left;
 }
@@ -312,5 +305,10 @@ h4.Do_More{
   width: 100%;
   height: 1%;
   background: linear-gradient(to bottom right, #76323F, #cbad77);
+}
+.marketing_text{
+  height: auto;
+  font-size: smaller;
+  color: #3d1920 !important;
 }
 </style>
