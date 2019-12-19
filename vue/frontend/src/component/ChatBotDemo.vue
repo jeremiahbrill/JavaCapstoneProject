@@ -1,42 +1,60 @@
 //this page is the chat window itself
 
 <template>
+<div class="topDiv">
   <div class="chatBotDemo">
+    <div class="botInfo">
+      <div class="botInfoText">
+      <h3>The Owl of Athena</h3>
+      <img src="../assets/images/owl-coin.jpg">
+      <p>In Greek mythology, a little owl (Athene noctua) traditionally represents or accompanies Athena, 
+      the virgin goddess of wisdom, or Minerva, her syncretic incarnation in Roman mythology. Because 
+      of such association, the bird — often referred to as the "owl of Athena" or the "owl of Minerva" 
+      — has been used as a symbol of knowledge, wisdom, perspicacity and erudition throughout the 
+      Western world. With that in mind we give you The Owl of Athena for the New Age. With this chat bot
+      your students can get information on the Pathway Program, the current Curriculum, or check out 
+      different jobs from job titles they choose. This chat bot will help bridge the gap between the 
+      student and the Knowledge they seek.</p>
+      </div>
+
+    </div>
     <div class="chatwindow">
       <beautiful-chat
-        :participants="participants"
-        :titleImageUrl="titleImageUrl"
-        :onMessageWasSent="onMessageWasSent"
-        :messageList="messageList"
-        :newMessagesCount="newMessagesCount"
-        :isOpen="isChatOpen"
-        :close="closeChat"
-        :icons="icons"
-        :open="openChat"
-        :showEmoji="false"
-        :showFile="false"
-        :showTypingIndicator="showTypingIndicator"
-        :colors="userColors"
-        :alwaysScrollToBottom="alwaysScrollToBottom"
-        :messageStyling="messageStyling"
-        @onType="handleOnType"
-        @edit="editMessage"
+      :participants="participants"
+      :titleImageUrl="titleImageUrl"
+      :onMessageWasSent="onMessageWasSent"
+      :messageList="messageList"
+      :newMessagesCount="newMessagesCount"
+      :isOpen="isChatOpen"
+      :close="closeChat"
+      :icons="icons"
+      :open="openChat"
+      :showEmoji="false"
+      :showFile="false"
+      :showTypingIndicator="showTypingIndicator"
+      :colors="userColors"
+      :alwaysScrollToBottom="alwaysScrollToBottom"
+      :messageStyling="messageStyling"
+      @onType="handleOnType"
+      @edit="editMessage"
       />
     </div>
-    <div class="hide" v-if="openWindow">
-      <button class="close" @click="close">X</button>
-      <div class="jobsWindow" >
+  </div>
+  <div class="hide" v-if="openWindow">
+    <button class="close" @click="close">X</button>
+    <div class="jobsWindow" >
       <slot />
       <div class="jobs" v-for="job in jobSearchArray" :key="job.id"> 
         <h2 class="jobName">{{job.name}}</h2>
-        <p class="jobDescription">{{job.jobDescription}}</p>
+        <p class="jobDescription"><b>Position Description:</b> {{job.jobDescription}}</p>
+        <b>Link to Job Posting - </b>
         <a class="jobUrl" :href="job.jobUrl" target="_blank">
           {{job.jobUrl}}
         </a>
       </div>
-      </div>
     </div>
   </div>
+</div>  
 </template>
 
 <script>
@@ -155,10 +173,9 @@ export default {
     //then runs through if else statments to send a reponse
     botProcess(string){
       if(string === 'Yes'){
-        this.reset();
+        this.reset('Yes');
       }else if(string === 'No'){
-        this.closeChat();
-        this.reset();
+        this.reset('No');
       }else if(this.checkedCategories === false){
         this.searchCategories(string);
       }else if(this.pickedJobSearch === true){
@@ -170,8 +187,13 @@ export default {
       }
     },
     // Resets all the checks to false so the logic can be ran through again
-    reset(){
-      this.messageList = [{ type: "text", author: `user1`, data: { text: `Welcome ${this.user.firstName} To Chat Bot`}, suggestions:['Pathway', 'Curriculum', 'Job Search'] }]
+    reset(string){
+      if(string === 'No'){
+        this.messageList = [{ type: "text", author: `user1`, data: { text: `Thanks ${this.user.firstName} for using The Owl of Athena. Click Yes below if you want to ask more questions`}, suggestions:['Yes'] }] 
+      }
+      if(string === 'Yes'){      
+        this.messageList = [...this.messageList, { type: "text", author: `user1`, data: { text: `Welcome ${this.user.firstName} To Chat Bot`}, suggestions:['Pathway', 'Curriculum', 'Job Search'] }]
+      }
       this.checkedCategories = false;
       this.checkedWorkflows = false;
       this.checkedSubworkflows = false;
@@ -331,55 +353,110 @@ export default {
 </script>
 
 <style>
-
-
+.chatwindow{
+  height: 100%;
+  width: 50%;
+  float: right;
+  z-index: 0;
+  border: solid;
+  border-style: outset;
+  border-color: #565656;
+  border-radius: 1rem;
+  margin: 1rem;
+}
+.sc-launcher{
+  display: none !important;
+  visibility: hidden !important;
+}
 .close{
-  width: 5%;
-  padding: 1%;
-  position: sticky;
-  left: 94%;
-  top: 1%;
+  display: inline-flex;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0.5rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  left: 32rem;
+  top: 2rem;
+  background-color: #565656;
+  border-radius: 1.5rem;
+  border-style: outset;
+  border-color: #763240;
 }
 .jobsWindow{
   max-width: 100%;
   max-height: 100%;
+  overflow: auto;
+  position: absolute;
+  background: #d7cec7;
+  height: 25rem;
+  width: 30rem;
+  border: .5rem solid;
+  border-style: outset;
+  border-color: #565656;
+  border-radius: 1rem;
+  margin: 1rem; 
 }
-.hide::-webkit-scrollbar {
+.jobsWindow::-webkit-scrollbar {
   width: .5em;
 }
-.hide::-webkit-scrollbar-thumb {
+.jobsWindow::-webkit-scrollbar-thumb {
   background: gray; 
 }
 .hide{
-    max-width: 50%;
-    max-height: 25em;
-    overflow: auto;
-    border: solid;
-    border-radius: 2%;
-    border-color: rgb(167, 128, 37);
-    position: absolute;
-    z-index: 2;
-    left: 20%;
-    top: 20%;
-    background: lightgray;
+  position: relative;
+  z-index: 2;
+  left: -2rem;
+  top: -33rem;
+  height: 25rem;
+  width: auto;
 }
 
+.jobs{
+  background: #c29f80;
+  color: #eaf5f5;
+  font-weight: bold;
+  padding: 2%;
+  margin: 1%;
+  border: #565656;
+  border-radius: 1rem;
+}
+.jobName{
+  background: #763240;
+  padding: .5rem;
+  color: whitesmoke;
+  border-radius: .5rem;
+}
+.jobDescription{
+  text-align: justify;
+    width: 25rem;
+    padding: .25rem;
+}
 .sc-user-input{
   visibility: hidden;
 }
 .sc-chat-window {
-  background: #c2a080 !important;
+  background: #565656 !important;
+  position: unset !important;
+  width: 100% !important;
+  height: 30rem !important;
+}
+.sc-message{
+  width: 95% !important;
+  margin: 1px !important;
 }
 
  button.sc-suggestions-element {
-  color:whitesmoke !important;
-  border-color: black !important;
+  color: #763240 !important;
+  border-color: #763240 !important;
   margin: 3px;
   padding: 5px 10px 5px 10px;
   border: 2px solid;
   border-radius: 15px;
   font-size: 14px;
-  background-color: rgb(115, 132, 187);
+  background-color: #d7cec7;
   cursor: pointer;
   width:auto;
   max-width: 50%;
@@ -389,4 +466,40 @@ export default {
   text-align: center;
   background: inherit;
 } 
+
+.botInfo{
+  display: flex;
+  background-color:#c09f80;
+  width: 40rem;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.botInfo img{
+  width: 16em;
+  height: 15em;
+  border-radius: 10rem;
+  padding: .5rem;
+  float: right;
+  shape-outside: border-box;
+}
+.botInfo h3{
+  text-align: center;
+}
+.botInfoText{
+  text-align: left;
+  padding-left: 1rem;
+}
+
+.chatBotDemo{
+  display: flex;
+  margin: 0 auto;
+  background: #c09f80;
+}
+.topDiv{
+  width: 80%;
+  height: auto;
+  margin: 0 auto;
+  background: #c09f80;
+}
 </style>

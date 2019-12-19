@@ -1,6 +1,7 @@
 <template>
   <div id="register" class="text-center">
     <form class="form-register" @submit.prevent="register">
+      <div class="container">
       <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         There were problems registering this user.
@@ -52,30 +53,26 @@
         v-model="user.confirmPassword"
         required
       /> 
-     
-      <p>
+
       <label for="avatar" class="sr-only">Please select avatar</label>  
       <!-- <select v-model="user.avatar">      
       <option value="avatar1" data-thumbnail="../assets/images/avatar1.jpg"> avatar1 </option>
       <option value="avatar2"><img class="img" src="../assets/images/avatar2.jpg"/>avatar2</option>
       <option value="avatar3"><img class="img" src="../assets/images/avatar3.jpg"/>avatar3</option>
       </select> -->
-      <ul>
-      <li>
+      <div class="avatarFlex">
          <input type="checkbox">
-         <img class="img" src="../assets/images/avatar1.jpg"/>
-      </li>
-      <li>
+         <img class="avatar" src="../assets/images/avatar1.jpg"/>
+
          <input type="checkbox">
-         <img class="img" src="../assets/images/avatar2.jpg"/>
-      </li>
-      <li>
+         <img class="avatar" src="../assets/images/avatar2.jpg"/>
+
          <input type="checkbox">
-         <img class="img" src="../assets/images/avatar3.jpg"/>
-      </li>
-    </ul>
-      </p>
+         <img class="avatar" src="../assets/images/avatar3.jpg"/>
+      </div>
+
       <label for="jobPositions" class="sr-only">Please select Jobs you are interested in: </label>
+      <div class="jobSelectionDiv">
        <span v-for="job in availableJobSelections" 
                 v-bind:key="job.id"              
                 v-on:click="updateUserJobPositions(job.id,$event)">
@@ -84,12 +81,14 @@
          />
         {{job.name}}
        </span>
+      </div>
       <router-link :to="{ name: 'login' }">
         Have an account?
       </router-link>
       <button class="btn btn-lg btn-primary btn-block" type="submit" v-on:click.prevent="registerUser()">
         Create Account
       </button>
+      </div>
     </form>
   </div>
 </template>

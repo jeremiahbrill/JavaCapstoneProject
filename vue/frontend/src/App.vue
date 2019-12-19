@@ -72,6 +72,10 @@ font-family: 'Inria Serif', serif, 'Oswald', sans-serif;
 overflow-y: scroll;
 }
 
+body{
+  margin: 0%;
+}
+
 /* div.pageText{
 
     text-align: center;
@@ -84,12 +88,8 @@ overflow-y: scroll;
 
 div#register.text-center {
 width: 80%;
-padding: 10.5%;
-  
-}
-
-button.btn {
-  background-color: #C0B283;
+margin: 0 auto;
+background: #c09f80;
 }
 
 div.row {
@@ -99,13 +99,13 @@ div.row {
   width: 80%;
   max-width: 80%;
   margin: 0 auto;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
   background-color: #c09f80;
   font-size: 1.5rem;
   font-stretch: expanded;
   font-family: 'Inria Serif', serif, 'Oswald', sans-serif;
-  -webkit-text-fill-color: whitesmoke;
+  color: #f5f5f5;
 }
 
 side_container.btn{
@@ -148,23 +148,6 @@ div#app{
   margin: 0 auto;
 }
 
-h1#title_phrase {
-  -webkit-text-fill-color: #651d1d;
-  text-justify: initial;
-  text-shadow: 1em;
-}
-
-div#final_text{
-  align-items: baseline;
-}
-
-h1.Athena_Logo_Text {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 4em;
-  font-stretch: expanded;
-  -webkit-text-fill-color: #651d1d;
-}
-
 h4.achieve{
   -webkit-text-fill-color: #F4f4f4;
 }
@@ -179,7 +162,7 @@ h4.elevate{
 div.nav_container{
   width: 80%;
   margin: 0 auto;
-  background-color: #555555;
+  background-color: #565656;
   border-bottom: 11px solid;
   border-color: #76323F;
 }
@@ -192,13 +175,28 @@ div.nav_container::after{
 
 img.img {
   height: auto;
-  max-width: 85%;
+  width: 100%;
 }
 
 img.logo{
   float: left;
   padding: 5px 0;
   height: 5rem;
+}
+.avatar{
+  width: 30%;
+  height: auto;
+  justify-content: space-between;
+}
+.avatarFlex{
+  display: flex;
+  margin: 1rem;
+}
+.jobSelectionDiv{
+  display: flex;
+  margin: 1rem;
+  flex-flow: wrap;
+  justify-content: space-between;
 }
 
 nav {
@@ -210,12 +208,6 @@ ul.nav{
   list-style: none;
   justify-content: center;
   border: solid;
-}
-
-button.nav_btn{
-  font-family: 'Inria Serif', serif, 'Oswald', sans-serif;
-  text-transform: uppercase;
-
 }
 
 ul.nav:hover{
@@ -231,7 +223,7 @@ li.navbar{
   text-decoration: none;
   text-transform: uppercase;
   font-size: .90rem;
-  -webkit-text-fill-color: whitesmoke;
+  color: whitesmoke;
 
 }
 label.sr-only{
@@ -248,16 +240,6 @@ li.navbar:hover{
   color: whitesmoke;
 }
 
-li.nav_btn{
-  margin: 20px;
-  border-radius: 90px;
-  height: 100%;
-  width: 100%;
-  font-size: 1em;
-  -webkit-text-fill-color: whitesmoke;
-  background-color: #e0e0e8;
-
-}
 div#login.text-center {
   display: flex;
   flex-direction: column;
@@ -270,49 +252,33 @@ div#homePage {
   flex-wrap: wrap;
 }
 
-
-div.demo_video{
-
-  justify-content: left;
-  object-fit: scale-down;
-  padding-right: 40%;
-  padding-bottom: 10%;
-  padding-left: 25%;
-  border: none;
-  background-position: center;
-  background-size: cover;
-  overflow: hidden;
-  margin-bottom: 10%;
+div.left_container{
+  min-width: 20%;
+  width: 45%;
+  height: auto;
 }
-/* div.left_container#homePage{
-  -ms-flex-order: 1;
-  min-width: 12em;
-  max-width: 30%;
-  margin-right: 7em;
-} */
+ul.avatar {
+  display: flex;
+  flex-direction: row;
+  justify-content:space-around;
+}
 
-/* div.right_container#homePage {
-  -ms-flex-order: 2;
-  width: 80%;
-  align-self:  left;
-  background-color:  aliceblue;
-  min-width: 50%;
-} */
-
-div.jobs{
-  background: sandybrown;
-  color: black;
-  font-weight: bold;
-  padding: 2%;
-  margin: 1%;
-  border: black;
+li {
+  list-style-type: none;
 }
 
 .side_container{
   padding: 1%;
   width: 40%;
+  height: 20%;
   text-align: -webkit-center;
+  background-color: #d7cec7;
+  border: #d7cec7 solid;
+  border-radius: 3rem;
+  margin-top: .5rem;
+  margin-left: 2.5rem;
 }
+
 h4.achieve{
   text-align: left;
 }
@@ -337,5 +303,10 @@ h4.Do_More{
   width: 100%;
   height: 1%;
   background: linear-gradient(to bottom right, #76323F, #cbad77);
+}
+.marketing_text{
+  height: auto;
+  font-size: smaller;
+  color: #3d1920 !important;
 }
 </style>
