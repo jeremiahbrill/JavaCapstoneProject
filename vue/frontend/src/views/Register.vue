@@ -107,7 +107,20 @@ export default {
         firstName: '',
         lastName: '',
         avatar:'',
-        jobSelections:[]
+        jobSelections:[
+          {
+              "id": 1,
+              "name": "Software Engineer"
+           },
+          {
+             "id": 2,
+             "name": "Database Administrator"
+          },
+          {
+             "id": 3,
+             "name": "Data Analyst"
+          }
+        ]
       },
       availableJobSelections:[],
       registrationErrors: false,
