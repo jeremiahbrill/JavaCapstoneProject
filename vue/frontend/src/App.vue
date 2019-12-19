@@ -4,10 +4,10 @@
       <img class="logo" src="./assets/images/athena-logo-new-just-owl.png"/>
     <nav id="nav"  >
       <ul class="navbar">
-      <li class="navbar"><router-link to="/HomePage" >Home</router-link></li>
-      <li class="navbar"><router-link to="/login">Login</router-link></li>
-      <li class="navbar"><router-link to="/Chatbox" >Chatbot</router-link></li>
-      <li class="navbar"><router-link to="/AboutUs">AboutUs</router-link></li>
+      <li class="navbar"><router-link to="/HomePage" ><i class="fa fa-home"></i>Home</router-link></li>
+      <li class="navbar"><router-link to="/login"><i class="fa fa-sign-in"></i>Login</router-link></li>
+      <li class="navbar"><router-link to="/Chatbox" ><i class="fa fa-comment"></i>Chatbot</router-link></li>
+      <li class="navbar"><router-link to="/AboutUs"><i class="fa fa-info-circle"></i>About Us</router-link></li>
       </ul>
     </nav>
     </div>
@@ -16,6 +16,13 @@
       <chat-box :user="user"/>
     </div> -->
     <router-view/>
+    <div class="footer">
+      <a href="#" class="fa fa-facebook"></a>
+      <a href="#" class="fa fa-twitter"></a>
+      <a href="#" class="fa fa-google"></a>
+      <a href="#" class="fa fa-linkedin"></a>
+      <p> The Owl of Athena copy right 2019.</p>
+    </div>
   </div>
 </template>
 
@@ -58,6 +65,72 @@
 /* .hideThis{
   display: none;
 } */
+.fa-info-circle{
+   border: none;
+  color: white;
+  padding: 0px 0px !important;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 4px !important;
+}
+.fa-comment{
+  border: none;
+  color: white;
+  padding: 0px 0px !important;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 4px !important;
+}
+.fa-sign-in{
+  border: none;
+  color: white;
+  padding: 0px 0px !important;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 4px !important;
+}
+.fa-home{
+  border: none;
+  color: white;
+  padding: 0px 0px !important;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 4px !important;
+}
+.fa {
+  margin: 1rem;
+  padding: 10px;
+  font-size: 15px;
+  width: 25px;
+  text-align: center;
+  text-decoration: none;
+  margin: 1rem;
+  border-radius: 3rem;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.fa-google {
+  background: #dd4b39;
+  color: white;
+}
+
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+}
+
 head{
   font-size: 4rem;
 }
@@ -290,10 +363,17 @@ h4.Do_More{
   margin-bottom: 0% !important;  
 }
 .footer{
-  padding: 1%;
-  width: 100%;
+  /* padding: 1%; */
+  width: 80%;
   height: 1%;
+  margin: 0 auto;
   background: linear-gradient(to bottom right, #76323F, #cbad77);
+}
+.footer p{
+  display: inline-block;
+  float: right;
+  margin: 2rem 2rem;
+  color: #d7cec7;
 }
 .marketing_text{
   height: auto;

@@ -27,9 +27,6 @@
           </video>
         </div>
       </div>
-      <div class="footer">
-        <p>This is the Footer Text add the social icons Here</p>
-      </div>
     </div>
   </div>
 </template>

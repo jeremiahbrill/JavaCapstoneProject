@@ -503,4 +503,7 @@ export default {
   margin: 0 auto;
   background: #c09f80;
 }
+.sc-header--close-button{
+  display: none;
+}
 </style>

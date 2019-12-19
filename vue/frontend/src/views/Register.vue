@@ -61,13 +61,13 @@
       <option value="avatar3"><img class="img" src="../assets/images/avatar3.jpg"/>avatar3</option>
       </select> -->
       <div class="avatarFlex">
-         <input type="checkbox">
+         <input type="radio" name="avatar" value="../assets/images/avatar1.jpg" v-model="user.avatar" required>
          <img class="avatar" src="../assets/images/avatar1.jpg"/>
 
-         <input type="checkbox">
+         <input type="radio" name="avatar" value="../assets/images/avatar2.jpg" v-model="user.avatar" required>
          <img class="avatar" src="../assets/images/avatar2.jpg"/>
 
-         <input type="checkbox">
+         <input type="radio" name="avatar" value="../assets/images/avatar3.jpg" v-model="user.avatar" required>
          <img class="avatar" src="../assets/images/avatar3.jpg"/>
       </div>
 
