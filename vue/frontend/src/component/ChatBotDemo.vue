@@ -406,22 +406,21 @@ export default {
   background: gray; 
 }
 .hide{
-  position: absolute;
+  position: relative;
   z-index: 2;
-  left: 20rem;
-  top: 6rem;
+  left: -2rem;
+  top: -33rem;
   height: 25rem;
-  width: 30rem;
+  width: auto;
 }
 
 .jobs{
   background: #c29f80;
-  color: black;
+  color: #eaf5f5;
   font-weight: bold;
   padding: 2%;
   margin: 1%;
-  border: solid .25rem;
-  border-color: #763240;
+  border: #565656;
   border-radius: 1rem;
 }
 .jobName{

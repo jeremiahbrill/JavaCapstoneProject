@@ -1,5 +1,5 @@
 <template>
-<div>  
+<div class="loginScreen">  
     <form class="form-signin" @submit.prevent="startLogin">
       <div class="container">
         <h1>Sign In</h1>
@@ -117,6 +117,12 @@ export default {
 };
 </script>
 <style>
+.loginScreen{
+  width: 80%;
+  margin: 0% auto;
+  background: #c09f80;
+  padding-bottom: 1rem;
+}
 img.avatar {
   width: 40%;
   border-radius: 50%;
@@ -125,15 +131,22 @@ h1{
   text-align: center;
 }
 form {
-  border: 3px solid #f1f1f1;
-  background-color: #f1f1f1;
-  border-radius: 8px;
-  margin: 1% auto;
-  max-width: 80%;
+  border: 3px solid #c09f80;
+  background-color: #eaf5f5;
+  border-radius: 1rem;
+  margin: 0 auto;
+  width: 50%;
+  text-align: center;
+}
+
+label{
+  display: block;
+  text-align: left
 }
 
 input[type="text"],
 input[type="password"] {
+  display: block;
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -143,14 +156,21 @@ input[type="password"] {
 }
 
 button {
-  background-color: rgb(160, 142, 38);
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 50px;
+  display: block;
+  text-align: center;
+  color:whitesmoke;
+  border: solid;
+  border-color: #76323F;
+  border-bottom: outset;
+  border-left: outset;
+  border-left-color: #76323F;
+  border-radius: 1rem;
+  height: 4em;
+  width: 50%;
+  background-color: #3c1920;
   cursor: pointer;
-  width: 100%;
+  margin: 0 auto;
+  margin-top: 1rem
 }
 
 button:hover {

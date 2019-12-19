@@ -7,6 +7,7 @@
       <li class="navbar"><router-link to="/HomePage" >Home</router-link></li>
       <li class="navbar"><router-link to="/login">Login</router-link></li>
       <li class="navbar"><router-link to="/Chatbox" >Chatbot</router-link></li>
+      <li class="navbar"><router-link to="/AboutUs">AboutUs</router-link></li>
       </ul>
     </nav>
     </div>
@@ -61,6 +62,7 @@ head{
   font-size: 4rem;
 }
 html {
+
 background-color: #D7CEC7;
 background-size: cover;
 background-repeat: no-repeat;
@@ -84,6 +86,12 @@ body{
     max-width: 100%;
 } */
 
+div#register.text-center {
+width: 80%;
+margin: 0 auto;
+background: #c09f80;
+}
+
 div.row {
   display: flex;
   flex-direction: row;
@@ -100,10 +108,8 @@ div.row {
   color: #f5f5f5;
 }
 
-div#register.text-center {
-width: 80%;
-padding: 10.5%;
-  
+side_container.btn{
+  text-align: center;
 }
 .get_started{
     border: solid;
@@ -129,6 +135,7 @@ padding: 10.5%;
   background-color: #76323F;
   -webkit-text-fill-color: whitesmoke;
   font-family: 'Inria Serif', serif, 'Oswald', sans-serif;
+  margin-bottom: 10%;
 }
 
 button.submit {
@@ -142,14 +149,14 @@ div#app{
 }
 
 h4.achieve{
-  -webkit-text-fill-color: rgb(249, 247, 243);
+  -webkit-text-fill-color: #F4f4f4;
 }
 h4.Do_More {
-  -webkit-text-fill-color: rgb(249, 247, 243);
+  -webkit-text-fill-color: #F4f4f4;
 }
 
 h4.elevate{
-  -webkit-text-fill-color: #651d1d;
+  -webkit-text-fill-color: #373737;
 }
 
 div.nav_container{
@@ -176,6 +183,21 @@ img.logo{
   padding: 5px 0;
   height: 5rem;
 }
+.avatar{
+  width: 30%;
+  height: auto;
+  justify-content: space-between;
+}
+.avatarFlex{
+  display: flex;
+  margin: 1rem;
+}
+.jobSelectionDiv{
+  display: flex;
+  margin: 1rem;
+  flex-flow: wrap;
+  justify-content: space-between;
+}
 
 nav {
   float: right;
@@ -186,12 +208,6 @@ ul.nav{
   list-style: none;
   justify-content: center;
   border: solid;
-}
-
-button.nav_btn{
-  font-family: 'Inria Serif', serif, 'Oswald', sans-serif;
-  text-transform: uppercase;
-
 }
 
 ul.nav:hover{
@@ -211,7 +227,7 @@ li.navbar{
 
 }
 label.sr-only{
-  -webkit-text-fill-color: black;
+  -webkit-text-fill-color: #373737;
 }
 
 .navbar a {
@@ -224,16 +240,6 @@ li.navbar:hover{
   color: whitesmoke;
 }
 
-li.nav_btn{
-  margin: 20px;
-  border-radius: 90px;
-  height: 100%;
-  width: 100%;
-  font-size: 1em;
-  -webkit-text-fill-color: whitesmoke;
-  background-color: #e0e0e8;
-
-}
 div#login.text-center {
   display: flex;
   flex-direction: column;
@@ -250,23 +256,6 @@ div.left_container{
   min-width: 20%;
   width: 45%;
   height: auto;
-}
-
-/* div.right_container#homePage {
-  -ms-flex-order: 2;
-  width: 80%;
-  align-self:  left;
-  background-color:  aliceblue;
-  min-width: 50%;
-} */
-
-div.jobs{
-  background: sandybrown;
-  color: black;
-  font-weight: bold;
-  padding: 2%;
-  margin: 1%;
-  border: black;
 }
 
 .side_container{
