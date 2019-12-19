@@ -21,7 +21,7 @@
       <a href="#" class="fa fa-twitter"></a>
       <a href="#" class="fa fa-google"></a>
       <a href="#" class="fa fa-linkedin"></a>
-      <p> The Owl of Athena copy right 2019.</p>
+      <p> The Owl of Athena 2019. <i class="fa fa-copyright"></i> </p>
     </div>
   </div>
 </template>
@@ -65,6 +65,14 @@
 /* .hideThis{
   display: none;
 } */
+.fa-copyright{
+  border: none;
+  color: white;
+  padding: 0px 0px !important;
+  font-size: 14px;
+  cursor: pointer;
+  margin: 2px !important;
+}
 .fa-info-circle{
    border: none;
   color: white;
@@ -160,9 +168,11 @@ body{
 } */
 
 div#register.text-center {
-width: 80%;
-margin: 0 auto;
-background: #c09f80;
+  width: 80%;
+  margin: 0 auto;
+  background: #c09f80;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 div.row {
@@ -301,9 +311,9 @@ li.navbar{
   color: whitesmoke;
 
 }
-label.sr-only{
+/* label.sr-only{
   -webkit-text-fill-color: #373737;
-}
+} */
 
 .navbar a {
   font-size: 1.25rem;

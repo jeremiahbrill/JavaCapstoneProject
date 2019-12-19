@@ -116,7 +116,7 @@ export default {
         }
       ], // the list of all the participant of the conversation. `name` is the user name, `id` is used to establish the author of a message, `imageUrl` is supposed to be the user avatar.
       titleImageUrl:
-        "https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png",
+        "https://i.ibb.co/prwXZyQ/Rachelle.png",
       messageList: [
         { type: "text", author: `user1`, data: { text: `Welcome ${this.user.firstName} To Chat Bot`}, suggestions:['Pathway', 'Curriculum', 'Job Search'] } 
       ], // the list of the messages to show, can be paginated and adjusted dynamically
@@ -353,6 +353,13 @@ export default {
 </script>
 
 <style>
+.sc-header--img{
+  border-radius: 50% !important;
+  align-self: center !important;
+  padding: 10px !important;
+  width: 12% !important;
+  height: auto !important;
+}
 .chatwindow{
   height: 100%;
   width: 35%;

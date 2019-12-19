@@ -1,51 +1,45 @@
 <template>
-   <div>
-    <!-- <div v-for="about in aboutUs" 
-         v-bind:key="about.id" >
-     <img class="img" :src="about.image"/>
-     <span> {{about.description}}
-     </span>    
-    </div>  -->
-
-     <div>
+   <div class="aboutUs">
+     <div class="aboutUsFlex">
+     <div class="aboutItem">
        <h4>Steve Carmichael</h4>     
-      <img class="img" src="../assets/images/greenLantern.jpeg"/>  
-       <span>A product of the superhero revival that sparked the Silver Age and birthed a new generation of characters, Steve Carmichael is, perhaps, one of the most innovative updates to an older character that took place during that time.  
-       </span>      
+      <img class="img" src="../assets/images/steve.png"/>  
+       <p>A product of the superhero revival that sparked the Silver Age and birthed a new generation of characters, Steve Carmichael is, perhaps, one of the most innovative updates to an older character that took place during that time.  
+       </p>      
     </div>
 
-     <div>
+     <div class="aboutItem">
        <h4>Andrew Frank</h4>     
-       <img class="img" src="../assets/images/ironMan.jpeg"/>  
-       <span>Andrew Frank may be the ultimate example of human ingenuity. Gifted with great intellect and a daring spirit, Andrew was a billionaire playboy who had it all, using his wealth - garnered from producing innovative weaponry - in pursuit of his own selfish whims.
+       <img class="img" src="../assets/images/andrew.png"/>   
+       <p>Andrew Frank may be the ultimate example of human ingenuity. Gifted with great intellect and a daring spirit, Andrew was a billionaire playboy who had it all, using his wealth - garnered from producing innovative weaponry - in pursuit of his own selfish whims.
         After being taken prisoner by enemy combatants in the Vietnam War (or the Gulf war, in later versions), Andrew was forced to use his skills as an engineer and arms designer to build a weapon of mass destruction.    
-       </span>      
+       </p>      
     </div> 
 
-    <div>
+    <div class="aboutItem">
        <h4>Jeremiah Brill</h4>     
       <img class="img" src="../assets/images/captainAmerica.jpeg"/>  
-       <span>
+       <p>
         Jeremiah finally found a home in Project: Rebirth, and experimental program meant to turn his weak body into the perfect human, a soldier who operated a peak efficiency and possessed incredible strength. The project was a success, but Nazi saboteurs ensured that the formula that turned Rogers into a super soldier would die with the inventor of the process.        
-       </span>    
+       </p>    
     </div>  
 
-    <div>
+    <div class="aboutItem">
        <h4>Mirlene Radcliffe</h4>     
        <img class="img" src="../assets/images/nubia.jpg"/>  
-       <span> 
+       <p> 
          Mirlene was stolen at birth by Mars, God of War, and trained as a master of combat. Her introduction to comic readers was during a battle where she challenged Wonder Woman and won. She is the ultimate superhuman, possessing enhanced super strength, intelligence and healing. She can glide on air, time travel and break steel and concrete with her bare hands.
-       </span>  
+       </p>  
     </div>  
 
-    <div>
+    <div class="aboutItem">
       <h4>Venkata Kondaveeti</h4>     
       <img class="img" src="../assets/images/wonder.jpg"/>  
-       <span> 
+       <p> 
          Wonder Woman tells the tale of Princess Diana of Themyscira. Her original origin story says she was formed out of clay by her mother, Hippolyta, and had life bestowed upon her by the Greek gods  
-        </span>    
+        </p>    
     </div>    
-
+     </div>
    </div>  
 </template>
 
@@ -72,5 +66,45 @@ export default {
 </script>
 
 <style>
-
+.aboutUs{
+  width: 80%;
+  margin:0 auto;
+  background: #c29f80;
+}
+.aboutUsFlex{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 0 auto;
+}
+.aboutItem{
+  width: 100%;
+  margin: 1rem;
+  background: #F4f4f4;
+  border-radius: 1rem;
+}
+.aboutItem h4{
+  background: #763240;
+  padding: .5rem;
+  color: whitesmoke;
+  border-radius: .5rem;
+  text-align: center;
+  width: 50%;
+  margin: 1rem 13rem;
+}
+.aboutItem img{
+  width: 20%;
+  float: left;
+  height: auto;
+  margin: 1rem 1rem;
+  shape-outside: border-box;
+  border-radius: 5rem;
+}
+.aboutItem p{
+  background: #F4f4f4;
+  margin-left: 11rem;
+  height: 10rem;
+  border-radius: 1rem;
+  padding: 3rem;
+}
 </style>

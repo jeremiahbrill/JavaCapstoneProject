@@ -124,6 +124,7 @@ export default {
   margin: 0% auto;
   background: #c09f80;
   padding-bottom: 1rem;
+  padding-top: 1rem;
 }
 img.avatar {
   width: 40%;

@@ -6,7 +6,7 @@
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         There were problems registering this user.
       </div>
-      <label for="firstName" class="sr-only">First Name</label>
+      <label for="firstName" >First Name</label>
       <input
         type="text"
         id="firstname"
@@ -16,7 +16,7 @@
         required
         autofocus
       />
-      <label for="lastName" class="sr-only">Last Name</label>
+      <label for="lastName" >Last Name</label>
       <input
         type="text"
         id="lastname"
@@ -26,7 +26,7 @@
         required
         autofocus
       />
-       <label for="username" class="sr-only">Username</label>
+       <label for="username" >Username</label>
       <input
         type="text"
         id="username"
@@ -36,7 +36,7 @@
         required
         autofocus
       />
-      <label for="password" class="sr-only">Password</label>
+      <label for="password" >Password</label>
       <input
         type="password"
         id="password"
@@ -54,24 +54,28 @@
         required
       /> 
 
-      <label for="avatar" class="sr-only">Please select avatar</label>  
+      <label for="avatar" >Please select avatar</label>  
       <!-- <select v-model="user.avatar">      
       <option value="avatar1" data-thumbnail="../assets/images/avatar1.jpg"> avatar1 </option>
       <option value="avatar2"><img class="img" src="../assets/images/avatar2.jpg"/>avatar2</option>
       <option value="avatar3"><img class="img" src="../assets/images/avatar3.jpg"/>avatar3</option>
-      </select> -->
+      </select>    -->
       <div class="avatarFlex">
-         <input type="radio" name="avatar" value="../assets/images/avatar1.jpg" v-model="user.avatar" required>
-         <img class="avatar" src="../assets/images/avatar1.jpg"/>
+         <input type="radio" name="avatar" value="owlAvatar1" required>
+         <img class="avatar" src="../assets/images/owlAvatar1.jpg"/>
 
-         <input type="radio" name="avatar" value="../assets/images/avatar2.jpg" v-model="user.avatar" required>
-         <img class="avatar" src="../assets/images/avatar2.jpg"/>
+         <input type="radio" name="avatar" value="owlAvatar2" required>
+         <img class="avatar" src="../assets/images/owlAvatar2.jpg"/>
 
-         <input type="radio" name="avatar" value="../assets/images/avatar3.jpg" v-model="user.avatar" required>
-         <img class="avatar" src="../assets/images/avatar3.jpg"/>
+         <input type="radio" name="avatar" value="owlAvatar3" required>
+         <img class="avatar" src="../assets/images/owlAvatar3.jpg"/>
+
+         <input type="radio" name="avatar" value="owlAvatar4.jpg"  required>
+         <img class="avatar" src="../assets/images/Rachelle.png"/>
+
       </div>
 
-      <label for="jobPositions" class="sr-only">Please select Jobs you are interested in: </label>
+      <label for="jobPositions" >Please select Jobs you are interested in: </label>
       <div class="jobSelectionDiv">
        <span v-for="job in availableJobSelections" 
                 v-bind:key="job.id"              
